@@ -79,7 +79,7 @@ def analyze_dreams_honest_model():
 
     tf = tf_vectorizer.fit_transform(df[text_col].astype(str))
 
-    n_topics = 5
+    n_topics = 50
     print(f"Running model to find {n_topics} natural clusters...")
 
     lda = LatentDirichletAllocation(n_components=n_topics, random_state=42)
