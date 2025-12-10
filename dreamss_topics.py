@@ -6,28 +6,60 @@ from sklearn.decomposition import LatentDirichletAllocation
 from pathlib import Path
 
 
-def analyze_dreams_honest_model():
-    # --- 1. טעינת הנתונים ---
-    current_script_path = Path(__file__).resolve()
-    project_root = current_script_path.parents[2]
+def find_data_file():
+    """
+    פונקציה חכמה שמחפשת את הקובץ.
+    היא מתחילה מהתיקייה שבה הסקריפט רץ, ומחפשת גם בתיקיות שמעליה.
+    """
+    # מתחילים מהתיקייה הנוכחית של הסקריפט
+    current_dir = Path(__file__).resolve().parent
+    filename = "all_dreams_combined.csv"
 
-    possible_files = [project_root / "all_dreams_combined.csv", project_root / "all_dreams_combined_json.csv"]
-    data_file = next((f for f in possible_files if f.exists()), None)
+    print(f"🕵️ Searching for '{filename}' starting from: {current_dir}")
+
+    # חיפוש בלולאה: בודק פה, ואז עולה תיקייה למעלה, וכו' (עד 4 רמות)
+    for _ in range(4):
+        candidate = current_dir / filename
+        if candidate.exists():
+            print(f"✅ Found file at: {candidate}")
+            return candidate
+
+        # אם הגענו לשורש המחשב, נעצור
+        if current_dir.parent == current_dir:
+            break
+
+        # עלייה לתיקייה שמעל
+        current_dir = current_dir.parent
+
+    return None
+
+
+def analyze_dreams_honest_model():
+    # --- 1. מציאת הקובץ (התיקון כאן) ---
+    data_file = find_data_file()
 
     if not data_file:
-        print("Error: Combined CSV not found.")
+        print("\n❌ Error: Could not find 'all_dreams_combined.csv'.")
+        print("Please make sure the file exists in your project folder.")
         return
 
-    print(f"Loading data from {data_file.name}...")
-    df = pd.read_csv(data_file)
+    print(f"Loading data...")
+    try:
+        df = pd.read_csv(data_file)
+    except Exception as e:
+        print(f"Error reading CSV: {e}")
+        return
 
+    # --- 2. מציאת עמודת הטקסט ---
     text_col = next((col for col in ['report', 'content', 'dream', 'description'] if col in df.columns), None)
     if not text_col:
+        # אם לא מוצא לפי שם, לוקח את העמודה עם הטקסט הכי ארוך
         text_col = max(df.select_dtypes(include=['object']), key=lambda c: df[c].astype(str).str.len().mean())
 
     df = df.dropna(subset=[text_col])
+    print(f"Analyzing {len(df)} dreams using column '{text_col}'...")
 
-    # --- 2. ניקוי וסינון ---
+    # --- 3. ניקוי וסינון (Stop Words) ---
     custom_stop_words = list(text.ENGLISH_STOP_WORDS)
     custom_stop_words.extend([
         'dream', 'dreamed', 'dreamt', 'woke', 'awakened', 'remember', 'recall',
@@ -36,9 +68,7 @@ def analyze_dreams_honest_model():
         'ich', 'und', 'die', 'der', 'das', 'ein', 'zu', 'war', 'nicht', 'mit', 'den', 'auf', 'ist'
     ])
 
-    print(f"Analyzing {len(df)} dreams...")
-
-    # --- 3. בניית המודל ---
+    # --- 4. בניית המודל ---
     tf_vectorizer = CountVectorizer(
         max_df=0.90,
         min_df=10,
@@ -49,15 +79,13 @@ def analyze_dreams_honest_model():
 
     tf = tf_vectorizer.fit_transform(df[text_col].astype(str))
 
-    # אפשר לשנות את מספר הנושאים ל-6 או 8 כדי לקבל חלוקה מדויקת יותר
-    n_topics = 500
+    n_topics = 5
     print(f"Running model to find {n_topics} natural clusters...")
 
     lda = LatentDirichletAllocation(n_components=n_topics, random_state=42)
     lda.fit(tf)
 
-    # --- 4. יצירת שמות לקטגוריות באופן אוטומטי ---
-    # כאן השינוי הגדול: אנחנו לא ממציאים שמות. המודל קובע את השם לפי המילים המובילות.
+    # --- 5. יצירת שמות לקטגוריות באופן אוטומטי ---
     feature_names = tf_vectorizer.get_feature_names_out()
     topic_labels = {}
 
@@ -67,20 +95,16 @@ def analyze_dreams_honest_model():
         top_words_idx = topic.argsort()[:-4:-1]
         top_words = [feature_names[i] for i in top_words_idx]
 
-        # השם של הקטגוריה הוא פשוט המילים עצמן, למשל: "school, class, test"
         auto_label = ", ".join(top_words)
         topic_labels[topic_idx] = auto_label
 
         print(f"Topic {topic_idx + 1}: {auto_label}")
 
-    # --- 5. שיוך וחישוב סטטיסטיקה ---
+    # --- 6. שיוך וחישוב סטטיסטיקה ---
     topic_values = lda.transform(tf)
     df['topic_id'] = topic_values.argmax(axis=1) + 1
-
-    # שומרים את השם האוטומטי בעמודה
     df['topic_keywords'] = (df['topic_id'] - 1).map(topic_labels)
 
-    # הדפסת הסטטיסטיקה
     print("\n" + "=" * 50)
     print("       📊 DREAM STATISTICS (AUTO-DETECTED)")
     print("=" * 50)
@@ -90,13 +114,13 @@ def analyze_dreams_honest_model():
 
     for category, count in category_counts.items():
         percent = (count / total) * 100
-        # מדפיס: 3 המילים המובילות | כמות | אחוז
         print(f"📂 [{category:<30}] : {count} dreams ({percent:.1f}%)")
 
     print("=" * 50)
 
-    # --- 6. שמירה לקובץ ---
-    output_path = project_root / "dreams_auto_categorized.csv"
+    # --- 7. שמירה לקובץ ---
+    # שומרים את הקובץ החדש באותה תיקייה שבה נמצא הקובץ המקורי
+    output_path = data_file.parent / "dreams_auto_categorized.csv"
     df.to_csv(output_path, index=False)
     print(f"\n✅ SUCCESS! File saved at:\n{output_path}")
 
