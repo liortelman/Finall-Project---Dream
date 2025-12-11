@@ -1,20 +1,74 @@
 import pandas as pd
+import numpy as np
 import nltk
+import re
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from pathlib import Path
 
+# --- Custom Dream Dictionaries ---
+# These words specifically trigger "Nightmare" or "Bliss" logic
+# VADER might miss the context of "falling" or "chased", so we boost them here.
+NIGHTMARE_KEYWORDS = {
+    'nightmare', 'terrified', 'scared', 'scream', 'screaming', 'blood', 'kill',
+    'death', 'dead', 'monster', 'demon', 'ghost', 'chased', 'running away',
+    'trapped', 'paralyzed', 'darkness', 'evil', 'attack', 'attacked', 'gun',
+    'knife', 'corpse', 'drowning', 'falling', 'teeth', 'spider', 'snake'
+}
 
-def analyze_dream_sentiment():
-    # --- 1. טעינת הנתונים (התיקון) ---
+BLISS_KEYWORDS = {
+    'happy', 'joy', 'love', 'loved', 'beautiful', 'amazing', 'wonderful',
+    'peace', 'peaceful', 'flying', 'fly', 'lucid', 'control', 'kiss',
+    'hug', 'warmth', 'light', 'angel', 'ecstasy', 'perfect', 'paradise'
+}
 
-    # במקום לחפש בתיקיות למעלה, נחפש בתיקייה שבה הסקריפט נמצא כרגע
+
+def calculate_hybrid_score(text, analyzer):
+    """
+    Combines VADER sentiment with custom Dream Keyword counting.
+    Returns a score between -1.0 (Scary) and 1.0 (Happy).
+    """
+    if not isinstance(text, str):
+        return 0.0
+
+    # 1. Base VADER Score
+    vader_score = analyzer.polarity_scores(text)['compound']
+
+    # 2. Keyword Analysis
+    text_lower = text.lower()
+
+    # Count occurrences (simple heuristic)
+    nightmare_hits = sum(1 for word in NIGHTMARE_KEYWORDS if word in text_lower)
+    bliss_hits = sum(1 for word in BLISS_KEYWORDS if word in text_lower)
+
+    # 3. Adjust Score
+    # If we find nightmare words, we drag the score down.
+    # If we find bliss words, we push it up.
+    # The multiplier (0.15) determines how much impact keywords have.
+    adjustment = (bliss_hits * 0.15) - (nightmare_hits * 0.15)
+
+    final_score = vader_score + adjustment
+
+    # Clip results to stay within -1 to 1 range
+    return max(-1.0, min(1.0, final_score))
+
+
+def get_sentiment_label(score):
+    if score >= 0.3: return "🌟 Blissful / Happy"
+    if score >= 0.05: return "🙂 Positive"
+    if score <= -0.4: return "💀 Nightmare / Scary"
+    if score <= -0.05: return "😟 Negative"
+    return "😐 Neutral"
+
+
+def analyze_dream_sentiment_improved():
+    # --- 1. Load Data ---
     current_dir = Path(__file__).resolve().parent
     print(f"📂 Looking for files in: {current_dir}")
 
     possible_files = [
-        "dreams_auto_categorized.csv",  # עדיפות 1
-        "dreams_with_categories_final.csv",  # עדיפות 2
-        "all_dreams_combined.csv"  # עדיפות 3
+        "dreams_auto_categorized.csv",
+        "dreams_with_categories_final.csv",
+        "all_dreams_combined.csv"
     ]
 
     data_file = None
@@ -26,27 +80,23 @@ def analyze_dream_sentiment():
             break
 
     if not data_file:
-        print("\n❌ Error: Could not find any CSV file.")
-        print(f"Please make sure one of these files is inside: {current_dir}")
+        print("❌ Error: Could not find CSV file.")
         return
 
-    print(f"Loading data...")
     try:
         df = pd.read_csv(data_file)
     except Exception as e:
         print(f"Error reading CSV: {e}")
         return
 
-    # מציאת עמודת טקסט באופן אוטומטי
     text_col = next((col for col in ['report', 'content', 'dream', 'description'] if col in df.columns), None)
     if not text_col:
-        # אם לא מצא לפי שם, לוקח את העמודה עם הטקסט הכי ארוך
         text_col = max(df.select_dtypes(include=['object']), key=lambda c: df[c].astype(str).str.len().mean())
 
     df = df.dropna(subset=[text_col])
+    print(f"Analyzing {len(df)} dreams...")
 
-    # --- 2. אתחול המודל (VADER) ---
-    print("Initializing sentiment analyzer...")
+    # --- 2. Initialize VADER ---
     try:
         nltk.data.find('sentiment/vader_lexicon.zip')
     except LookupError:
@@ -55,50 +105,58 @@ def analyze_dream_sentiment():
 
     analyzer = SentimentIntensityAnalyzer()
 
-    print(f"Analyzing emotions in {len(df)} dreams...")
+    # --- 3. Apply Hybrid Analysis ---
+    print("running hybrid emotional analysis...")
 
-    # --- 3. חישוב הציון לכל חלום ---
-    df['sentiment_score'] = df[text_col].apply(lambda text: analyzer.polarity_scores(str(text))['compound'])
+    # Apply the custom function
+    df['sentiment_score'] = df[text_col].apply(lambda x: calculate_hybrid_score(str(x), analyzer))
+    df['sentiment_label'] = df['sentiment_score'].apply(get_sentiment_label)
 
-    def categorize_sentiment(score):
-        if score >= 0.05: return "Positive (Happy)"
-        if score <= -0.05: return "Negative (Nightmare/Sad)"
-        return "Neutral"
+    # --- 4. Statistics ---
+    print("\n" + "=" * 60)
+    print("       📊 IMPROVED EMOTIONAL ANALYSIS")
+    print("=" * 60)
 
-    df['sentiment_label'] = df['sentiment_score'].apply(categorize_sentiment)
-
-    # --- 4. הצגת סטטיסטיקות ---
-    print("\n" + "=" * 50)
-    print("       📊 EMOTIONAL ANALYSIS RESULTS")
-    print("=" * 50)
-
+    # Sort categories in a logical order for printing
+    order = ["🌟 Blissful / Happy", "🙂 Positive", "😐 Neutral", "😟 Negative", "💀 Nightmare / Scary"]
     counts = df['sentiment_label'].value_counts()
     total = len(df)
-    for label, count in counts.items():
-        print(f"🎭 {label:<25}: {count} dreams ({count / total:.1%})")
 
-    # --- 5. הצגת דוגמאות קיצוניות ---
-    print("\n" + "=" * 50)
-    print("       🏆 EXTREME DREAMS FOUND")
-    print("=" * 50)
+    for label in order:
+        count = counts.get(label, 0)
+        percent = (count / total) * 100 if total > 0 else 0
+        bar = "█" * int(percent / 5)
+        print(f"{label:<20} : {count:>4} ({percent:>5.1f}%) {bar}")
 
-    # החלום הכי חיובי
+    # --- 5. Extract Extremes ---
+    print("\n" + "=" * 60)
+    print("       🏆 EXTREME DREAM EXAMPLES")
+    print("=" * 60)
+
+    # Happiest
     happiest_idx = df['sentiment_score'].idxmax()
-    happiest_dream = str(df.loc[happiest_idx, text_col])
-    print(f"\n😊 THE HAPPIEST DREAM (Score: {df.loc[happiest_idx, 'sentiment_score']}):")
-    print(f"\"{happiest_dream[:300]}...\"")
+    print(f"\n🌟 THE HAPPIEST DREAM (Score: {df.loc[happiest_idx, 'sentiment_score']:.2f}):")
+    print(f"\"{str(df.loc[happiest_idx, text_col])[:350]}...\"")
 
-    # החלום הכי שלילי
+    # Scariest
     scariest_idx = df['sentiment_score'].idxmin()
-    scariest_dream = str(df.loc[scariest_idx, text_col])
-    print(f"\n😱 THE SCARIEST DREAM (Score: {df.loc[scariest_idx, 'sentiment_score']}):")
-    print(f"\"{scariest_dream[:300]}...\"")
+    print(f"\n💀 THE SCARIEST DREAM (Score: {df.loc[scariest_idx, 'sentiment_score']:.2f}):")
+    print(f"\"{str(df.loc[scariest_idx, text_col])[:350]}...\"")
 
-    # --- 6. שמירה ---
-    output_path = current_dir / "dreams_with_sentiment.csv"
+    # Random Neutral (to verify validity)
+    try:
+        neutral_sample = df[df['sentiment_label'] == "😐 Neutral"].sample(1)
+        if not neutral_sample.empty:
+            print(f"\n😐 SAMPLE NEUTRAL DREAM:")
+            print(f"\"{str(neutral_sample.iloc[0][text_col])[:200]}...\"")
+    except:
+        pass
+
+    # --- 6. Save ---
+    output_path = current_dir / "dreams_sentiment_enhanced.csv"
     df.to_csv(output_path, index=False)
-    print(f"\n✅ Saved full analysis to: {output_path}")
+    print(f"\n✅ Analysis saved to: {output_path}")
 
 
 if __name__ == "__main__":
-    analyze_dream_sentiment()
+    analyze_dream_sentiment_improved()

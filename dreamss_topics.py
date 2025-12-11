@@ -62,10 +62,9 @@ def analyze_dreams_honest_model():
     # --- 3. ניקוי וסינון (Stop Words) ---
     custom_stop_words = list(text.ENGLISH_STOP_WORDS)
     custom_stop_words.extend([
-        'dream', 'dreamed', 'dreamt', 'woke', 'awakened', 'remember', 'recall',
-        'said', 'went', 'got', 'did', 'like', 'just', 'know', 'think', 'saw', 'felt',
-        'asked', 'told', 'started', 'looking', 'going', 'looked', 'wanted', 'came',
-        'ich', 'und', 'die', 'der', 'das', 'ein', 'zu', 'war', 'nicht', 'mit', 'den', 'auf', 'ist'
+        'dream', 'dreamed', 'dreamt', 'woke', 'awakened', 'remember', 'recall','say', 'says', 'look'
+        'said', 'went', 'got', 'did', 'like', 'just', 'know', 'think', 'saw', 'felt','didn', 'thought', 'don'
+        'asked', 'told', 'started', 'looking', 'going', 'looked', 'wanted', 'came','couldn','saying', 'sent'
     ])
 
     # --- 4. בניית המודל ---
@@ -98,28 +97,39 @@ def analyze_dreams_honest_model():
         auto_label = ", ".join(top_words)
         topic_labels[topic_idx] = auto_label
 
-        print(f"Topic {topic_idx + 1}: {auto_label}")
+        # print(f"Topic {topic_idx + 1}: {auto_label}") # Removed to avoid clutter, will print in stats
 
     # --- 6. שיוך וחישוב סטטיסטיקה ---
     topic_values = lda.transform(tf)
+    # Note: Topic ID is 1-based here for readability
     df['topic_id'] = topic_values.argmax(axis=1) + 1
+    # Note: We map using the 0-based index from lda.components_
     df['topic_keywords'] = (df['topic_id'] - 1).map(topic_labels)
 
-    print("\n" + "=" * 50)
-    print("       📊 DREAM STATISTICS (AUTO-DETECTED)")
-    print("=" * 50)
+    print("\n" + "=" * 60)
+    print("       📊 DREAM STATISTICS (AUTO-DETECTED WITH ID)")
+    print("=" * 60)
 
-    category_counts = df['topic_keywords'].value_counts()
+    # Group by both ID and Keywords to keep the ID available
+    stats = df.groupby(['topic_id', 'topic_keywords']).size().reset_index(name='count')
+
+    # Sort by count descending (most common topics first)
+    stats = stats.sort_values(by='count', ascending=False)
+
     total = len(df)
 
-    for category, count in category_counts.items():
+    for _, row in stats.iterrows():
+        topic_id = row['topic_id']
+        category = row['topic_keywords']
+        count = row['count']
         percent = (count / total) * 100
-        print(f"📂 [{category:<30}] : {count} dreams ({percent:.1f}%)")
 
-    print("=" * 50)
+        # Added Topic ID to the print statement
+        print(f"📂 [Topic {topic_id:<2}] {category:<30} : {count} dreams ({percent:.1f}%)")
+
+    print("=" * 60)
 
     # --- 7. שמירה לקובץ ---
-    # שומרים את הקובץ החדש באותה תיקייה שבה נמצא הקובץ המקורי
     output_path = data_file.parent / "dreams_auto_categorized.csv"
     df.to_csv(output_path, index=False)
     print(f"\n✅ SUCCESS! File saved at:\n{output_path}")
