@@ -33,12 +33,20 @@ def analyze_dreams_complete():
         print(f"Error: {e}")
         return
 
-    # מציאת עמודות רלוונטיות
+    # --- זיהוי עמודות ---
+
+    # מציאת עמודת טקסט החלום (אוטומטי - העמודה עם הטקסט הכי ארוך)
     text_col = next((col for col in ['report', 'content', 'dream', 'description'] if col in df.columns), None)
     if not text_col:
         text_col = max(df.select_dtypes(include=['object']), key=lambda c: df[c].astype(str).str.len().mean())
 
-    dreamer_col = next((col for col in ['author', 'dreamer', 'code', 'respondent', 'id'] if col in df.columns), None)
+    # === תיקון: הגדרת עמודת החולם כעמודה מס' 3 (אינדקס 2) ===
+    if len(df.columns) >= 3:
+        dreamer_col = df.columns[2]
+        print(f"ℹ️ Dreamer ID column detected: '{dreamer_col}' (Column #3)")
+    else:
+        dreamer_col = None
+        print("⚠️ Warning: File has fewer than 3 columns. Cannot identify dreamer column.")
 
     df = df.dropna(subset=[text_col])
 
@@ -63,7 +71,7 @@ def analyze_dreams_complete():
     )
     tf = tf_vectorizer.fit_transform(df[text_col].astype(str))
 
-    n_topics = 50
+    n_topics = 100
     lda = LatentDirichletAllocation(n_components=n_topics, random_state=42)
     lda.fit(tf)
 
@@ -133,12 +141,11 @@ def analyze_dreams_complete():
     output_main = data_file.parent / "dreams_auto_categorized.csv"
     df.to_csv(output_main, index=False)
 
-    # קובץ 2: טבלת סיכום קטגוריות (ללא topic name)
-    # בוחרים רק את העמודות הרלוונטיות
+    # קובץ 2: טבלת סיכום קטגוריות
     summary_df = stats[['topic_id', 'Keywords', 'dreams_count', 'dreamers_count', 'total_words']].copy()
 
     # שינוי שמות העמודות
-    summary_df.columns = ['id', 'Keywords', 'dreams', 'dreamers', 'words']
+    summary_df.columns = ['id', 'Keywords', 'how many dreams', 'how many dreamers', 'how many words']
 
     output_summary = data_file.parent / "topics_summary.csv"
     summary_df.to_csv(output_summary, index=False)
