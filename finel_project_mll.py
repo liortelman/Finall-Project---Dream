@@ -7,7 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1rsR5G4yS8jbS8EzaOuy2WU4IsNqyx1ol
 """
 
-
 from sentence_transformers import SentenceTransformer
 import pandas as pd
 
