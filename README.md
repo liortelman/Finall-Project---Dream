@@ -8,3 +8,6 @@ dreams dataset
 
  Dictionary of Dreams
  https://www.kaggle.com/datasets/manswad/dictionary-of-dreams?resource=download
+
+ summery report
+ https://www.overleaf.com/project/694af8774d1938e26ca36836
