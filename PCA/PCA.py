@@ -34,7 +34,7 @@ dreams_subset = dreams[:MAX_DREAMS]
 
 
 # ===============================
-# 2. Embed Dreams (SentenceTransformer)
+# 2. Embedding Dreams (SentenceTransformer)
 # ===============================
 model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 embeddings = model.encode(dreams_subset, show_progress_bar=True)
