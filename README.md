@@ -40,14 +40,7 @@ The dreams are categorized into four distinct quadrants based on their PCA coord
 3.  **Dramatic + Cognitive (RoyalBlue):** Intense themes processed through an analytical lens.
 4.  **Everyday + Cognitive (SeaGreen):** Routine thoughts and logical structures.
 
-## ⚙️ Installation & Usage
-
-Install dependencies via terminal:
-
-```bash
-pip install pandas numpy matplotlib sentence-transformers scikit-learn
-
-## Related Links
+## 🖇️ Related Links
 **project subject**
 https://docs.google.com/document/d/1-kmiFr5K4lcD5SQp3Zqv1AJRK5wnGm0i2eaI3yH5Bhk/edit?usp=sharing
 
@@ -59,3 +52,11 @@ https://docs.google.com/document/d/1-kmiFr5K4lcD5SQp3Zqv1AJRK5wnGm0i2eaI3yH5Bhk/
 
 **Report**
  https://www.overleaf.com/project/694af8774d1938e26ca36836
+
+
+## ⚙️ Installation & Usage
+
+Install dependencies via terminal:
+
+```bash
+pip install pandas numpy matplotlib sentence-transformers scikit-learn
