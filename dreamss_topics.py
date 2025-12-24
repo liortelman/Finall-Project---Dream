@@ -62,7 +62,7 @@ def analyze_dreams_complete():
         'dream', 'dreamed', 'dreamt', 'woke', 'awakened', 'remember', 'recall', 'say', 'says', 'look',
         'said', 'realized', 'went', 'got', 'did', 'like', 'just', 'know', 'think', 'saw', 'felt',
         'didn', 'thought', 'don', 'asked', 'told', 'started', 'looking', 'going', 'looked',
-        'wanted', 'came', 'couldn', 'saying', 'sent'
+        'wanted', 'came', 'couldn', 'saying', 'sent','i',
     ])
 
     tf_vectorizer = CountVectorizer(
