@@ -159,6 +159,32 @@ plt.tight_layout()
 plt.savefig(f"{OUTPUT_DIR}/03_pca_dream_semantic_space.png", dpi=300)
 plt.close()
 
+# ===============================
+# 7. Split + Save each quadrant as a separate dataset
+# ===============================
+
+# Keep indices so we can attach data back to the original df
+dreams_df_subset = dreams_df.iloc[:len(dreams_subset)].copy()
+dreams_df_subset["pca1"] = x
+dreams_df_subset["pca2"] = y
+
+QUADRANT_DIR = os.path.join(OUTPUT_DIR, "quadrants")
+os.makedirs(QUADRANT_DIR, exist_ok=True)
+
+quadrant_dfs = {}
+
+for q_name, mask in quadrants.items():
+    q_df = dreams_df_subset.loc[mask].copy()
+    quadrant_dfs[q_name] = q_df
+
+    safe_name = q_name.lower().replace(" ", "_").replace("+", "plus")
+    out_path = os.path.join(QUADRANT_DIR, f"{safe_name}.csv")
+    q_df.to_csv(out_path, index=False)
+
+print("Saved quadrant CSVs to:", QUADRANT_DIR)
+for k, v in quadrant_dfs.items():
+    print(k, "->", len(v))
+
 
 # ===============================
 # Done
