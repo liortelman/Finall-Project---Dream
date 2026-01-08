@@ -15,7 +15,7 @@ from sklearn.decomposition import PCA
 # ===============================
 CSV_PATH = "all_dreams_combined.csv"
 OUTPUT_DIR = "PCA_output"
-MAX_DREAMS = 38222
+MAX_DREAMS = 1000
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
