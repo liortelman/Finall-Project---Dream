@@ -10,8 +10,8 @@ from sklearn.decomposition import PCA
 # ----------------------------
 # Paths
 # ----------------------------
-BASE_DIR = "PCA_output/quadrant_pca_recomputed"  # יש לך תתי-תיקיות לכל רבע
-OUT_DIR = "PCA_output/quadrant_pca_recomputed"
+BASE_DIR = "PCA_output/quadrants"  # יש לך תתי-תיקיות לכל רבע
+OUT_DIR = "PCA_output/quadrants"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
@@ -57,7 +57,7 @@ def recompute_pca_for_csv(csv_path: str):
     # plot
     plt.figure(figsize=(7.5, 6))
     plt.scatter(x, y, s=6, alpha=0.6)
-    plt.xlabel("Quadrant PCA1")
+    plt.xlabel("Quadrant PCA1 - ")
     plt.ylabel("Quadrant PCA2")
     evr = pca.explained_variance_ratio_
     plt.title(f"{q_name}\nEVR: {evr[0]:.2%}, {evr[1]:.2%}")
