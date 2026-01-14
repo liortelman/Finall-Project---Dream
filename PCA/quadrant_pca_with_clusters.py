@@ -15,7 +15,6 @@ MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 model = SentenceTransformer(MODEL_NAME)
 
 K = 4  # מספר קבוצות
-
 QUADRANTS = [
     "dramatic_plus_cognitive",
     "dramatic_plus_experiential",
