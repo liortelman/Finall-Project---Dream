@@ -2,6 +2,8 @@
 # Imports
 # ===============================
 import os
+import random
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -15,7 +17,7 @@ from sklearn.decomposition import PCA
 # ===============================
 CSV_PATH = "all_dreams_combined.csv"
 OUTPUT_DIR = "PCA_output"
-MAX_DREAMS = 1000
+MAX_DREAMS = 38000
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -30,7 +32,7 @@ print("PCA plots saved to folder:", OUTPUT_DIR)
 
 # Extract dream texts
 dreams = dreams_df["dream"].astype(str).tolist()
-dreams_subset = dreams[:MAX_DREAMS]
+dreams_subset = random.sample(dreams, MAX_DREAMS)
 
 
 # ===============================
