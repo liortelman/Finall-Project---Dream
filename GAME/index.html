@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Intruder Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f13;--bg2:#17171e;--bg3:#1e1e28;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16);
+  --text:#e8e8f0;--text2:#9090a8;--text3:#5a5a72;
+  --accent:#7c6af7;--accent-light:rgba(124,106,247,0.15);
+  --green:#2dbd7e;--green-bg:rgba(45,189,126,0.1);
+  --red:#e05c5c;--red-bg:rgba(224,92,92,0.1);
+  --gold:#f0b429;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem 4rem}
+.container{width:100%;max-width:720px}
+
+/* Header */
+.header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:2.5rem;gap:1rem}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:6px}
+.title{font-family:'Lora',serif;font-size:26px;font-weight:400;line-height:1.3;color:var(--text)}
+.title em{font-style:italic;color:var(--text2)}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.lang-toggle{display:flex;gap:4px}
+.lang-btn{font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
+.lang-btn:hover{color:var(--text)}
+.lang-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.score-pill{font-size:12px;color:var(--text2);background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:4px 12px}
+.score-pill strong{color:var(--text)}
+
+/* Onboarding */
+.onboard-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem}
+.onboard-card h2{font-family:'Lora',serif;font-size:22px;font-weight:400;margin-bottom:8px}
+.onboard-card p{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:12px;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+.form-input,.form-select{padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:14px;font-family:'Inter',sans-serif;outline:none;width:100%;transition:border-color .15s}
+.form-input:focus,.form-select:focus{border-color:var(--accent)}
+.form-select option{background:var(--bg3)}
+.btn-start{width:100%;padding:12px;border-radius:8px;border:none;background:var(--accent);color:#fff;font-size:15px;font-weight:500;cursor:pointer;transition:opacity .15s,transform .1s;margin-top:8px}
+.btn-start:hover{opacity:.9;transform:translateY(-1px)}
+.btn-start:disabled{opacity:.3;cursor:not-allowed;transform:none}
+.research-note{font-size:12px;color:var(--text3);margin-top:12px;line-height:1.6;padding:10px;background:var(--bg3);border-radius:8px}
+
+/* Axis nav */
+.axis-nav{display:flex;gap:6px;margin-bottom:1rem}
+.axis-step{flex:1;height:3px;border-radius:2px;background:var(--bg3);transition:background .2s}
+.axis-step.done-correct{background:var(--green)}
+.axis-step.done-wrong{background:var(--red)}
+.axis-step.active{background:var(--accent)}
+.axis-chips{display:flex;gap:6px;margin-bottom:1.5rem}
+.axis-chip{font-size:11px;padding:3px 8px;border-radius:4px;background:var(--bg2);border:1px solid var(--border);color:var(--text3)}
+.axis-chip.active{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
+.axis-chip.done-correct{border-color:var(--green);color:var(--green);background:var(--green-bg)}
+.axis-chip.done-wrong{border-color:var(--red);color:var(--red);background:var(--red-bg)}
+
+/* Instruction */
+.instruction{background:var(--bg2);border:1px solid var(--border);border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin-bottom:1.75rem;font-size:14px;line-height:1.7;color:var(--text2);position:relative}
+.instruction::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);border-radius:3px 0 0 3px}
+.instruction strong{color:var(--text);font-weight:500}
+.pole-tag{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:12px;font-weight:500;padding:2px 8px;border-radius:4px;margin:0 2px;border:1px solid rgba(124,106,247,.3)}
+.meta-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3)}
+.meta-row strong{color:var(--text2)}
+
+/* Translate bar */
+.translate-bar{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2)}
+.translate-bar .tbar-note{flex:1;line-height:1.5}
+.btn-translate{font-size:12px;font-weight:500;padding:6px 14px;border-radius:6px;border:1px solid var(--accent);background:var(--accent-light);color:var(--accent);cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn-translate:hover{background:var(--accent);color:#fff}
+.btn-translate:disabled{opacity:.4;cursor:not-allowed}
+
+/* Dream cards */
+.dreams-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
+.dream-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;cursor:pointer;transition:border-color .15s,background .15s,transform .1s;position:relative;overflow:hidden}
+.dream-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background .15s;border-radius:3px 0 0 3px}
+.dream-card:hover:not(.no-hover){border-color:var(--border2);transform:translateX(2px)}
+.dream-card:hover:not(.no-hover)::before{background:var(--border2)}
+.dream-card.selected{border-color:var(--accent);background:var(--bg3)}
+.dream-card.selected::before{background:var(--accent)}
+.dream-card.card-correct{border-color:var(--green);background:var(--green-bg)}
+.dream-card.card-correct::before{background:var(--green)}
+.dream-card.card-wrong{border-color:var(--red);background:var(--red-bg)}
+.dream-card.card-wrong::before{background:var(--red)}
+.dream-card.card-neutral{opacity:.45}
+.dream-card.no-hover{cursor:default}
+.dream-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.dream-num{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.dream-badge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:4px}
+.badge-ok{background:var(--green-bg);color:var(--green);border:1px solid rgba(45,189,126,.3)}
+.badge-bad{background:var(--red-bg);color:var(--red);border:1px solid rgba(224,92,92,.3)}
+.badge-intruder{background:var(--accent-light);color:var(--accent);border:1px solid rgba(124,106,247,.3)}
+.dream-text{font-family:'Lora',serif;font-size:15px;line-height:1.75;color:var(--text)}
+.translated-note{font-size:11px;color:var(--text3);margin-top:6px;font-style:italic}
+
+/* Actions */
+.actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.btn-confirm{padding:10px 28px;font-size:14px;font-weight:500;border-radius:8px;border:none;background:var(--accent);color:#fff;cursor:pointer;transition:opacity .15s,transform .1s}
+.btn-confirm:disabled{opacity:.3;cursor:not-allowed}
+.btn-confirm:not(:disabled):hover{opacity:.88;transform:translateY(-1px)}
+.btn-next{padding:10px 28px;font-size:14px;font-weight:500;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);color:var(--text);cursor:pointer;transition:all .15s}
+.btn-next:hover{border-color:var(--accent);color:var(--accent)}
+.feedback{font-size:13px;color:var(--text2);line-height:1.6;max-width:420px}
+
+/* Summary */
+.summary{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center}
+.summary-score{font-family:'Lora',serif;font-size:52px;font-weight:400;margin-bottom:4px}
+.summary-score span{color:var(--text3);font-size:32px}
+.summary-verdict{font-size:14px;color:var(--text2);margin-bottom:1.5rem;line-height:1.6}
+.summary-axes{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:1.5rem}
+.axis-result-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:12px 6px;text-align:center}
+.ar-name{font-size:11px;color:var(--text3);margin-bottom:6px}
+.ar-icon{font-size:20px;margin-bottom:4px}
+.ar-ev{font-size:10px;color:var(--text3)}
+.summary-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-export{padding:10px 20px;font-size:13px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
+.btn-export:hover{border-color:var(--accent);color:var(--accent)}
+.btn-restart{padding:10px 20px;font-size:13px;border-radius:8px;border:1px solid var(--accent);background:var(--accent-light);color:var(--accent);cursor:pointer;transition:all .15s}
+.btn-restart:hover{background:var(--accent);color:#fff}
+.sending-note{font-size:12px;color:var(--text3);margin-top:12px}
+
+/* Dashboard */
+.dash-trigger{position:fixed;bottom:24px;right:24px;background:var(--bg2);border:1px solid var(--border2);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text3);font-size:18px;transition:all .15s;z-index:50}
+.dash-trigger:hover{border-color:var(--accent);color:var(--accent)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:1rem}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:2rem;width:100%;max-width:680px;max-height:90vh;overflow-y:auto}
+.modal h2{font-family:'Lora',serif;font-size:22px;font-weight:400;margin-bottom:1.5rem}
+.modal-close{float:right;background:transparent;border:none;color:var(--text2);font-size:20px;cursor:pointer}
+.modal-close:hover{color:var(--text)}
+.pw-box{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:2rem;width:100%;max-width:340px;text-align:center}
+.pw-box h3{font-family:'Lora',serif;font-size:18px;font-weight:400;margin-bottom:6px}
+.pw-box p{font-size:13px;color:var(--text2);margin-bottom:1.5rem}
+.pw-input{width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:15px;text-align:center;letter-spacing:.2em;margin-bottom:10px;outline:none}
+.pw-input:focus{border-color:var(--accent)}
+.btn-pw{width:100%;padding:10px;border-radius:8px;border:none;background:var(--accent);color:#fff;font-size:14px;font-weight:500;cursor:pointer}
+.pw-error{font-size:12px;color:var(--red);margin-top:6px;min-height:18px}
+.dash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
+.stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
+.stat-val{font-size:28px;font-weight:500;margin-bottom:4px}
+.stat-lbl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em}
+.lang-split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+.lang-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem}
+.lang-box h4{font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.lang-box .lb-score{font-size:22px;font-weight:500;margin-bottom:2px}
+.lang-box .lb-sub{font-size:12px;color:var(--text3)}
+.dash-section{margin-bottom:1.5rem}
+.dash-section h3{font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.bar-label{width:36px;color:var(--text2);font-size:12px;flex-shrink:0}
+.bar-track{flex:1;height:10px;background:var(--bg3);border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;transition:width .4s}
+.bar-val{width:36px;color:var(--text2);font-size:12px;text-align:right}
+.sessions-table{width:100%;font-size:12px;border-collapse:collapse}
+.sessions-table th{text-align:left;color:var(--text3);font-weight:400;padding:6px 8px;border-bottom:1px solid var(--border)}
+.sessions-table td{padding:6px 8px;color:var(--text2);border-bottom:1px solid var(--border)}
+.sessions-table tr:last-child td{border-bottom:none}
+.tag-en{background:var(--accent-light);color:var(--accent);padding:1px 6px;border-radius:3px;font-size:10px}
+.tag-he{background:rgba(240,180,41,.1);color:var(--gold);padding:1px 6px;border-radius:3px;font-size:10px}
+.dash-actions{display:flex;gap:10px;justify-content:center;margin-top:1rem}
+
+/* RTL */
+.rtl{direction:rtl}
+.rtl .instruction{border-radius:10px 0 0 10px}
+.rtl .instruction::before{left:auto;right:0;border-radius:0 3px 3px 0}
+.rtl .dream-card::before{left:auto;right:0;border-radius:0 3px 3px 0}
+.rtl .dream-card:hover:not(.no-hover){transform:translateX(-2px)}
+.rtl .bar-label{text-align:right}
+.rtl .sessions-table th,.rtl .sessions-table td{text-align:right}
+.lang-choice-row{display:flex;gap:12px;margin-bottom:1.75rem}
+.lang-choice-btn{flex:1;padding:14px;border-radius:10px;border:1.5px solid var(--border2);background:var(--bg3);color:var(--text2);cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:6px}
+.lang-choice-btn:hover{border-color:var(--accent);color:var(--text)}
+.lang-choice-btn.active{border-color:var(--accent);background:var(--accent-light);color:var(--text)}
+.lc-flag{font-size:24px}
+.lc-name{font-size:13px;font-weight:500}
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+<button class="dash-trigger" onclick="openDashboard()" title="Dashboard">⚙</button>
+
+<script>
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbzj0lK-qmDLTFoZ9VbYNCODyE5aPB1nBbbs1i6EO21bw4hR2nmGv6JGBjDSL8tUgwxoqw/exec";
+const DASHBOARD_PW = "12345";
+
+const AXES_DATA = [{"id":1,"ev":0.0478,"pos":[{"text":"I was in The Young Ones and we were doing the episodes and I was watching the goofs they had made and stuff.","score":0.5587},{"text":"There was a list of birthdays. Michael Palin was on there. I was on there and Nana was too. I went to January 8 but Eugene wasn't there.","score":0.5122},{"text":"Daddy was alive and was seeing my daughter Christina for the first time. I was surprised that he didn't make much of a fuss over her. I remember telling him about our little tickling game. Daddy and I were also trying to get a football game on the radio.","score":0.5016},{"text":"There were 15 lamingtons. Ezra and some friends were around. There was some guy and there was something about a TV show.","score":0.5015},{"text":"I can't remember much, but Spike and Buffy were hanging out. She was teasing him because he had gotten scared of a scary movie and he was saying it wasn't a big deal.","score":0.4996},{"text":"I was watching something with two British comedians. I don't remember anything but one of them was laughing.","score":0.4882},{"text":"I was at some place which I think was the Gold Coast. Ezra and I were locked out of the room so we were walking around and it got dark. I lost Ezra and I got on a train.","score":0.4714}],"neg":[{"text":"I'm applying for a teaching job. I push a button outside the music room and a taped lecture comes on. I am embarrassed because I don't know how to turn it off and it's loud. I walk out of the building. I walk to a mental hospital for war-injured men. The men whistle and tease. I look for the head nurse. She's nowhere around.","score":-0.4928},{"text":"I am sleeping on an uncomfortable hide-a-bed in a room where the floor is dirt. I wake up and see Howard standing near the bed. He is very sad and I realize he has had enough and will ask for a divorce from me. I feel sad and a bit bad about my treatment of him.","score":-0.463},{"text":"I'm in some strange place, like a carnival or a party. There are lots of people. Tricks are played on me. Some of them have dangerous overtones. I'm in a crowd. Some man and his son are giving me an award. It's a trick cup — the milk spills out of a hole in the bottom.","score":-0.4559},{"text":"I'm working with three men at a fruit and vegetable stand. The day ends. I ask the bosses if I can take some produce to eat. They say okay, but find that the boxes are all taped up so I can't get any fruit. A homeless man comes around begging for change. I say, 'Why don't you come home for dinner with me?' He agrees.","score":-0.445},{"text":"I'm at a place that's some kind of institution, and I either work here or am studying here. There are a lot of people doing yoga and life training. First I go to a kind of arena, and take my place in the stands near the front. Shortly it seems to be lunch hour, and everybody breaks up and goes places.","score":-0.4444},{"text":"I am in a house with a man I know. We are making love on a wooden bench. He's kissing me and lying on top. I think maybe someone will walk in so I say we ought to lock the doors. He's enjoying the sexual feelings and is reluctant to stop.","score":-0.4368},{"text":"I am a young woman who lives in a huge family. It is so big there are no places in the house where you can be alone. The couch is overrun with squabbling siblings of all ages. I want to go to the bathroom and must rush in and try to lock the doors before I'm interrupted. Finally I can't take it any more and I decide to run away from home.","score":-0.4359}]},{"id":2,"ev":0.0417,"pos":[{"text":"I was at home, out the front. There was a big van and I was poking around in the back. They went to drive off but the back wasn't closed and I ran after it trying to close it. The car slammed into them and it flipped over. I was shocked and I went and told Mom and Ezra.","score":0.4477},{"text":"I was at Mom's. I died, but I was hanging around. Sometimes I could interact with stuff and I was learning how to fly. I had to go to the balcony and jump off. I didn't like that bit though. There was a trampoline out the back, but it was wet. Mom was seeing someone new. It turned surreal.","score":0.4461},{"text":"I woke up with a bit of a headache. My hair went full curly. Dad's room was scary looking and orange. Dad kept saying to Ezra that he wanted my room. They were talking about TV shows. Dad complained about me going psycho the night before. I didn't remember.","score":0.4368},{"text":"I dreamed that I was in this huge dark house with a random scary guy. I had my laptop with me and was trying to shut it down. I remember wanting to go home really badly. The big scary guy kept coming on to me. I tried to call my father, but all the numbers on the phone had been rearranged.","score":0.4278},{"text":"I was at Mom's. I went into her room and there was a stranger on her bed. I was talking to Mom and then said 'Who the hell is this?'. She said 'a friend'. When I turned back around Mom and the guy were kissing. I went back to my room but later discovered that Mom's bedroom was on fire.","score":0.4252},{"text":"Mom, Ezra and I went for a drive at night. As we were coming back, there was stuff on the road which looked like huge balls of ice. Home was fine. I had university and had to leave soon. I got into my car and locked the door. A guy was hanging around with red eyes.","score":0.4246}],"neg":[{"text":"I am talking to a man and I say, 'It's about time things got more equal. I think women should stop holding two jobs — home and career — until the man kicks in and does his share.'","score":-0.4819},{"text":"I make a fancy dress with ruffles, chiffon materials and bead work on them. I take one to the store to have them sell it. Then I realize it's not ready yet. I withdraw it and go home to make them better. I have made four and am on the fifth one. I am ironing the frail chiffon bodice.","score":-0.4757},{"text":"A champion cowboy has a sweet special champion lamb, with roses on. I like the lamb very much, but it is owned by a trust fund and it will take hard work and perseverance to work through all the red tape and paperwork necessary to make her mine.","score":-0.4538},{"text":"I wish to learn dates of publication of certain of Montaigne's essays. A friend is trying to find out for me by inquiries at the bookbinder. He explains that the essays were probably written at different times and I had better go to a librarian to get the information.","score":-0.4522},{"text":"Helping someone to buy a suit and tie. The suit is navy blue pin-stripe. The tie is also blue with a pattern in it. I asked someone if a beige or tan shirt would go with it or if they needed to wear a shade of blue instead.","score":-0.4521},{"text":"I have so many books that they would fill two huge library-sized rooms. I and a child are trying to walk down some stairs that are like piles of books. She had taken a dose of medicine and I was worried about this habit.","score":-0.4521},{"text":"I am playing an instrument that is sort of a cross between a violin and a guitar. I am intuitively flinging my fingers around and manage very quickly to create beautiful music. I am very pleased with the music. I smile.","score":-0.4445}]},{"id":3,"ev":0.0386,"pos":[{"text":"I only dreamed that I had to take a test and I even dreamed about the questions. Then I was in a port, walking with a friend who forced me to have a beer with him and then he took me to a house of prostitution. We got out of there and I went to my home. I was listening to some music and laughing constantly.","score":0.6472},{"text":"I could not describe the dream exactly, but it all revolved around a very important piece of work I have to do and for which I don't think I have enough time to complete it. The dream was surrounded by several people close to me, who were putting a lot of pressure on me to finish the work.","score":0.6237},{"text":"The only thing that I remember about the dream is that they were building a bridge for cars, and when the construction of this one was over, they built another one for people. Three men tried it out and they fell several times. The surroundings and the people were unknown to me.","score":0.605},{"text":"I dreamt that I was in a huge maze trying to find my way through with my eyes closed. Every time I went the wrong way I would have water dumped on my head. I never made it through the maze and I am still lost.","score":0.5974},{"text":"I dreamed I was in the school cafeteria having a discussion about Philosophy and Psychology with the professors of those courses. I like Psychology very much.","score":0.5931},{"text":"I am on a non-familiar beach with mountains a short distance away. There are a lot of other teenagers around. I am cross-country skiing down the dunes on the beach. Then I walked into a chalet with snow on the roof and I fell asleep in a chair.","score":0.5742}],"neg":[{"text":"We were going to a cinema. Ezra had been driving really fast and went through a wire fence. We parked in a dodgy place in the bush and found holes in the electric fence to get to the cinema. We had brought water but it was half empty. I went to buy snacks but Dad had the money.","score":-0.3432},{"text":"The police took Mom's pickup and Hyundai. She came to Dad's in an old car. We drove off and then I got out chasing a ball. A while later, some bad guys walked in and asked where Mom's pickup was. So I closed and locked the doors.","score":-0.343},{"text":"This lady did some charity thing. She told the group one day that they got a heap of money, but then the next day, she and two others left and took the money. The cop was there investigating.","score":-0.3252},{"text":"I was at a shop and my dog was in the back of the car. Ezra and I had to run back to the car to hide. We were also at a pet shop and at a ferret place.","score":-0.3134},{"text":"I was at home. Dad was working late. I had gotten some movies out. Then I heard a car pull up and I looked out the window. I put the chain on the wood door and went to my room. They tried to get in. All I could hear was loud banging.","score":-0.3127},{"text":"I got two little green worms as pets. We kept calling them slugs though. They were really tiny. The new one was called Alexander. I went to Mom to ask her what I should feed it. I went back and there were more slugs. They were trying to eat my dog.","score":-0.3112}]},{"id":4,"ev":0.0288,"pos":[{"text":"This girl had a movie based on her autobiography. When she was little, she and her brother were friends with this guy. When she got older she liked him. As an adult she went over to his house and he was a doctor. She asked him if he ever kissed his patients. They went to kiss each other, but he pulled away — she was married.","score":0.4043},{"text":"I was at an Indian wedding. Me and a male friend decided to play a joke — as the couple came out, we went through the shop pretending we were getting married. Later I was at school and all these characters from an old TV show came. It had been ten years since we all saw each other.","score":0.3885},{"text":"I dreamt I was sitting in my living-room when a married girlfriend of mine came in with a date who was not her husband. She seemed very happy and said she was going to go out with this fellow just as a lark.","score":0.3843},{"text":"I'm in the presence of stern administrators, including my grade school principal and my third grade teacher. They are having a big meeting. I try not to distract them. My high school friend Elise is there. We talk a little bit. She expresses interest in spending time with me tonight. I'm very attracted to her.","score":0.3809},{"text":"I've come back into this house where someone I know lives and teaches dance. She's a little dotty — older but won't act like an old woman. Her living room is smallish, a little dark with only a couple of table lamps lit. Flowered couch, coffee table piled with books.","score":0.3615},{"text":"Lucy and Archie are seated side by side at a table. Archie is belittling Lucy. I tell him I don't like the way he is treating her. He is instantly furious with me. I start to walk away, but he comes to me and steps in front of me. He then kisses me very lovingly.","score":0.3545}],"neg":[{"text":"I saw a rock about 2 inches in diameter move. Then I saw a large spider under the rock, about an inch long. Later I saw some animals.","score":-0.4929},{"text":"At first it seemed I was flying along in the air, not very far off the ground. I looked down and there was a high cliff with a canyon below. I got scared and couldn't fly anymore — that feeling of falling a long distance. Then I got in my uncle's car and stepped on something soft and furry. When I looked down, I saw a tiger lying on the floor.","score":-0.4925},{"text":"I was in a large open space, and huge animals of all sorts with huge roars and wide open mouths — big gnashing teeth — were chasing me. I ran from side to side trying to escape. I was out of breath. The huge animal monsters finally hemmed me in. They were going to eat me and claw me. I then awoke.","score":-0.4715},{"text":"There was some vehicle that had a trap involving air to capture these monster things. I think it was in a forest.","score":-0.4615},{"text":"I was on part of a large piece of machinery. It began to move, and I could not get off. It moved forward like a train engine.","score":-0.4602},{"text":"I was looking up. I saw something flying high up. Then I saw a dog come down. It floated up about six feet off the ground. I got hold of it and inside the glass I saw a bug — alive, crawling around. Then there was a horse's head with one eye. It had a frightened look.","score":-0.4597}]},{"id":5,"ev":0.0236,"pos":[{"text":"I was at my aunt's house. She wanted me to redesign the dining area and the lounge room. They went to bed and I tried to decide what the best thing to do was. She came out at one point and I said I hadn't thought of anything yet.","score":0.4272},{"text":"An interior designer was at my house. I was showing her each room and talking about the different decorating things that I had done or was in the process of in each room.","score":0.4247},{"text":"I went to my maternal grandmother's house. Grandmother had died, so it was my parents' place now. I didn't want them to sell it.","score":0.401},{"text":"I was in a house with my mother. Two containers of milk were delivered. One looked strange, so I showed it to my mother. Inside there was only white ice instead of milk.","score":0.3824},{"text":"We were at my maternal grandmother's house and an elderly neighbor lady stopped by. She wanted to get rid of a bunch of robes she had. Surprisingly everyone in our family took one. Then she wanted help disposing of something else — car oil. It took a while and there was much more involved in it than we'd planned.","score":0.38}],"neg":[{"text":"I'm near a soccer field on which two teams are playing. One of the teams is supposed to be a lot better than the other. That team scores a goal very quickly. There is a young player on the team who is very cocky. I go up to him and warn him that though he is a good player he needs to keep honing his skills.","score":-0.4107},{"text":"I'm in prison. Some men are arguing with racial tension between them. The aggressors are angry — they want more rights. One man punches and kicks others. He turns into a fire-breathing beast with horns, about 15 feet tall. Everyone runs.","score":-0.3912},{"text":"A man is trying to mount a horse. He says he likes thoroughbreds because they fight. The horse becomes a large cat. I ask where the sheriff is. He is a handsome actor. He comes over to me and we talk. I am very attracted to him. We stand close together.","score":-0.3795},{"text":"There is a black man and a white man. Each man is in control of the other at a specific time. Each man has power at one time, over the other. When one of the men is in power he may abuse the other.","score":-0.3733},{"text":"Two people are in a swim pool. One doesn't want to revive a desire for a relationship. They try to avoid the other. It hurts the other's feelings, but they manage it.","score":-0.3727},{"text":"I go into a bedroom. I see a man I kind of like through the window. I close the curtains. I feel sexually turned on. Then I am some creature patrolling the outside of a building. A terrible mean creature threatens me and grows tall in its attempt to catch me as I fly up rapidly.","score":-0.3564}]}];
+
+const HE_DREAMS = {"I was in The Young Ones and we were doing the episodes and I was watching the goofs they had made and stuff.": "הייתי בתוכנית The Young Ones והיינו מצלמים פרקים, וצפיתי בטעויות ובדברים המצחיקים שהיו בהם.", "There was a list of birthdays. Michael Palin was on there. I was on there and Nana was too. I went to January 8 but Eugene wasn't there.": "הייתה רשימת ימי הולדת. מייקל פאלין היה עליה. גם אני הייתי עליה, וגם נאנא. הלכתי ל-8 בינואר אבל יוג'ין לא היה שם.", "Daddy was alive and was seeing my daughter Christina for the first time. I was surprised that he didn't make much of a fuss over her. I remember telling him about our little tickling game. Daddy and I were also trying to get a football game on the radio.": "אבא היה חי וראה את בתי כריסטינה בפעם הראשונה. הופתעתי שהוא לא הגיב בהתרגשות גדולה. זכרתי לו את המשחק הקטן שלנו — לגעת בחלקים שונים בפנים ואז לדגדג מתחת לסנטר. גם ניסינו לקלוט משחק כדורגל ברדיו.", "There were 15 lamingtons. Ezra and some friends were around. There was some guy and there was something about a TV show.": "היו 15 עוגיות למינגטון. עזרא וכמה חברים היו בסביבה. היה שם איזה בחור ומשהו הקשור לתוכנית טלוויזיה.", "I can't remember much, but Spike and Buffy were hanging out. She was teasing him because he had gotten scared of a scary movie and he was saying it wasn't a big deal.": "אני לא זוכרת הרבה, אבל ספייק ובאפי היו ביחד. היא התגרתה בו כי הוא נבהל מסרט אימה והוא אמר שזה לא עניין גדול.", "I was watching something with two British comedians. I don't remember anything but one of them was laughing.": "צפיתי במשהו עם שני קומיקאים בריטיים. אני לא זוכרת שום דבר, רק שאחד מהם צחק.", "I was at some place which I think was the Gold Coast. Ezra and I were locked out of the room so we were walking around and it got dark. I lost Ezra and I got on a train.": "הייתי במקום שנראה לי כמו גולד קוסט. עזרא ואני נעלנו מהחדר אז הסתובבנו וירד חושך. איבדתי את עזרא ועליתי על רכבת.", "I'm applying for a teaching job. I push a button outside the music room and a taped lecture comes on. I am embarrassed because I don't know how to turn it off and it's loud. I walk out of the building. I walk to a mental hospital for war-injured men. The men whistle and tease. I look for the head nurse. She's nowhere around.": "אני מגישה מועמדות לעבודה כמורה. לוחצת על כפתור מחוץ לחדר המוזיקה ומופיעה הרצאה מוקלטת. אני נבוכה כי אינני יודעת איך לכבות אותה והיא רועשת. אני יוצאת מהבניין. הולכת לבית חולים פסיכיאטרי לפצועי מלחמה. הגברים שורקים ומציקים. אני מחפשת את האחות הראשית. היא לא נמצאת.", "I am sleeping on an uncomfortable hide-a-bed in a room where the floor is dirt. I wake up and see Howard standing near the bed. He is very sad and I realize he has had enough and will ask for a divorce from me. I feel sad and a bit bad about my treatment of him.": "אני ישנה על ספה-מיטה לא נוחה בחדר שהרצפה שלו עפר. אני מתעוררת ורואה את הווארד עומד ליד המיטה. הוא עצוב מאוד ואני מבינה שנגמר לו הכוח וייבקש ממני גט. אני עצובה ומרגישה קצת אשמה על ההתנהגות שלי אליו.", "I'm in some strange place, like a carnival or a party. There are lots of people. Tricks are played on me. Some of them have dangerous overtones. I'm in a crowd. Some man and his son are giving me an award. It's a trick cup — the milk spills out of a hole in the bottom.": "אני במקום מוזר, כמו קרנבל או מסיבה. יש המון אנשים. מציגים עלי תעלולים. לחלק מהם יש גוון מסוכן. אני בתוך הקהל. איזה גבר ובנו מעניקים לי פרס. זה כוס תרגיל — החלב נשפך מחור בתחתית.", "I'm working with three men at a fruit and vegetable stand. The day ends. I ask the bosses if I can take some produce to eat. They say okay, but find that the boxes are all taped up so I can't get any fruit. A homeless man comes around begging for change. I say, 'Why don't you come home for dinner with me?' He agrees.": "אני עובדת עם שלושה גברים בדוכן ירקות ופירות. יום העבודה נגמר. אני שואלת את הבוסים אם אפשר לקחת קצת תוצרת. הם אומרים בסדר, אבל מגלה שהקופסאות אטומות ואינני יכולה לקבל פירות. בא איש חסר בית ומבקש צדקה. אני אומרת לו: 'למה שלא תבוא לסעוד אצלי?' הוא מסכים.", "I'm at a place that's some kind of institution, and I either work here or am studying here. There are a lot of people doing yoga and life training. First I go to a kind of arena, and take my place in the stands near the front. Shortly it seems to be lunch hour, and everybody breaks up and goes places.": "אני במקום שהוא סוג של מוסד, ואני כנראה עובדת או לומדת כאן. יש המון אנשים העוסקים ביוגה ואימון חיים. קודם כל אני הולכת לאיזה אמפיתיאטרון ויושבת בטריבונות הקדמיות. עד מהרה נראה שהגיעה שעת הצהריים וכולם מתפזרים.", "I am in a house with a man I know. We are making love on a wooden bench. He's kissing me and lying on top. I think maybe someone will walk in so I say we ought to lock the doors. He's enjoying the sexual feelings and is reluctant to stop.": "אני בבית עם גבר שאני מכירה. אנחנו עושים אהבה על ספסל עץ. הוא מנשק אותי ושוכב עלי. אני חושבת שאולי מישהו ייכנס אז אני אומרת שכדאי לנעול את הדלתות. הוא נהנה מהתחושות ומהסס לעצור.", "I am a young woman who lives in a huge family. It is so big there are no places in the house where you can be alone. The couch is overrun with squabbling siblings of all ages. I want to go to the bathroom and must rush in and try to lock the doors before I'm interrupted. Finally I can't take it any more and I decide to run away from home.": "אני אישה צעירה החיה במשפחה ענקית. היא כל כך גדולה שאין מקום בבית להיות לבד. הספה מוצפת אחים קטטנים מכל הגילאים. אני רוצה ללכת לשירותים ומיד לנעול את הדלת לפני שמישהו יפריע. בסוף אני לא יכולה יותר ומחליטה לברוח מהבית.", "I was at home, out the front. There was a big van and I was poking around in the back. They went to drive off but the back wasn't closed and I ran after it trying to close it. The car slammed into them and it flipped over. I was shocked and I went and told Mom and Ezra.": "הייתי בבית, בחוץ מהצד הקדמי. הייתה שם ואן גדולה ורחשתי בחלקה האחורי. הם ניסו לנסוע כשהחלק האחורי לא סגור ורצתי אחריהם לסגור אותו. מכונית פגעה בהם והם התהפכו. הזדעזעתי והלכתי לספר לאמא ולעזרא.", "I was at Mom's. I died, but I was hanging around. Sometimes I could interact with stuff and I was learning how to fly. I had to go to the balcony and jump off. I didn't like that bit though. There was a trampoline out the back, but it was wet. Mom was seeing someone new. It turned surreal.": "הייתי אצל אמא. מתי, אבל המשכתי להסתובב. לפעמים יכולתי לתקשר עם דברים ולמדתי לעוף. הייתי צריכה לצאת למרפסת ולקפוץ. זה לא נראה לי טוב. היה טרמפולינה בחצר האחורית אבל היא הייתה רטובה. אמא יצאה עם מישהו חדש. זה הפך לסוריאליסטי.", "I woke up with a bit of a headache. My hair went full curly. Dad's room was scary looking and orange. Dad kept saying to Ezra that he wanted my room. They were talking about TV shows. Dad complained about me going psycho the night before. I didn't remember.": "התעוררתי עם כאב ראש קל. השיער שלי הפך מתולתל לגמרי. החדר של אבא נראה מפחיד וכתום. אבא כל הזמן אמר לעזרא שהוא רוצה את החדר שלי. הם דיברו על תוכניות טלוויזיה. אבא התלונן שהשתגעתי אתמול בלילה. לא זכרתי.", "I dreamed that I was in this huge dark house with a random scary guy. I had my laptop with me and was trying to shut it down. I remember wanting to go home really badly. The big scary guy kept coming on to me. I tried to call my father, but all the numbers on the phone had been rearranged.": "חלמתי שהייתי בבית גדול וחשוך עם בחור מפחיד אקראי. היה אצלי המחשב הנייד וניסיתי לכבות אותו. זכרתי שרציתי מאוד לחזור הביתה. הבחור המפחיד כל הזמן ניסה לפגוע בי. ניסיתי להתקשר לאבא אבל כל המספרים על הטלפון הוחלפו.", "I was at Mom's. I went into her room and there was a stranger on her bed. I was talking to Mom and then said 'Who the hell is this?'. She said 'a friend'. When I turned back around Mom and the guy were kissing. I went back to my room but later discovered that Mom's bedroom was on fire.": "הייתי אצל אמא. נכנסתי לחדרה והיה שם זר על המיטה. דיברתי עם אמא ואז אמרתי 'מי לעזאזל זה?'. היא אמרה 'חבר'. כשסובבתי חזרה אמא והבחור נישקו. חזרתי לחדרי אבל אחר כך יצאתי וגיליתי שחדר השינה של אמא עולה באש.", "Mom, Ezra and I went for a drive at night. As we were coming back, there was stuff on the road which looked like huge balls of ice. Home was fine. I had university and had to leave soon. I got into my car and locked the door. A guy was hanging around with red eyes.": "אמא, עזרא ואני יצאנו לנסיעה בלילה. בדרך חזרה היו על הכביש דברים שנראו כמו כדורי קרח ענקיים. אמרתי 'זה לא יכול להיות ברד!'. הבית היה בסדר. הייתה לי אוניברסיטה והייתי צריכה לעזוב בקרוב. נכנסתי למכונית ונעלתי את הדלת. בחור אחד התרוצץ בסביבה עם עיניים אדומות.", "I am talking to a man and I say, 'It's about time things got more equal. I think women should stop holding two jobs — home and career — until the man kicks in and does his share.'": "אני מדברת עם גבר ואומרת: 'הגיע הזמן שהדברים יהיו שוויוניים יותר. אני חושבת שנשים צריכות להפסיק להחזיק שני משרות — בית וקריירה — עד שהגברים ייקחו חלק שווה.'", "I make a fancy dress with ruffles, chiffon materials and bead work on them. I take one to the store to have them sell it. Then I realize it's not ready yet. I withdraw it and go home to make them better. I have made four and am on the fifth one. I am ironing the frail chiffon bodice.": "אני תופרת שמלה מהודרת עם שרוכים, שיפון ורקמת חרוזים. לוקחת אחת לחנות שתמכור אותה. אחר כך מבינה שהיא עדיין לא מוכנה. לוקחת אותה חזרה הביתה לשפר. כבר עשיתי ארבע ועובדת על החמישית. אני מגהצת את הצוואר הדק מהשיפון.", "A champion cowboy has a sweet special champion lamb, with roses on. I like the lamb very much, but it is owned by a trust fund and it will take hard work and perseverance to work through all the red tape and paperwork necessary to make her mine.": "לבקר אלוף יש כבשה אלופה מיוחדת ומקסימה, עם ורדים. אני מאוד אוהבת את הכבשה, אבל היא שייכת לקרן נאמנות ויידרשו מאמץ גדול ועקשנות כדי לעמוד בכל הבירוקרטיה הנדרשת כדי שתהיה שלי.", "I wish to learn dates of publication of certain of Montaigne's essays. A friend is trying to find out for me by inquiries at the bookbinder. He explains that the essays were probably written at different times and I had better go to a librarian to get the information.": "אני רוצה לדעת תאריכי פרסום של מסות מסוימות של מונטן. חבר מנסה לברר עבורי אצל כורך הספרים. הוא מסביר שהמסות נכתבו כנראה בזמנים שונים ועדיף שאלך לספרנית כדי לקבל את המידע.", "Helping someone to buy a suit and tie. The suit is navy blue pin-stripe. The tie is also blue with a pattern in it. I asked someone if a beige or tan shirt would go with it or if they needed to wear a shade of blue instead.": "עוזר למישהו לקנות חליפה ועניבה. החליפה בפסים כחול נייבי. העניבה גם היא כחולה עם דוגמה כלשהי. שאלתי מישהו אם חולצה בז' או טאן תתאים לזה או שצריך ללבוש גוון כחול.", "I have so many books that they would fill two huge library-sized rooms. I and a child are trying to walk down some stairs that are like piles of books. She had taken a dose of medicine and I was worried about this habit.": "יש לי כל כך הרבה ספרים שהם ימלאו שני חדרים בגודל ספרייה. ילדה ואני מנסים לרדת במדרגות שהן ערימות של ספרים. היא לקחה מנה של תרופה ודאגתי להרגל הזה.", "I am playing an instrument that is sort of a cross between a violin and a guitar. I am intuitively flinging my fingers around and manage very quickly to create beautiful music. I am very pleased with the music. I smile.": "אני מנגנת על כלי שהוא מעין שילוב בין כינור לגיטרה. אני מניידת את האצבעות באופן אינטואיטיבי ומצליחה ליצור מוזיקה יפה מאוד במהירות. אני מאוד מרוצה מהמוזיקה. אני מחייכת.", "I only dreamed that I had to take a test and I even dreamed about the questions. Then I was in a port, walking with a friend who forced me to have a beer with him and then he took me to a house of prostitution. We got out of there and I went to my home. I was listening to some music and laughing constantly.": "רק חלמתי שהייתי צריך לעמוד במבחן ואפילו חלמתי את השאלות. אחר כך הייתי בנמל והולך עם חבר שאילץ אותי לשתות איתו בירה ואחר כך לקח אותי לבית בושת. יצאנו משם וחזרתי הביתה. האזנתי למוזיקה וצחקתי בלי הפסקה.", "I could not describe the dream exactly, but it all revolved around a very important piece of work I have to do and for which I don't think I have enough time to complete it. The dream was surrounded by several people close to me, who were putting a lot of pressure on me to finish the work.": "לא יכולתי לתאר את החלום במדויק, אבל הכל סבב סביב עבודה חשובה מאוד שאני צריך לסיים ואינני חושב שיש לי מספיק זמן. החלום היה מוקף על ידי מספר אנשים קרובים שלחצו עלי עם לחץ רב לסיים את העבודה.", "The only thing that I remember about the dream is that they were building a bridge for cars, and when the construction of this one was over, they built another one for people. Three men tried it out and they fell several times. The surroundings and the people were unknown to me.": "הדבר היחיד שאני זוכר מהחלום הוא שבנו גשר למכוניות, ואחרי שסיימו לבנות אותו בנו גשר נוסף להולכי רגל. שלושה גברים 'ניסו' את הגשר ונפלו מספר פעמים ובסוף היו מותשים לגמרי. הסביבה והאנשים היו לא מוכרים לי.", "I dreamt that I was in a huge maze trying to find my way through with my eyes closed. Every time I went the wrong way I would have water dumped on my head. I never made it through the maze and I am still lost.": "חלמתי שהייתי בתוך מבוך ענקי וניסיתי למצוא את דרכי עם עיניים עצומות. בכל פעם שטעיתי בדרך היו שופכים עלי מים. לא הצלחתי לצאת מהמבוך ועדיין לא יצאתי.", "I dreamed I was in the school cafeteria having a discussion about Philosophy and Psychology with the professors of those courses. I like Psychology very much.": "חלמתי שהייתי בקפיטריה של בית הספר ומנהלתי שיחה עם הפרופסורים לפילוסופיה ולפסיכולוגיה. אני מאוד אוהב פסיכולוגיה.", "I am on a non-familiar beach with mountains a short distance away. There are a lot of other teenagers around. I am cross-country skiing down the dunes on the beach. Then I walked into a chalet with snow on the roof and I fell asleep in a chair.": "אני על חוף לא מוכר עם הרים במרחק קצר. יש הרבה בני נוער אחרים בסביבה. אני גולש על סקי נורדי על גבעות החול שעל החוף. אחר כך נכנסתי לשאלה עם שלג על הגג ונרדמתי על כיסא.", "We were going to a cinema. Ezra had been driving really fast and went through a wire fence. We parked in a dodgy place in the bush and found holes in the electric fence to get to the cinema. We had brought water but it was half empty. I went to buy snacks but Dad had the money.": "הלכנו לקולנוע. עזרא נסע מהר מאוד ועבר דרך גדר תיל. חנינו במקום חשוד בשדה ומצאנו חורים בגדר החשמלית כדי להגיע לקולנוע. הבאנו מים אבל הם היו חצי ריקים. הלכתי לקנות חטיפים אבל לאבא היה הכסף.", "The police took Mom's pickup and Hyundai. She came to Dad's in an old car. We drove off and then I got out chasing a ball. A while later, some bad guys walked in and asked where Mom's pickup was. So I closed and locked the doors.": "המשטרה לקחה את הרכב של אמא. היא הגיעה אצל אבא עם מכונית ישנה. נסענו ואז ירדתי לרדוף אחרי כדור. קצת אחר כך נכנסו כמה בחורים רעים ושאלו איפה הרכב של אמא. סגרתי ונעלתי את הדלתות.", "This lady did some charity thing. She told the group one day that they got a heap of money, but then the next day, she and two others left and took the money. The cop was there investigating.": "אישה עשתה משהו לצדקה. סיפרה לקבוצה שקיבלו המון כסף, אבל למחרת היא ועוד שניים עזבו לאוסטרליה ולקחו את הכסף. השוטר היה שם לחוקר.", "I was at a shop and my dog was in the back of the car. Ezra and I had to run back to the car to hide. We were also at a pet shop and at a ferret place.": "הייתי בחנות והכלב שלי היה בתא האחורי של המכונית. עזרא ואני נאלצנו לרוץ חזרה למכונית להסתתר. היינו גם בחנות חיות מחמד ובמקום גורטים.", "I was at home. Dad was working late. I had gotten some movies out. Then I heard a car pull up and I looked out the window. I put the chain on the wood door and went to my room. They tried to get in. All I could hear was loud banging.": "הייתי בבית. אבא עבד עד מאוחר. הוצאתי כמה סרטים. אחר כך שמעתי מכונית מגיעה ובדקתי מהחלון. שמתי את השרשרת על הדלת ועברתי לחדרי. מישהו ניסה להיכנס. כל מה ששמעתי היה דפיקות חזקות.", "I got two little green worms as pets. We kept calling them slugs though. They were really tiny. The new one was called Alexander. I went to Mom to ask her what I should feed it. I went back and there were more slugs. They were trying to eat my dog.": "קיבלתי שני תולעים ירוקים קטנים כחיות מחמד. כינינו אותם חילזונות. הם היו ממש קטנטנים. החדש נקרא אלכסנדר. הלכתי לאמא לשאול מה להאכיל אותו. כשחזרתי כמעט נפלתי כי היו עוד הרבה חילזונות. הם ניסו לאכול את הכלב שלי.", "This girl had a movie based on her autobiography. When she was little, she and her brother were friends with this guy. When she got older she liked him. As an adult she went over to his house and he was a doctor. She asked him if he ever kissed his patients. They went to kiss each other, but he pulled away — she was married.": "לבחורה הזו היה סרט המבוסס על האוטוביוגרפיה שלה. כשהייתה קטנה, היא ואחיה היו חברים של הבחור הזה. כשגדלה היא התאהבה בו. כבוגרת הלכה לביתו והוא היה רופא. שאלה אותו אם הוא אי פעם מנשק את המטופלים שלו. הם התכוונו להתנשק אבל הוא נסוג — היא הייתה נשואה.", "I was at an Indian wedding. Me and a male friend decided to play a joke — as the couple came out, we went through the shop pretending we were getting married. Later I was at school and all these characters from an old TV show came. It had been ten years since we all saw each other.": "הייתי בחתונה הודית. אני וחבר גברי החלטנו לעשות בדיחה — כשהזוג יצא, עברנו בחנות ועשינו כאילו אנחנו מתחתנים. אחר כך הייתי בבית הספר וכל הדמויות מתוכנית טלוויזיה ישנה הגיעו. עברו עשר שנים מאז שנפגשנו.", "I dreamt I was sitting in my living-room when a married girlfriend of mine came in with a date who was not her husband. She seemed very happy and said she was going to go out with this fellow just as a lark.": "חלמתי שישבתי בסלון שלי וחברה נשואה שלי נכנסה עם דייט שלא היה בעלה. היא נראתה מאוד שמחה ואמרה שהיא הולכת לצאת עם הבחור הזה סתם לכיף.", "I'm in the presence of stern administrators, including my grade school principal and my third grade teacher. They are having a big meeting. I try not to distract them. My high school friend Elise is there. We talk a little bit. She expresses interest in spending time with me tonight. I'm very attracted to her.": "אני בנוכחות מנהלים נוקשים, כולל מנהלת בית הספר היסודי שלי והמורה מכיתה ג'. הם מקיימים ישיבה גדולה. אני מנסה לא להפריע. חברה מהתיכון, אליס, נמצאת שם. אנחנו מדברים קצת. היא מביעה רצון לבלות איתי הלילה. אני מאוד נמשכת אליה.", "I've come back into this house where someone I know lives and teaches dance. She's a little dotty — older but won't act like an old woman. Her living room is smallish, a little dark with only a couple of table lamps lit. Flowered couch, coffee table piled with books.": "חזרתי לבית שבו גרה ומלמדת מחול מישהי שאני מכירה. היא קצת אקסצנטרית — מבוגרת אבל לא מתנהגת כמבוגרת. הסלון שלה קטן וחשוך עם כמה מנורות שולחן. ספה עם פרחים, שולחן קפה עמוס בספרים.", "Lucy and Archie are seated side by side at a table. Archie is belittling Lucy. I tell him I don't like the way he is treating her. He is instantly furious with me. I start to walk away, but he comes to me and steps in front of me. He then kisses me very lovingly.": "לוסי וארצ'י יושבים זה לצד זה ליד שולחן. ארצ'י מבזה את לוסי. אני אומרת לו שלא מוצאת חן בעיניי הדרך שהוא מתייחס אליה. הוא כועס עלי מאוד. אני מתחילה ללכת אבל הוא ניגש אלי, עומד מולי ומנשק אותי בחיבה רבה.", "I saw a rock about 2 inches in diameter move. Then I saw a large spider under the rock, about an inch long. Later I saw some animals.": "ראיתי סלע בקוטר של כחמישה סנטימטרים זז. אחר כך ראיתי עכביש גדול מתחת לסלע, באורך של כסנטימטר. אחר כך ראיתי כמה בעלי חיים.", "At first it seemed I was flying along in the air, not very far off the ground. I looked down and there was a high cliff with a canyon below. I got scared and couldn't fly anymore — that feeling of falling a long distance. Then I got in my uncle's car and stepped on something soft and furry. When I looked down, I saw a tiger lying on the floor.": "בהתחלה נראה שאני טסה באוויר, לא רחוק מהקרקע. הסתכלתי למטה וראיתי מצוק גבוה עם קניון מתחת. נבהלתי ולא יכולתי יותר לעוף — אותה תחושת נפילה ממרחק רב. אחר כך יצאתי מהבית ועליתי למכונית של הדוד שלי. דרכתי על משהו רך ופרוותי. כשהסתכלתי למטה ראיתי נמר שוכב על הרצפה.", "I was in a large open space, and huge animals of all sorts with huge roars and wide open mouths — big gnashing teeth — were chasing me. I ran from side to side trying to escape. I was out of breath. The huge animal monsters finally hemmed me in. They were going to eat me and claw me. I then awoke.": "הייתי במרחב פתוח גדול, וחיות ענקיות מכל הסוגים עם ריחות ופיות פתוחות — שיניים גדולות — רדפו אחרי. רצתי מצד לצד בניסיון להימלט. נגמר לי הנשימה. חיות המפלצת הענקיות סגרו עלי. הן עמדו לאכול ולטרוף אותי. אז התעוררתי.", "There was some vehicle that had a trap involving air to capture these monster things. I think it was in a forest.": "היה שם רכב כלשהו עם מלכודת שמשתמשת באוויר כדי ללכוד מפלצות. חשבתי שזה ביער.", "I was on part of a large piece of machinery. It began to move, and I could not get off. It moved forward like a train engine.": "עמדתי על חלק ממכונה גדולה. היא התחילה לזוז ולא יכולתי לרדת ממנה. נעה קדימה כמו קטר רכבת.", "I was looking up. I saw something flying high up. Then I saw a dog come down. It floated up about six feet off the ground. I got hold of it and inside the glass I saw a bug — alive, crawling around. Then there was a horse's head with one eye. It had a frightened look.": "הסתכלתי למעלה. ראיתי משהו עף גבוה. אחר כך ראיתי כלב יורד. הוא נחת על הקרקע וצף כמטר וחצי מעל הקרקע. אחזתי בו ובתוך הזכוכית ראיתי חרק — חי, זוחל. אחר כך היה ראש של סוס עם עין אחת. היה לו מבט מבוהל.", "I was at my aunt's house. She wanted me to redesign the dining area and the lounge room. They went to bed and I tried to decide what the best thing to do was. She came out at one point and I said I hadn't thought of anything yet.": "הייתי בית הדודה שלי. היא רצתה שאעצב מחדש את פינת האוכל ואת הסלון. הם הלכו לישון ואני ניסיתי להחליט מה הכי טוב לעשות. היא יצאה בשלב מסוים ואמרתי לה שעדיין לא חשבתי על שום דבר.", "An interior designer was at my house. I was showing her each room and talking about the different decorating things that I had done or was in the process of in each room.": "מעצבת פנים הגיעה לבית שלי. הראיתי לה כל חדר ודיברנו על דברי העיצוב השונים שעשיתי או שאני בתהליך של עשייה בכל חדר.", "I went to my maternal grandmother's house. Grandmother had died, so it was my parents' place now. I didn't want them to sell it.": "הלכתי לבית הסבתא מהצד של אמא. הסבתא נפטרה, אז זה כבר היה המקום של ההורים שלי. לא רציתי שהם ימכרו אותו.", "I was in a house with my mother. Two containers of milk were delivered. One looked strange, so I showed it to my mother. Inside there was only white ice instead of milk.": "הייתי בבית עם אמא שלי. שתי מכלי חלב הובאו. אחד נראה מוזר, אז הראיתי אותו לאמא. בפנים היה רק קרח לבן במקום חלב.", "We were at my maternal grandmother's house and an elderly neighbor lady stopped by. She wanted to get rid of a bunch of robes she had. Surprisingly everyone in our family took one. Then she wanted help disposing of something else — car oil. It took a while and there was much more involved in it than we'd planned.": "היינו בבית הסבתא שלי מהצד של אמא ושכנה מבוגרת עצרה לבקר. היא רצתה להיפטר מכמה חלוקים שהיו לה. כולם במשפחה שלי לקחו אחד — אפילו אבא ואחי. אחר כך היא רצתה עזרה לסלק משהו אחר — שמן למכוניות. זה לקח זמן והיה הרבה יותר מסובך ממה שתכננו.", "I'm near a soccer field on which two teams are playing. One of the teams is supposed to be a lot better than the other. That team scores a goal very quickly. There is a young player on the team who is very cocky. I go up to him and warn him that though he is a good player he needs to keep honing his skills.": "אני ליד מגרש כדורגל שבו משחקות שתי קבוצות. קבוצה אחת אמורה להיות הרבה יותר טובה מהאחרת. אותה קבוצה מבקיעה שער מהר מאוד. יש שחקן צעיר בקבוצה שהוא מאוד יהיר. אני ניגשת אליו ומזהירה אותו שאמנם הוא שחקן טוב אבל עליו להמשיך להשתפר ולא לנוח על זרי הדפנה.", "I'm in prison. Some men are arguing with racial tension between them. The aggressors are angry — they want more rights. One man punches and kicks others. He turns into a fire-breathing beast with horns, about 15 feet tall. Everyone runs.": "אני בכלא. כמה גברים מתווכחים עם מתח גזעי ביניהם. הצד התוקפני כועס — הם רוצים יותר זכויות. גבר אחד מכה ובועט באחרים. הוא הופך למפלצת פולטת אש עם קרניים, גובהה כחמישה מטרים. כולם בורחים.", "A man is trying to mount a horse. He says he likes thoroughbreds because they fight. The horse becomes a large cat. I ask where the sheriff is. He is a handsome actor. He comes over to me and we talk. I am very attracted to him. We stand close together.": "גבר מנסה לרכב על סוס. הוא אומר שהוא אוהב סוסי מירוץ כי הם לוחמים. הסוס הופך לחתול פרסי גדול. אני שואלת איפה הסרייף. הוא שחקן יפה. הוא ניגש אלי ואנחנו מדברים. אני מאוד נמשכת אליו. אנחנו עומדים קרוב מאוד.", "There is a black man and a white man. Each man is in control of the other at a specific time. Each man has power at one time, over the other. When one of the men is in power he may abuse the other.": "יש גבר שחור וגבר לבן. כל גבר שולט על האחר בזמן מסוים. לכל אחד יש כוח מסוים על האחר בתורו. כשאחד מהגברים בשלטון הוא עלול להתעלל באחר.", "Two people are in a swim pool. One doesn't want to revive a desire for a relationship. They try to avoid the other. It hurts the other's feelings, but they manage it.": "שני אנשים נמצאים בבריכת שחייה. אחד לא רוצה לחדש את הרצון לקשר. הוא מנסה להימנע מהאחר. זה פוגע ברגשות של האחר, אבל הוא מתמודד עם זה.", "I go into a bedroom. I see a man I kind of like through the window. I close the curtains. I feel sexually turned on. Then I am some creature patrolling the outside of a building. A terrible mean creature threatens me and grows tall in its attempt to catch me as I fly up rapidly.": "אני נכנסת לחדר שינה. אני רואה דרך החלון גבר שאני קצת אוהבת. אני סוגרת את הווילונות. אני מרגישה עוררות מינית. אז אני הופכת לאיזו יצורה ושומרת על הבניין מבחוץ. יצור נורא מאיים עלי וגדל בניסיון לתפוס אותי כשאני עפה במהירות כלפי מעלה."};
+
+const PC_LABELS = {
+  en:{pos:["Fragmented / familiar","Domestic / family","Reflective / meta","Social / dramatic","Indoor / domestic"],neg:["Vivid / narrative","Abstract / cultural","Concrete / everyday","Physical / primal","Power / tension"]},
+  he:{pos:["מקוטע / מוכר","ביתי / משפחתי","רפלקטיבי / מטא","חברתי / דרמטי","פנים / ביתי"],neg:["עשיר / נרטיבי","מופשט / תרבותי","קונקרטי / יומיומי","גופני / ראשוני","כוח / מתח"]}
+};
+
+const T = {
+  en:{
+    eyebrow:"PCA Validation Study",title:["Dream Intruder","Test"],
+    onboard_title:"Welcome to the Dream Study",
+    onboard_desc:"This is a research experiment for validating the structure of dream semantics.<br><br>In each round, you will see <strong>4 dream descriptions</strong>. Three of them share a common psychological theme — and one is the <strong>odd one out</strong>, coming from a completely different semantic cluster.<br><br>Your task: <strong>identify which dream doesn't belong</strong>.",
+    age_label:"Age",age_placeholder:"e.g. 24",
+    gender_label:"Gender",gender_opts:["Prefer not to say","Female","Male","Non-binary","Other"],
+    start:"Start experiment",
+    research_note:"Your responses are collected anonymously for academic research. There are no right or wrong answers — just trust your intuition.",
+    instruction:(i,ev,pos,neg,pole)=>`<strong>Axis PC${i+1}</strong> &nbsp;·&nbsp; Explained variance: <strong>${(ev*100).toFixed(1)}%</strong><br>This axis separates <span class="pole-tag">${pos}</span> from <span class="pole-tag">${neg}</span> dreams.<br><br>Three dreams below come from the <span class="pole-tag">${pole}</span> pole. One intruder has been added from the opposite pole.<div class="meta-row"><span><strong>Task:</strong> Identify the intruder</span><span><strong>Note:</strong> Dreams are in original English</span></div>`,
+    dream:"Dream",confirm:"Confirm selection",next:"Next axis →",results:"See results →",
+    correct_feedback:"Correct — this dream belongs semantically to the opposite pole.",
+    wrong_feedback:t=>`The intruder was: <em>"${t.substring(0,90)}…"</em>`,
+    intruder_badge:"← intruder",correct_badge:"✓ correct",wrong_badge:"✗ wrong",
+    summary_verdict:n=>n>=4?"Excellent — the PCA axes are semantically distinct.":n===3?"Good — most axes show clear separation.":"The axes may overlap. Consider reviewing the PCA.",
+    export:"Export results (JSON)",restart:"New round",sending:"Saving results…",sent:"Results saved ✓",sent_err:"Could not save — please export manually.",
+    translate_note:"Dreams are in English. You can translate them to Hebrew (AI translation — may reduce scientific accuracy).",
+    translate_btn:"Translate to Hebrew",translating:"Translating…",translated_note:"Auto-translated from English",
+    dash_title:"Results Dashboard",
+    total_sessions:"Total sessions",english:"English",hebrew:"Hebrew",
+    acc_by_axis_en:"Accuracy per axis (EN)",acc_by_axis_he:"Accuracy per axis (HE)",
+    recent:"Recent sessions",
+    export_all:"Export all data",clear_all:"Clear all",
+    confirm_clear:"Delete all session data?",
+    pw_title:"Dashboard Access",pw_desc:"Enter password to view results",pw_enter:"Enter",pw_cancel:"Cancel",pw_wrong:"Incorrect password",
+    avg:"avg",users:"users",
+    col_time:"Time",col_lang:"Lang",col_age:"Age",col_gender:"Gender",col_score:"Score"
+  },
+  he:{
+    eyebrow:"מחקר תיקוף PCA",title:["מבחן הפולש","בחלומות"],
+    onboard_title:"ברוכים הבאים למחקר החלומות",
+    onboard_desc:"זהו ניסוי מחקרי לתיקוף מבנה סמנטיקת החלומות.<br><br>בכל סבב תראו <strong>4 תיאורי חלומות</strong>. שלושה מהם חולקים נושא פסיכולוגי משותף — ואחד הוא <strong>הפולש</strong>, שמגיע מאשכול סמנטי שונה לחלוטין.<br><br>המשימה שלכם: <strong>לזהות איזה חלום לא שייך לכאן</strong>.",
+    age_label:"גיל",age_placeholder:"לדוגמה 24",
+    gender_label:"מגדר",gender_opts:["מעדיף/ה לא לציין","נקבה","זכר","לא-בינארי/ת","אחר"],
+    start:"התחל ניסוי",
+    research_note:"התשובות שלכם נאספות באנונימיות למחקר אקדמי. אין תשובות נכונות או שגויות — פשוט סמכו על האינטואיציה שלכם.",
+    instruction:(i,ev,pos,neg,pole)=>`<strong>ציר PC${i+1}</strong> &nbsp;·&nbsp; שונות מוסברת: <strong>${(ev*100).toFixed(1)}%</strong><br>הציר מפריד בין חלומות <span class="pole-tag">${pos}</span> לחלומות <span class="pole-tag">${neg}</span>.<br><br>שלושה חלומות מהקוטב <span class="pole-tag">${pole}</span>. פולש אחד מהקוטב הנגדי.<div class="meta-row"><span><strong>משימה:</strong> זהה את הפולש</span><span><strong>שים לב:</strong> החלומות באנגלית מקורית</span></div>`,
+    dream:"חלום",confirm:"אישור בחירה",next:"← ציר הבא",results:"← לתוצאות",
+    correct_feedback:"נכון — חלום זה שייך סמנטית לקוטב הנגדי.",
+    wrong_feedback:t=>`הפולש היה: <em>"${t.substring(0,90)}…"</em>`,
+    intruder_badge:"← פולש",correct_badge:"✓ נכון",wrong_badge:"✗ שגוי",
+    summary_verdict:n=>n>=4?"מצוין — הצירים ניתנים להבחנה סמנטית ברורה.":n===3?"טוב — רוב הצירים מראים הפרדה סמנטית.":"ייתכן שהצירים חופפים. שקלי לבדוק מחדש.",
+    export:"ייצוא תוצאות (JSON)",restart:"סבב חדש",sending:"שומר תוצאות…",sent:"התוצאות נשמרו ✓",sent_err:"לא ניתן לשמור — אנא ייצא ידנית.",
+    translate_note:"החלומות באנגלית. ניתן לתרגם לעברית (תרגום AI — עשוי להפחית דיוק מדעי).",
+    translate_btn:"תרגום לעברית",translating:"מתרגם…",translated_note:"תורגם מאנגלית ע\"י AI",
+    dash_title:"דשבורד תוצאות",
+    total_sessions:"סה\"כ משתתפים",english:"אנגלית",hebrew:"עברית",
+    acc_by_axis_en:"דיוק לפי ציר (EN)",acc_by_axis_he:"דיוק לפי ציר (עב)",
+    recent:"10 אחרונים",
+    export_all:"ייצוא כל הנתונים",clear_all:"מחק הכל",
+    confirm_clear:"למחוק את כל הנתונים?",
+    pw_title:"כניסה לדשבורד",pw_desc:"הזן סיסמה כדי לצפות בתוצאות",pw_enter:"כניסה",pw_cancel:"ביטול",pw_wrong:"סיסמה שגויה",
+    avg:"ממוצע",users:"משתמשים",
+    col_time:"זמן",col_lang:"שפה",col_age:"גיל",col_gender:"מגדר",col_score:"ציון"
+  }
+};
+
+// ── State ──────────────────────────────────────────────────────────────────────
+let lang='en', phase='onboard'; // onboard | game | summary
+let participant={age:'',gender:''};
+let currentAxis=0, scores=Array(5).fill(null), selected=null, confirmed=false;
+let roundData=[], translatedTexts={}, translating=false;
+let sendStatus=''; // '' | 'sending' | 'sent' | 'error'
+
+// ── Storage ────────────────────────────────────────────────────────────────────
+const SK='pca_dream_sessions';
+function loadSessions(){try{return JSON.parse(localStorage.getItem(SK)||'[]');}catch{return[];}}
+function saveLocal(s){try{const a=loadSessions();a.push(s);if(a.length>500)a.splice(0,a.length-500);localStorage.setItem(SK,JSON.stringify(a));}catch(e){}}
+
+// ── Build rounds ───────────────────────────────────────────────────────────────
+function buildRound(){
+  roundData=AXES_DATA.map(ax=>{
+    const pole=Math.random()<0.5?'pos':'neg';
+    const main=ax[pole].filter(d=>d.text.length>100);
+    const other=ax[pole==='pos'?'neg':'pos'].filter(d=>d.text.length>100);
+    const shuffled=[...main].sort(()=>Math.random()-0.5);
+    const intruder=other[Math.floor(Math.random()*other.length)];
+    const three=shuffled.slice(0,3);
+    const all=[...three,intruder].sort(()=>Math.random()-0.5);
+    return{pole,dreams:all,intruderIdx:all.indexOf(intruder)};
+  });
+  translatedTexts={};
+}
+
+// ── Translation ────────────────────────────────────────────────────────────────
+function translateAxisDreams(axisIdx){
+  if(translatedTexts[axisIdx])return;
+  translatedTexts[axisIdx]={};
+  const dreams=roundData[axisIdx].dreams;
+  let anyFound=false;
+  dreams.forEach((d,i)=>{
+    const he=HE_DREAMS[d.text];
+    if(he){translatedTexts[axisIdx][i]=he;anyFound=true;}
+  });
+}
+
+// ── Send to Sheets ─────────────────────────────────────────────────────────────
+async function sendToSheets(sessionData){
+  sendStatus='sending'; render();
+  saveLocal(sessionData);
+  try{
+    await fetch(SHEETS_URL,{
+      method:"POST",
+      mode:"no-cors",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(sessionData)
+    });
+    sendStatus='sent';
+  }catch(e){
+    sendStatus='error';
+  }
+  render();
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────────
+function render(){
+  const app=document.getElementById('app');
+  app.className=lang==='he'?'container rtl':'container';
+  document.documentElement.lang=lang;
+  if(phase==='onboard'){renderOnboard();return;}
+  if(phase==='summary'){renderSummary();return;}
+  renderGame();
+}
+
+function renderHeader(showScore=true){
+  const t=T[lang];
+  return `<div class="header">
+    <div class="header-left">
+      <div class="eyebrow">${t.eyebrow}</div>
+      <div class="title">${t.title[0]}<br><em>${t.title[1]}</em></div>
+    </div>
+    <div class="header-right">
+
+      ${showScore?`<div class="score-pill"><strong>${scores.filter(Boolean).length}</strong> / 5 ${lang==='he'?'נכון':'correct'}</div>`:''}
+    </div>
+  </div>`;
+}
+
+function renderOnboard(){
+  const t=T[lang];
+  const app=document.getElementById('app');
+  const isRTL=lang==='he';
+  app.className=isRTL?'container rtl':'container';
+  document.documentElement.lang=lang;
+  app.innerHTML=`
+  <div class="onboard-card">
+    <div class="lang-choice-row">
+      <button class="lang-choice-btn${lang==='en'?' active':''}" onclick="setLang('en');renderOnboard()">
+        <span class="lc-flag">🇬🇧</span>
+        <span class="lc-name">English</span>
+      </button>
+      <button class="lang-choice-btn${lang==='he'?' active':''}" onclick="setLang('he');renderOnboard()">
+        <span class="lc-flag">🇮🇱</span>
+        <span class="lc-name">עברית</span>
+      </button>
+    </div>
+    <h2>${t.onboard_title}</h2>
+    <p>${t.onboard_desc}</p>
+    <div class="form-row">
+      <div class="form-group">
+        <label>${t.age_label}</label>
+        <input class="form-input" type="number" min="10" max="99" placeholder="${t.age_placeholder}" id="age-input" value="${participant.age}" oninput="participant.age=this.value;updateStartBtn()">
+      </div>
+      <div class="form-group">
+        <label>${t.gender_label}</label>
+        <select class="form-select" id="gender-input" onchange="participant.gender=this.value;updateStartBtn()">
+          ${t.gender_opts.map((o,i)=>`<option value="${i===0?'':o}" ${participant.gender===(i===0?'':o)?'selected':''}>${o}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <button class="btn-start" id="start-btn" onclick="startGame()" disabled>${t.start}</button>
+    <div class="research-note">${t.research_note}</div>
+  </div>`;
+}
+
+function updateStartBtn(){
+  const btn=document.getElementById('start-btn');
+  if(btn) btn.disabled=!participant.age || parseInt(participant.age)<10;
+}
+
+function startGame(){
+  if(!participant.age||parseInt(participant.age)<10)return;
+  phase='game'; buildRound(); render();
+}
+
+function renderGame(){
+  const t=T[lang];
+  const ax=AXES_DATA[currentAxis];
+  const rd=roundData[currentAxis];
+  const posLabel=PC_LABELS[lang].pos[currentAxis];
+  const negLabel=PC_LABELS[lang].neg[currentAxis];
+  const poleLabel=rd.pole==='pos'?posLabel:negLabel;
+  // auto-translate BEFORE computing hasTranslation
+  if(lang==='he') translateAxisDreams(currentAxis);
+  const hasTranslation=!!translatedTexts[currentAxis];
+
+  let html=renderHeader();
+
+  // axis nav
+  html+=`<div class="axis-nav">`;
+  for(let i=0;i<5;i++){let c='axis-step';if(scores[i]===true)c+=' done-correct';else if(scores[i]===false)c+=' done-wrong';else if(i===currentAxis)c+=' active';html+=`<div class="${c}"></div>`;}
+  html+=`</div><div class="axis-chips">`;
+  for(let i=0;i<5;i++){let c='axis-chip';if(scores[i]===true)c+=' done-correct';else if(scores[i]===false)c+=' done-wrong';else if(i===currentAxis)c+=' active';html+=`<span class="${c}">PC${i+1}</span>`;}
+  html+=`</div>`;
+
+  html+=`<div class="instruction">${t.instruction(currentAxis,ax.ev,posLabel,negLabel,poleLabel)}</div>`;
+
+
+
+  // dream cards
+  html+=`<div class="dreams-grid">`;
+  rd.dreams.forEach((dream,i)=>{
+    const displayText=(hasTranslation&&translatedTexts[currentAxis]?.[i])?translatedTexts[currentAxis][i]:dream.text;
+    const wasTranslated=hasTranslation&&!!translatedTexts[currentAxis]?.[i];
+    let cls='dream-card';let badge='';
+    if(confirmed){
+      cls+=' no-hover';
+      if(i===rd.intruderIdx&&selected===rd.intruderIdx){cls+=' card-correct';badge=`<span class="dream-badge badge-ok">${t.correct_badge}</span>`;}
+      else if(i===rd.intruderIdx){cls+=' card-correct';badge=`<span class="dream-badge badge-intruder">${t.intruder_badge}</span>`;}
+      else if(i===selected){cls+=' card-wrong';badge=`<span class="dream-badge badge-bad">${t.wrong_badge}</span>`;}
+      else{cls+=' card-neutral no-hover';}
+    }else{if(i===selected)cls+=' selected';}
+    html+=`<div class="${cls}" onclick="selectDream(${i})">
+      <div class="dream-header"><div class="dream-num">${t.dream} ${i+1}</div>${badge}</div>
+      <div class="dream-text">${displayText}</div>
+      ${wasTranslated?`<div class="translated-note">* ${t.translated_note}</div>`:''}
+    </div>`;
+  });
+  html+=`</div>`;
+
+  if(confirmed){
+    const ok=selected===rd.intruderIdx;
+    html+=`<div class="actions">
+      <div class="feedback">${ok?t.correct_feedback:t.wrong_feedback(rd.dreams[rd.intruderIdx].text)}</div>
+      ${currentAxis<4?`<button class="btn-next" onclick="nextAxis()">${t.next}</button>`:`<button class="btn-next" onclick="finishGame()">${t.results}</button>`}
+    </div>`;
+  }else{
+    html+=`<div class="actions"><div></div><button class="btn-confirm" onclick="confirmAnswer()" ${selected===null?'disabled':''}>${t.confirm}</button></div>`;
+  }
+
+  document.getElementById('app').innerHTML=html;
+}
+
+function renderSummary(){
+  const t=T[lang];
+  const correct=scores.filter(Boolean).length;
+  let html=renderHeader(false);
+  html+=`<div class="summary">
+    <div class="summary-score">${correct}<span> / 5</span></div>
+    <div class="summary-verdict">${t.summary_verdict(correct)}</div>
+    <div class="summary-axes">`;
+  AXES_DATA.forEach((ax,i)=>{
+    html+=`<div class="axis-result-box"><div class="ar-name">PC${i+1}</div>
+      <div class="ar-icon" style="color:${scores[i]?'var(--green)':'var(--red)'}">${scores[i]?'✓':'✗'}</div>
+      <div class="ar-ev">${(ax.ev*100).toFixed(1)}%</div></div>`;
+  });
+  html+=`</div>`;
+
+  // send status
+  if(sendStatus==='sending') html+=`<div class="sending-note">⏳ ${t.sending}</div>`;
+  else if(sendStatus==='sent') html+=`<div class="sending-note" style="color:var(--green)">${t.sent}</div>`;
+  else if(sendStatus==='error') html+=`<div class="sending-note" style="color:var(--red)">${t.sent_err}</div>`;
+
+  html+=`<div class="summary-actions">
+    <button class="btn-export" onclick="exportResults()">↓ ${t.export}</button>
+    <button class="btn-restart" onclick="restartGame()">↺ ${t.restart}</button>
+  </div></div>`;
+  document.getElementById('app').innerHTML=html;
+}
+
+// ── Game actions ───────────────────────────────────────────────────────────────
+function setLang(l){lang=l;render();}
+function selectDream(i){if(confirmed)return;selected=i;render();}
+
+function confirmAnswer(){
+  if(selected===null)return;
+  confirmed=true;
+  scores[currentAxis]=(selected===roundData[currentAxis].intruderIdx);
+  render();
+}
+
+function nextAxis(){currentAxis++;selected=null;confirmed=false;render();}
+
+function finishGame(){
+  phase='summary';
+  const sessionData={
+    timestamp:new Date().toISOString(),
+    lang,
+    age:participant.age,
+    gender:participant.gender||'not specified',
+    score:scores.filter(Boolean).length,
+    total:5,
+    used_translation:lang==='he'&&Object.keys(translatedTexts).length>0,
+    axes:AXES_DATA.map((ax,i)=>({pc:ax.id,ev:ax.ev,correct:scores[i],pole_shown:roundData[i].pole}))
+  };
+  render();
+  sendToSheets(sessionData);
+}
+
+function exportResults(){
+  const out={timestamp:new Date().toISOString(),lang,age:participant.age,gender:participant.gender,score:scores.filter(Boolean).length,axes:AXES_DATA.map((ax,i)=>({pc:ax.id,ev:ax.ev,correct:scores[i],pole_shown:roundData[i].pole}))};
+  const b=new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`pca_validation_${Date.now()}.json`;a.click();
+}
+
+function restartGame(){
+  scores=Array(5).fill(null);currentAxis=0;selected=null;confirmed=false;
+  participant={age:'',gender:''};phase='onboard';sendStatus='';
+  buildRound();render();
+}
+
+// ── Dashboard ──────────────────────────────────────────────────────────────────
+let dashUnlocked=false;
+
+function openDashboard(){
+  if(!dashUnlocked){showPwGate();}else{showDashboard();}
+}
+
+function showPwGate(){
+  const t=T[lang];
+  const ov=document.createElement('div');
+  ov.className='overlay';ov.id='pw-ov';
+  ov.innerHTML=`<div class="pw-box">
+    <h3>${t.pw_title}</h3><p>${t.pw_desc}</p>
+    <input class="pw-input" type="password" id="pw-f" placeholder="••••••" onkeydown="if(event.key==='Enter')checkPw()">
+    <button class="btn-pw" onclick="checkPw()">${t.pw_enter}</button>
+    <div class="pw-error" id="pw-err"></div>
+    <br><br><a href="#" onclick="document.getElementById('pw-ov').remove();return false;" style="font-size:12px;color:var(--text3)">${t.pw_cancel}</a>
+  </div>`;
+  document.body.appendChild(ov);
+  setTimeout(()=>document.getElementById('pw-f')?.focus(),100);
+}
+
+function checkPw(){
+  const v=document.getElementById('pw-f').value;
+  if(v===DASHBOARD_PW){dashUnlocked=true;document.getElementById('pw-ov').remove();showDashboard();}
+  else{document.getElementById('pw-err').textContent=T[lang].pw_wrong;}
+}
+
+function showDashboard(){
+  const t=T[lang];
+  const sessions=loadSessions();
+  const enS=sessions.filter(s=>s.lang==='en');
+  const heS=sessions.filter(s=>s.lang==='he');
+  const avgScore=s=>s.length?(s.reduce((a,b)=>a+b.score,0)/s.length).toFixed(2):'—';
+  const pct=s=>s.length?Math.round(s.reduce((a,b)=>a+b.score,0)/(s.length*5)*100):0;
+  const axAcc=(ss,i)=>{const a=ss.filter(s=>s.axes&&s.axes[i]);const c=a.filter(s=>s.axes[i].correct).length;return a.length?Math.round(c/a.length*100):null;};
+
+  const ov=document.createElement('div');
+  ov.className='overlay';ov.id='dash-ov';
+
+  let html=`<div class="modal${lang==='he'?' rtl':''}">
+  <button class="modal-close" onclick="document.getElementById('dash-ov').remove()">✕</button>
+  <h2>${t.dash_title}</h2>
+  <div class="dash-stats">
+    <div class="stat-card"><div class="stat-val">${sessions.length}</div><div class="stat-lbl">${t.total_sessions}</div></div>
+    <div class="stat-card"><div class="stat-val">${enS.length}</div><div class="stat-lbl">${t.english}</div></div>
+    <div class="stat-card"><div class="stat-val">${heS.length}</div><div class="stat-lbl">${t.hebrew}</div></div>
+  </div>
+  <div class="lang-split">
+    <div class="lang-box"><h4>English</h4><div class="lb-score">${pct(enS)}%</div><div class="lb-sub">${t.avg} ${avgScore(enS)}/5 · ${enS.length} ${t.users}</div></div>
+    <div class="lang-box"><h4>עברית</h4><div class="lb-score">${pct(heS)}%</div><div class="lb-sub">${t.avg} ${avgScore(heS)}/5 · ${heS.length} ${t.users}</div></div>
+  </div>
+  <div class="dash-section"><h3>${t.acc_by_axis_en}</h3>`;
+
+  AXES_DATA.forEach((_,i)=>{
+    const p=axAcc(enS,i);
+    html+=`<div class="bar-row"><div class="bar-label">PC${i+1}</div><div class="bar-track"><div class="bar-fill" style="width:${p??0}%;background:var(--accent)"></div></div><div class="bar-val">${p!==null?p+'%':'—'}</div></div>`;
+  });
+
+  html+=`</div><div class="dash-section"><h3>${t.acc_by_axis_he}</h3>`;
+  AXES_DATA.forEach((_,i)=>{
+    const p=axAcc(heS,i);
+    html+=`<div class="bar-row"><div class="bar-label">PC${i+1}</div><div class="bar-track"><div class="bar-fill" style="width:${p??0}%;background:var(--gold)"></div></div><div class="bar-val">${p!==null?p+'%':'—'}</div></div>`;
+  });
+
+  html+=`</div>`;
+
+  if(sessions.length>0){
+    const recent=[...sessions].reverse().slice(0,10);
+    html+=`<div class="dash-section"><h3>${t.recent}</h3>
+    <table class="sessions-table">
+      <tr><th>${t.col_time}</th><th>${t.col_lang}</th><th>${t.col_age}</th><th>${t.col_gender}</th><th>${t.col_score}</th><th>PC1</th><th>PC2</th><th>PC3</th><th>PC4</th><th>PC5</th></tr>`;
+    recent.forEach(s=>{
+      const d=new Date(s.timestamp);
+      const time=`${d.getDate()}/${d.getMonth()+1} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+      html+=`<tr><td>${time}</td><td><span class="tag-${s.lang}">${s.lang.toUpperCase()}</span></td><td>${s.age||'—'}</td><td>${s.gender||'—'}</td><td>${s.score}/5</td>${(s.axes||[]).map(a=>`<td style="color:${a.correct?'var(--green)':'var(--red)'}">${a.correct?'✓':'✗'}</td>`).join('')}</tr>`;
+    });
+    html+=`</table></div>`;
+  }else{
+    html+=`<div style="text-align:center;color:var(--text3);padding:2rem;font-size:14px">${lang==='he'?'אין עדיין נתונים.':'No data yet.'}</div>`;
+  }
+
+  html+=`<div class="dash-actions">
+    <button class="btn-export" onclick="exportAll()">↓ ${t.export_all}</button>
+    <button class="btn-export" style="color:var(--red);border-color:var(--red)" onclick="clearAll()">${t.clear_all}</button>
+  </div></div>`;
+
+  ov.innerHTML=html;
+  document.body.appendChild(ov);
+}
+
+function exportAll(){
+  const s=loadSessions();
+  const b=new Blob([JSON.stringify({exported_at:new Date().toISOString(),sessions:s},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`pca_all_sessions_${Date.now()}.json`;a.click();
+}
+
+function clearAll(){
+  if(confirm(T[lang].confirm_clear)){localStorage.removeItem(SK);document.getElementById('dash-ov').remove();showDashboard();}
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────────
+buildRound();
+render();
+</script>
+</body>
+</html>
