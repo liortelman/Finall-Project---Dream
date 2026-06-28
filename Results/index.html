@@ -124,6 +124,7 @@ nav {
   padding: 1.5rem;
   margin-bottom: 1.5rem;
 }
+.chart-wrap .chart-inner { position: relative; height: 280px; }
 .chart-title { font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 1.25rem; }
 canvas { width: 100% !important; max-height: 300px; }
 
@@ -252,7 +253,7 @@ footer {
   <div class="sec-title">Overall accuracy — all models</div>
   <div class="chart-wrap">
     <div class="chart-title">Accuracy (%) by model and condition · dashed line = human baseline (67%)</div>
-    <canvas id="chart-overview"></canvas>
+    <div class="chart-inner"><canvas id="chart-overview"></canvas></div>
   </div>
 
   <div class="sec-title">Key findings</div>
@@ -313,7 +314,7 @@ footer {
   <div id="axis-info-box" class="axis-info"></div>
   <div class="chart-wrap">
     <div class="chart-title">Accuracy by model · selected axis · dashed = human baseline</div>
-    <canvas id="chart-axis"></canvas>
+    <div class="chart-inner"><canvas id="chart-axis"></canvas></div>
   </div>
   <div class="chart-wrap">
     <table class="result-table" id="axis-table"></table>
@@ -325,11 +326,11 @@ footer {
   <div class="sec-title">Effect of semantic labels</div>
   <div class="chart-wrap">
     <div class="chart-title">Accuracy without labels vs with labels — by model</div>
-    <canvas id="chart-labels"></canvas>
+    <div class="chart-inner"><canvas id="chart-labels"></canvas></div>
   </div>
   <div class="chart-wrap">
     <div class="chart-title">Label boost — percentage point improvement from adding labels</div>
-    <canvas id="chart-boost"></canvas>
+    <div class="chart-inner"><canvas id="chart-boost"></canvas></div>
   </div>
 </div>
 
@@ -338,7 +339,7 @@ footer {
   <div class="sec-title">AI vs Human comparison</div>
   <div class="chart-wrap">
     <div class="chart-title">Accuracy by axis — AI (with labels) vs humans</div>
-    <canvas id="chart-human"></canvas>
+    <div class="chart-inner"><canvas id="chart-human"></canvas></div>
   </div>
   <div class="chart-wrap">
     <table class="result-table" id="human-table"></table>
@@ -400,7 +401,7 @@ new Chart(document.getElementById('chart-overview'), {
     ]
   },
   options:{
-    responsive:true,maintainAspectRatio:true,aspectRatio:2.5,
+    responsive:true,maintainAspectRatio:false,
     plugins:{legend:{labels:{color:tc,font:{size:11}}}},
     scales:{x:baseX,y:baseY}
   },
@@ -477,7 +478,7 @@ function renderAxisSection() {
         {label:'With labels',   data:wlData,backgroundColor:colors,borderRadius:4},
       ]
     },
-    options:{responsive:true,maintainAspectRatio:true,aspectRatio:2.5,
+    options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{labels:{color:tc,font:{size:11}}}},
       scales:{x:baseX,y:{...baseY,min:0}}
     },
@@ -515,7 +516,7 @@ new Chart(document.getElementById('chart-labels'), {
       {label:'With labels',   data:DATA.models.map(m=>m.with_labels),backgroundColor:DATA.models.map(m=>m.color),borderRadius:4},
     ]
   },
-  options:{responsive:true,maintainAspectRatio:true,aspectRatio:2.5,
+  options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{labels:{color:tc,font:{size:11}}}},
     scales:{x:baseX,y:baseY}
   },
@@ -534,7 +535,7 @@ new Chart(document.getElementById('chart-boost'), {
       borderRadius:4
     }]
   },
-  options:{responsive:true,maintainAspectRatio:true,aspectRatio:2.5,
+  options:{responsive:true,maintainAspectRatio:false,
     plugins:{...noLeg},
     scales:{
       x:baseX,
@@ -566,7 +567,7 @@ new Chart(document.getElementById('chart-human'), {
       ...modelDatasets
     ]
   },
-  options:{responsive:true,maintainAspectRatio:true,aspectRatio:2.5,
+  options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{labels:{color:tc,font:{size:11}}}},
     scales:{x:baseX,y:baseY}
   }
