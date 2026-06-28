@@ -110,6 +110,8 @@ function loadFromSheets() {
   setTimeout(() => s.remove(), 8000);
 }
 loadFromSheets();
+// Refresh from Sheets every 30 seconds
+setInterval(loadFromSheets, 30000);
 
 function setFilter(val, btn) {
   currentFilter = val;
