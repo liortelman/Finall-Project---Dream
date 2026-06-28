@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Study — Can You Beat the AI?</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  --bg: #0a0a0f;
+  --bg2: #12121a;
+  --bg3: #1a1a26;
+  --border: rgba(255,255,255,0.08);
+  --text: #e8e8f0;
+  --muted: #6070a0;
+  --accent: #7c6af7;
+  --teal: #0d9488;
+  --gold: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 3rem 1.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: .75rem; }
+.hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px,5vw,44px); font-weight: 700; line-height: 1.1; margin-bottom: .75rem; }
+.hero h1 span { color: var(--accent); }
+.hero-sub { font-size: 15px; color: var(--muted); max-width: 520px; margin: 0 auto 1.5rem; line-height: 1.6; }
+.how-it-works {
+  display: inline-flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: .75rem 1.5rem; font-size: 13px; color: var(--muted);
+}
+.how-it-works span { color: var(--text); font-weight: 500; }
+
+/* PROGRESS */
+.progress-bar {
+  max-width: 680px; margin: 1.5rem auto 0;
+  display: flex; align-items: center; gap: .75rem; padding: 0 1.5rem;
+}
+.steps { display: flex; gap: 6px; flex: 1; }
+.step-dot {
+  flex: 1; height: 4px; border-radius: 2px;
+  background: var(--border); transition: background .3s;
+}
+.step-dot.done { background: var(--teal); }
+.step-dot.active { background: var(--accent); }
+.progress-label { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+/* MAIN */
+.main { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* AXIS BADGE */
+.axis-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 6px 14px; margin-bottom: 1.25rem;
+}
+.axis-id { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--accent); }
+.axis-desc { font-size: 12px; color: var(--muted); }
+
+/* QUESTION */
+.question { font-size: 15px; color: var(--text); margin-bottom: 1.25rem; line-height: 1.5; }
+.axis-poles {
+  display: flex; gap: 8px; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+.pole { font-size: 12px; padding: 3px 10px; border-radius: 20px; }
+.pole-a { background: rgba(13,148,136,.15); color: var(--teal); }
+.pole-b { background: rgba(124,106,247,.15); color: var(--accent); }
+
+/* DREAM CARDS */
+.dreams { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+.dream-card {
+  background: var(--bg2); border: 2px solid var(--border);
+  border-radius: 12px; padding: 1rem 1.1rem;
+  cursor: pointer; transition: border-color .15s, background .15s;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.dream-card:hover { border-color: rgba(124,106,247,.4); background: var(--bg3); }
+.dream-card.selected { border-color: var(--accent); background: rgba(124,106,247,.08); }
+.dream-card.correct-reveal { border-color: var(--green); background: rgba(16,185,129,.07); }
+.dream-card.wrong-reveal { border-color: var(--red); background: rgba(239,68,68,.07); }
+.dream-card.correct-reveal .dream-num { background: var(--green); }
+.dream-card.wrong-reveal .dream-num { background: var(--red); }
+.dream-num {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  background: var(--bg3); border: 1px solid var(--border);
+  font-size: 12px; font-weight: 700; color: var(--text);
+  display: flex; align-items: center; justify-content: center;
+}
+.dream-text { font-size: 13px; line-height: 1.65; color: var(--text); }
+
+/* SUBMIT BTN */
+.submit-btn {
+  width: 100%; padding: 13px; border-radius: 10px;
+  background: var(--accent); border: none; color: #fff;
+  font-size: 15px; font-weight: 600; font-family: inherit;
+  cursor: pointer; transition: opacity .15s;
+  margin-bottom: 1.5rem;
+}
+.submit-btn:hover { opacity: .88; }
+.submit-btn:disabled { opacity: .35; cursor: default; }
+
+/* REVEAL */
+.reveal { display: none; }
+.reveal.show { display: block; }
+.reveal-header {
+  display: flex; gap: 12px; align-items: center; margin-bottom: 1.25rem;
+}
+.reveal-icon { font-size: 28px; }
+.reveal-title { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; }
+.reveal-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+/* AI RESULTS */
+.ai-results { margin-bottom: 1.5rem; }
+.ai-results-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .75rem; }
+.ai-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; border-radius: 10px;
+  background: var(--bg2); border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.ai-name { font-size: 13px; font-weight: 600; width: 120px; flex-shrink: 0; }
+.ai-answer { font-size: 13px; color: var(--muted); flex: 1; }
+.ai-badge { font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; }
+.ai-badge.correct { background: rgba(16,185,129,.15); color: var(--green); }
+.ai-badge.wrong { background: rgba(239,68,68,.15); color: var(--red); }
+
+/* NEXT BTN */
+.next-btn {
+  width: 100%; padding: 13px; border-radius: 10px;
+  background: var(--bg2); border: 1px solid var(--border); color: var(--text);
+  font-size: 15px; font-weight: 600; font-family: inherit;
+  cursor: pointer; transition: border-color .15s;
+}
+.next-btn:hover { border-color: var(--accent); }
+
+/* FINAL SCREEN */
+.final { display: none; text-align: center; padding: 3rem 1rem; }
+.final.show { display: block; }
+.final-score { font-family: 'Space Grotesk', sans-serif; font-size: 72px; font-weight: 700; line-height: 1; margin-bottom: .5rem; }
+.final-label { font-size: 16px; color: var(--muted); margin-bottom: 2rem; }
+.score-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 2rem; }
+.score-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; }
+.score-card-val { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; }
+.score-card-label { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.final-msg { font-size: 14px; color: var(--muted); max-width: 420px; margin: 0 auto 2rem; line-height: 1.6; }
+.replay-btn {
+  padding: 12px 32px; border-radius: 10px;
+  background: var(--accent); border: none; color: #fff;
+  font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer;
+  margin-right: 10px;
+}
+.results-link {
+  padding: 12px 32px; border-radius: 10px;
+  background: var(--bg2); border: 1px solid var(--border); color: var(--text);
+  font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer;
+  text-decoration: none; display: inline-block;
+}
+
+/* QUESTION AREA */
+#question-area { }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="eyebrow">Dream PCA Study · Ariel University 2026</div>
+  <h1>Can you <span>beat the AI</span>?</h1>
+  <p class="hero-sub">We asked ChatGPT, Gemini, and Claude to identify the dream that doesn't belong. See if you can do better.</p>
+  <div class="how-it-works">
+    <span>5 rounds</span> · one per semantic axis ·
+    <span>pick the intruder</span> · then see what the AI answered
+  </div>
+  <div class="progress-bar">
+    <div class="steps" id="steps"></div>
+    <div class="progress-label" id="progress-label">Round 1 of 5</div>
+  </div>
+</div>
+
+<div class="main" id="question-area">
+  <!-- injected by JS -->
+</div>
+
+<div class="main final" id="final-screen">
+  <div class="final-score" id="final-score-val"></div>
+  <div class="final-label">Your score</div>
+  <div class="score-cards">
+    <div class="score-card">
+      <div class="score-card-val" id="sc-you" style="color:var(--accent)"></div>
+      <div class="score-card-label">You</div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-val" id="sc-ai" style="color:var(--teal)"></div>
+      <div class="score-card-label">AI avg (with labels)</div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-val" id="sc-humans" style="color:var(--gold)">66%</div>
+      <div class="score-card-label">Humans avg (n=70)</div>
+    </div>
+  </div>
+  <p class="final-msg" id="final-msg"></p>
+  <button class="replay-btn" onclick="restartGame()">Play again</button>
+  <a class="results-link" href="https://liortelman.github.io/Finall-Project---Dream/Results/" target="_blank">See full results →</a>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────
+const ROUNDS = [
+  {
+    axis: "PC1", axisEv: "4.8%",
+    poleA: "Fragmented / no clear narrative",
+    poleB: "Dreams with detailed narrative / storyline",
+    shown: "B", // neg pole = B
+    question: "Three of these dreams share a theme: they all have a <strong>rich, detailed narrative</strong>. One is the intruder — it's <strong>fragmented and vague</strong>. Which one doesn't belong?",
+    correct: 1,
+    dreams: [
+      "I was in The Young Ones and we were doing the episodes and I was watching the goofs they had made and stuff.",
+      "I am sleeping on an uncomfortable hide-a-bed in a room where the floor is dirt. I wake up and see Howard standing near the bed. He is very sad and I realize he has had enough and will ask for a divorce from me. I feel sad and a bit bad about my treatment of him.",
+      "I am applying for a teaching job. I push a button outside the music room and a taped lecture comes on. I am embarrassed because I do not know how to turn it off and it is loud. I walk out of the building. I walk to a mental hospital for war-injured men. The men whistle and tease. I look for the head nurse. She is nowhere around.",
+      "I am working with three men at a fruit and vegetable stand. The day ends. I ask the bosses if I can take some produce to eat. They say okay, but find that the boxes are all taped up so I cannot get any fruit. A homeless man comes around begging for change. I say, why do you not come home for dinner with me? He agrees.",
+    ],
+    chatgpt: 3, chatgpt_correct: false,
+    gemini: 3,  gemini_correct: false,
+    claude: 3,  claude_correct: false,
+  },
+  {
+    axis: "PC2", axisEv: "4.2%",
+    poleA: "Dreams with familiar people / family dynamics",
+    poleB: "Dreams with tasks / objects and ideas",
+    shown: "A",
+    question: "Three dreams share a theme: they all feature <strong>familiar people and family dynamics</strong>. One is the intruder — it's about <strong>tasks, objects, or abstract ideas</strong>. Which one doesn't belong?",
+    correct: 2,
+    dreams: [
+      "I was at Mom's. I went into her room and there was a stranger on her bed. I was talking to Mom and then said who the hell is this. She said a friend. When I turned back around Mom and the guy were kissing. I went back to my room but later discovered that Mom's bedroom was on fire.",
+      "I wish to learn dates of publication of certain of Montaigne's essays. A friend is trying to find out for me by inquiries at the bookbinder. He explains that the essays were probably written at different times and I had better go to a librarian.",
+      "I woke up with a bit of a headache. My hair went full curly. Dad's room was scary looking and orange. Dad kept saying to Ezra that he wanted my room. They were talking about TV shows.",
+      "I was at home, out the front. There was a big van and I was poking around in the back. They went to drive off but the back was not closed and I ran after it trying to close it. The car slammed into them and it flipped over. I went and told Mom and Ezra.",
+    ],
+    chatgpt: 2, chatgpt_correct: true,
+    gemini: 2,  gemini_correct: true,
+    claude: 2,  claude_correct: true,
+  },
+  {
+    axis: "PC3", axisEv: "3.9%",
+    poleA: "Specific / identifiable details",
+    poleB: "General / unfamiliar setting",
+    shown: "A",
+    question: "Three dreams share a theme: they're <strong>specific, with identifiable details</strong> (named people, real places, concrete objects). One is the intruder — it's <strong>general and vague</strong>. Which one?",
+    correct: 1,
+    dreams: [
+      "I could not describe the dream exactly, but it all revolved around a very important piece of work I have to do and for which I do not think I have enough time to complete it. The dream was surrounded by several people close to me, who were putting a lot of pressure on me to finish the work.",
+      "We were going to a cinema. Ezra had been driving really fast and went through a wire fence. We parked in a dodgy place in the bush and found holes in the electric fence to get to the cinema. We had brought water but it was half empty. I went to buy snacks but Dad had the money.",
+      "The police took Mom's pickup and Hyundai. She came to Dad's in an old car. We drove off and then I got out chasing a ball. A while later, some bad guys walked in and asked where Mom's pickup was. So I closed and locked the doors.",
+      "I got two little green worms as pets. We kept calling them slugs though. They were really tiny. The new one was called Alexander. I went to Mom to ask her what I should feed it. I went back and there were more slugs. They were trying to eat my dog.",
+    ],
+    chatgpt: 1, chatgpt_correct: true,
+    gemini: 1,  gemini_correct: true,
+    claude: 1,  claude_correct: true,
+  },
+  {
+    axis: "PC4", axisEv: "2.9%",
+    poleA: "Physical threats / animals and machines",
+    poleB: "Relationships / emotions",
+    shown: "A",
+    question: "Three dreams share a theme: they involve <strong>physical threats, animals, or machines</strong>. One is the intruder — it's about <strong>relationships and emotions</strong>. Which one?",
+    correct: 1,
+    dreams: [
+      "I dreamt I was sitting in my living-room when a married girlfriend of mine came in with a date who was not her husband. She seemed very happy and said she was going to go out with this fellow just as a lark.",
+      "I saw a rock about 2 inches in diameter move. Then I saw a large spider under the rock, about an inch long. Later I saw some animals.",
+      "I was in a large open space, and huge animals of all sorts with huge roars and wide open mouths, big gnashing teeth, were chasing me. I ran from side to side trying to escape. I was out of breath. The huge animal monsters finally hemmed me in.",
+      "I was on part of a large piece of machinery. It began to move, and I could not get off. It moved forward like a train engine.",
+    ],
+    chatgpt: 1, chatgpt_correct: true,
+    gemini: 1,  gemini_correct: true,
+    claude: 1,  claude_correct: true,
+  },
+  {
+    axis: "PC5", axisEv: "2.4%",
+    poleA: "Dreams in domestic settings / indoors",
+    poleB: "Dreams with social tension / power and control",
+    shown: "A",
+    question: "Three dreams share a theme: they take place in <strong>domestic, indoor settings</strong>. One is the intruder — it involves <strong>social tension, power, or control</strong>. Which one?",
+    correct: 2,
+    dreams: [
+      "I was at my aunt's house. She wanted me to redesign the dining area and the lounge room. They went to bed and I tried to decide what the best thing to do was. She came out at one point and I said I had not thought of anything yet.",
+      "I am near a soccer field on which two teams are playing. One of the teams is supposed to be a lot better than the other. That team scores a goal very quickly. There is a young player on the team who is very cocky. I go up to him and warn him.",
+      "I went to my maternal grandmother's house. Grandmother had died, so it was my parents' place now. I did not want them to sell it.",
+      "I was in a house with my mother. Two containers of milk were delivered. One looked strange, so I showed it to my mother. Inside there was only white ice instead of milk.",
+    ],
+    chatgpt: 2, chatgpt_correct: true,
+    gemini: 2,  gemini_correct: true,
+    claude: 2,  claude_correct: true,
+  },
+];
+
+// ─── STATE ──────────────────────────────────────────────
+let current = 0;
+let selected = null;
+let revealed = false;
+let userScores = [];
+
+// ─── INIT ────────────────────────────────────────────────
+function buildSteps() {
+  const steps = document.getElementById('steps');
+  steps.innerHTML = '';
+  ROUNDS.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'step-dot' + (i < current ? ' done' : (i === current ? ' active' : ''));
+    steps.appendChild(d);
+  });
+  document.getElementById('progress-label').textContent = `Round ${current+1} of ${ROUNDS.length}`;
+}
+
+function renderRound() {
+  selected = null;
+  revealed = false;
+  buildSteps();
+  const r = ROUNDS[current];
+  const area = document.getElementById('question-area');
+  area.style.display = 'block';
+
+  area.innerHTML = `
+    <div class="axis-badge">
+      <span class="axis-id">${r.axis}</span>
+      <span class="axis-desc">${r.axisEv} variance explained</span>
+    </div>
+
+    <div class="question">${r.question}</div>
+
+    <div class="axis-poles">
+      <span class="pole pole-a">${r.poleA}</span>
+      <span style="color:var(--muted);font-size:13px">↔</span>
+      <span class="pole pole-b">${r.poleB}</span>
+    </div>
+
+    <div class="dreams" id="dreams-container">
+      ${r.dreams.map((d,i) => `
+        <div class="dream-card" id="card-${i+1}" onclick="selectDream(${i+1})">
+          <div class="dream-num">${i+1}</div>
+          <div class="dream-text">${d}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <button class="submit-btn" id="submit-btn" onclick="submitAnswer()" disabled>
+      Submit my answer
+    </button>
+
+    <div class="reveal" id="reveal-area"></div>
+  `;
+}
+
+function selectDream(n) {
+  if (revealed) return;
+  selected = n;
+  document.querySelectorAll('.dream-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById(`card-${n}`).classList.add('selected');
+  document.getElementById('submit-btn').disabled = false;
+}
+
+function submitAnswer() {
+  if (!selected || revealed) return;
+  revealed = true;
+  document.getElementById('submit-btn').disabled = true;
+
+  const r = ROUNDS[current];
+  const correct = r.correct;
+  const userCorrect = selected === correct;
+  userScores.push(userCorrect ? 1 : 0);
+
+  // Reveal cards
+  document.querySelectorAll('.dream-card').forEach((c,i) => {
+    c.style.cursor = 'default';
+    if (i+1 === correct) c.classList.add('correct-reveal');
+    else if (i+1 === selected && !userCorrect) c.classList.add('wrong-reveal');
+  });
+
+  // Build reveal section
+  const revealArea = document.getElementById('reveal-area');
+  revealArea.classList.add('show');
+
+  const icon = userCorrect ? '🎉' : '😬';
+  const title = userCorrect ? 'Correct!' : 'Not quite...';
+  const sub = userCorrect
+    ? `Dream ${correct} is the intruder — you got it!`
+    : `The intruder was Dream ${correct}, not Dream ${selected}.`;
+
+  const aiRows = [
+    { name: 'ChatGPT Plus 5.5', answer: r.chatgpt, ok: r.chatgpt_correct, color: '#10a37f' },
+    { name: 'Gemini 2.0 Pro',   answer: r.gemini,  ok: r.gemini_correct,  color: '#4285f4' },
+    { name: 'Claude Sonnet 4.6',answer: r.claude,  ok: r.claude_correct,  color: '#7c6af7' },
+  ];
+
+  const isLast = current === ROUNDS.length - 1;
+
+  revealArea.innerHTML = `
+    <div class="reveal-header">
+      <div class="reveal-icon">${icon}</div>
+      <div>
+        <div class="reveal-title">${title}</div>
+        <div class="reveal-sub">${sub}</div>
+      </div>
+    </div>
+
+    <div class="ai-results">
+      <div class="ai-results-title">What the AI answered (with labels)</div>
+      ${aiRows.map(ai => `
+        <div class="ai-row">
+          <div class="ai-name" style="color:${ai.color}">${ai.name}</div>
+          <div class="ai-answer">Dream ${ai.answer}</div>
+          <span class="ai-badge ${ai.ok ? 'correct' : 'wrong'}">${ai.ok ? '✓ Correct' : '✗ Wrong'}</span>
+        </div>
+      `).join('')}
+    </div>
+
+    <button class="next-btn" onclick="${isLast ? 'showFinal()' : 'nextRound()'}">
+      ${isLast ? 'See your final score →' : 'Next round →'}
+    </button>
+  `;
+}
+
+function nextRound() {
+  current++;
+  renderRound();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showFinal() {
+  document.getElementById('question-area').style.display = 'none';
+  document.querySelector('.progress-bar').style.display = 'none';
+  const final = document.getElementById('final-screen');
+  final.classList.add('show');
+
+  const score = userScores.reduce((a,b) => a+b, 0);
+  const pct = Math.round(score / ROUNDS.length * 100);
+
+  // AI average (with labels)
+  const aiPcts = ROUNDS.map(r => {
+    const correct = [r.chatgpt_correct, r.gemini_correct, r.claude_correct].filter(Boolean).length;
+    return correct / 3;
+  });
+  const aiAvg = Math.round(aiPcts.reduce((a,b) => a+b, 0) / aiPcts.length * 100);
+
+  document.getElementById('final-score-val').textContent = `${pct}%`;
+  document.getElementById('final-score-val').style.color = pct >= 80 ? 'var(--green)' : pct >= 60 ? 'var(--gold)' : 'var(--accent)';
+  document.getElementById('sc-you').textContent = `${pct}%`;
+  document.getElementById('sc-ai').textContent = `${aiAvg}%`;
+
+  let msg = '';
+  if (pct === 100) msg = "Perfect score! You matched or beat the AI on every single axis. Impressive semantic intuition.";
+  else if (pct >= 80) msg = `${score}/5 correct — well above the human average of 66%. You have strong semantic sensitivity to dream content.`;
+  else if (pct >= 60) msg = `${score}/5 correct — right around the human average of 66%. Perfectly normal: some of these axes are genuinely subtle.`;
+  else msg = `${score}/5 correct — don't worry, some axes (especially PC3) stumped even the AI models. The task is harder than it looks.`;
+
+  document.getElementById('final-msg').textContent = msg;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartGame() {
+  current = 0;
+  userScores = [];
+  document.getElementById('final-screen').classList.remove('show');
+  document.querySelector('.progress-bar').style.display = 'flex';
+  renderRound();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── START ───────────────────────────────────────────────
+renderRound();
+</script>
+</body>
+</html>
