@@ -59,7 +59,7 @@ const MODELS = ["ChatGPT", "Gemini", "Claude"];
 
 let answers = {};
 let currentFilter = 'all';
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbz7cEFSzFudcbD4fTNb9drtfTpuzA-KVV2L8twViaVEzm769maQqUYwXd2yD8aZoMX8/exec';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyyeTA70fXr8N6RQ1qhnGv24tUj6AnEVN-tteC0CWwGIBLMkRB11WqhjMZ4kA25HXt3/exec';
 
 const syncTimers = {};
 
@@ -91,6 +91,21 @@ function syncToSheets(p, model, val) {
 
 const saved = localStorage.getItem('dream_multi_answers');
 if (saved) answers = JSON.parse(saved);
+
+// Load from Sheets on startup — syncs all users
+async function loadFromSheets() {
+  try {
+    const resp = await fetch(SHEETS_URL + '?t=' + Date.now(), {method: 'GET', mode: 'cors'});
+    const data = await resp.json();
+    if (data.answers) {
+      Object.assign(answers, data.answers);
+      localStorage.setItem('dream_multi_answers', JSON.stringify(answers));
+      render();
+      updateSummary();
+    }
+  } catch(e) { console.log('Load error:', e); }
+}
+loadFromSheets();
 
 function setFilter(val, btn) {
   currentFilter = val;
