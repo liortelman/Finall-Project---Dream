@@ -61,24 +61,32 @@ let answers = {};
 let currentFilter = 'all';
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbz7cEFSzFudcbD4fTNb9drtfTpuzA-KVV2L8twViaVEzm769maQqUYwXd2yD8aZoMX8/exec';
 
-async function syncToSheets(p, model, val) {
-  try {
-    await fetch(SHEETS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        condition: p.condition,
-        axis: p.axis,
-        trial: p.trial,
-        correct_answer: p.correct_answer,
-        pole_shown: p.pole_shown,
-        model: model,
-        model_answer: val,
-        correct: val ? (parseInt(val) === p.correct_answer ? 1 : 0) : ''
-      })
-    });
-  } catch(e) { console.log('Sync error:', e); }
+const syncTimers = {};
+
+function syncToSheets(p, model, val) {
+  const timerKey = p.condition + '_' + p.axis + '_' + p.trial + '_' + model;
+  // Cancel previous pending sync for this cell
+  if (syncTimers[timerKey]) clearTimeout(syncTimers[timerKey]);
+  // Wait 1.5s before sending — if user changes again, timer resets
+  syncTimers[timerKey] = setTimeout(async () => {
+    try {
+      await fetch(SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          condition: p.condition,
+          axis: p.axis,
+          trial: p.trial,
+          correct_answer: p.correct_answer,
+          pole_shown: p.pole_shown,
+          model: model,
+          model_answer: val,
+          correct: val ? (parseInt(val) === p.correct_answer ? 1 : 0) : ''
+        })
+      });
+    } catch(e) { console.log('Sync error:', e); }
+  }, 1500);
 }
 
 const saved = localStorage.getItem('dream_multi_answers');
