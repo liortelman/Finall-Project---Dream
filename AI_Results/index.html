@@ -59,7 +59,7 @@ const MODELS = ["ChatGPT", "Gemini", "Claude"];
 
 let answers = {};
 let currentFilter = 'all';
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyyeTA70fXr8N6RQ1qhnGv24tUj6AnEVN-tteC0CWwGIBLMkRB11WqhjMZ4kA25HXt3/exec';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyuw52pRkKHMKC6qqnF_suGr-jgMuBXMrTFlH2jowkwRXY7w44cWtULV9RJs3WuZB_V/exec';
 
 const syncTimers = {};
 
@@ -93,17 +93,21 @@ const saved = localStorage.getItem('dream_multi_answers');
 if (saved) answers = JSON.parse(saved);
 
 // Load from Sheets on startup — syncs all users
-async function loadFromSheets() {
-  try {
-    const resp = await fetch(SHEETS_URL + '?t=' + Date.now(), {method: 'GET', mode: 'cors'});
-    const data = await resp.json();
-    if (data.answers) {
+function loadFromSheets() {
+  window._sheetsCallback = function(data) {
+    if (data && data.answers) {
       Object.assign(answers, data.answers);
       localStorage.setItem('dream_multi_answers', JSON.stringify(answers));
       render();
       updateSummary();
+      console.log('Loaded', Object.keys(data.answers).length, 'answers from Sheets');
     }
-  } catch(e) { console.log('Load error:', e); }
+  };
+  const s = document.createElement('script');
+  s.src = SHEETS_URL + '?callback=_sheetsCallback&t=' + Date.now();
+  s.onerror = () => console.log('Could not load from Sheets');
+  document.head.appendChild(s);
+  setTimeout(() => s.remove(), 8000);
 }
 loadFromSheets();
 
@@ -137,7 +141,7 @@ function render() {
         : '<div class="model-result"></div>';
       return `<div class="model-col">
         <div class="model-name">${m}</div>
-        <select class="model-select" onchange="record('${k}',this.value,0,'${m}')">
+        <select class="model-select" onchange="record('${k}',this.value,'${m}','${p.condition}','${p.axis}',${p.trial},${p.correct_answer},'${p.pole_shown}')">
           <option value="">—</option>
           ${[1,2,3,4].map(n=>`<option value="${n}" ${val==n?'selected':''}>Dream ${n}</option>`).join('')}
         </select>
@@ -176,15 +180,13 @@ function copyP(btn, idx) {
   setTimeout(() => { btn.textContent = 'Copy prompt'; btn.classList.remove('copied'); }, 1500);
 }
 
-function record(k, val, pIdx, model) {
+function record(k, val, model, condition, axis, trial, correct_answer, pole_shown) {
   if (val) answers[k] = val;
   else delete answers[k];
   localStorage.setItem('dream_multi_answers', JSON.stringify(answers));
-  // sync to Sheets
-  const filtered = PROMPTS.filter(p =>
-    currentFilter === 'all' || p.condition === currentFilter || p.axis === currentFilter
-  );
-  if (val && filtered[pIdx]) syncToSheets(filtered[pIdx], model, val);
+  if (val) {
+    syncToSheets({condition, axis, trial, correct_answer, pole_shown}, model, val);
+  }
   updateSummary();
   render();
 }
