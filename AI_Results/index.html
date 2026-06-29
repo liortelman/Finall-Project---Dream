@@ -71,10 +71,6 @@ function syncToSheets(p, model, val) {
   // Wait 1.5s before sending — if user changes again, timer resets
   syncTimers[timerKey] = setTimeout(async () => {
     try {
-      await // Save locally with user override flag
-      localStorage.setItem('dream_' + condition + '_' + axis + '_' + trial + '_' + model + '_user', answer);
-      // Also update display key
-      localStorage.setItem('dream_' + condition + '_' + axis + '_' + trial + '_' + model, answer);
       // Skip Sheets POST — local only
       if (false) fetch(SHEETS_URL, {
         method: 'POST',
@@ -110,7 +106,7 @@ if (saved) answers = JSON.parse(saved);
       }
     });
     console.log('Loaded 300 answers from hardcoded data');
-    renderAllPrompts();
+    render();
   }
 
   function sheetsCallback(data) { /* no-op */ }
@@ -242,15 +238,8 @@ function exportCSV() {
 
 render();
 
-  function resetToOurAnswers() {
-    if (!confirm('This will reset all answers to our original results. Your local changes will be lost. Continue?')) return;
-    // Clear all user overrides
-    Object.keys(localStorage).forEach(k => {
-      if (k.startsWith('dream_')) localStorage.removeItem(k);
-    });
-    // Reload our answers
-    loadFromSheets();
-  }
+  
 
+  window.addEventListener("DOMContentLoaded", loadFromSheets);
 </script>
 </body></html>
