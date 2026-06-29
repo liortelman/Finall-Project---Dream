@@ -70,7 +70,12 @@ function syncToSheets(p, model, val) {
   // Wait 1.5s before sending — if user changes again, timer resets
   syncTimers[timerKey] = setTimeout(async () => {
     try {
-      await fetch(SHEETS_URL, {
+      await // Save locally with user override flag
+      localStorage.setItem('dream_' + condition + '_' + axis + '_' + trial + '_' + model + '_user', answer);
+      // Also update display key
+      localStorage.setItem('dream_' + condition + '_' + axis + '_' + trial + '_' + model, answer);
+      // Skip Sheets POST — local only
+      if (false) fetch(SHEETS_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: {'Content-Type': 'application/json'},
@@ -93,27 +98,29 @@ const saved = localStorage.getItem('dream_multi_answers');
 if (saved) answers = JSON.parse(saved);
 
 // Load from Sheets on startup — syncs all users
-function loadFromSheets() {
-  window._sheetsCallback = function(data) {
-    if (data && data.answers) {
-      Object.assign(answers, data.answers);
-      localStorage.setItem('dream_multi_answers', JSON.stringify(answers));
-      render();
-      updateSummary();
-      console.log('Loaded', Object.keys(data.answers).length, 'answers from Sheets');
-    }
-  };
-  const s = document.createElement('script');
-  s.src = SHEETS_URL + '?callback=_sheetsCallback&t=' + Date.now();
-  s.onerror = () => console.log('Could not load from Sheets');
-  document.head.appendChild(s);
-  setTimeout(() => s.remove(), 8000);
-}
-loadFromSheets();
-// Refresh from Sheets every 30 seconds
-setInterval(loadFromSheets, 30000);
+// ── Our 300 answers hardcoded ──────────────────────────
+  const OUR_ANSWERS = {"no_labels_PC1_1_ChatGPT": "3", "no_labels_PC1_1_Gemini": "1", "no_labels_PC1_1_Claude": "2", "no_labels_PC1_2_ChatGPT": "2", "no_labels_PC1_2_Gemini": "1", "no_labels_PC1_2_Claude": "1", "no_labels_PC1_3_ChatGPT": "2", "no_labels_PC1_3_Gemini": "2", "no_labels_PC1_3_Claude": "2", "no_labels_PC1_4_ChatGPT": "4", "no_labels_PC1_4_Gemini": "4", "no_labels_PC1_4_Claude": "4", "no_labels_PC1_5_ChatGPT": "4", "no_labels_PC1_5_Gemini": "4", "no_labels_PC1_5_Claude": "4", "no_labels_PC1_6_ChatGPT": "4", "no_labels_PC1_6_Gemini": "4", "no_labels_PC1_6_Claude": "4", "no_labels_PC1_7_ChatGPT": "2", "no_labels_PC1_7_Gemini": "2", "no_labels_PC1_7_Claude": "3", "no_labels_PC1_8_ChatGPT": "1", "no_labels_PC1_8_Gemini": "1", "no_labels_PC1_8_Claude": "1", "no_labels_PC1_9_ChatGPT": "2", "no_labels_PC1_9_Gemini": "2", "no_labels_PC1_9_Claude": "2", "no_labels_PC1_10_ChatGPT": "1", "no_labels_PC1_10_Gemini": "3", "no_labels_PC1_10_Claude": "2", "no_labels_PC2_1_ChatGPT": "1", "no_labels_PC2_1_Gemini": "1", "no_labels_PC2_1_Claude": "4", "no_labels_PC2_2_ChatGPT": "2", "no_labels_PC2_2_Gemini": "2", "no_labels_PC2_2_Claude": "2", "no_labels_PC2_3_ChatGPT": "3", "no_labels_PC2_3_Gemini": "3", "no_labels_PC2_3_Claude": "3", "no_labels_PC2_4_ChatGPT": "1", "no_labels_PC2_4_Gemini": "1", "no_labels_PC2_4_Claude": "1", "no_labels_PC2_5_ChatGPT": "3", "no_labels_PC2_5_Gemini": "3", "no_labels_PC2_5_Claude": "3", "no_labels_PC2_6_ChatGPT": "3", "no_labels_PC2_6_Gemini": "3", "no_labels_PC2_6_Claude": "3", "no_labels_PC2_7_ChatGPT": "2", "no_labels_PC2_7_Gemini": "2", "no_labels_PC2_7_Claude": "2", "no_labels_PC2_8_ChatGPT": "4", "no_labels_PC2_8_Gemini": "4", "no_labels_PC2_8_Claude": "4", "no_labels_PC2_9_ChatGPT": "2", "no_labels_PC2_9_Gemini": "2", "no_labels_PC2_9_Claude": "2", "no_labels_PC2_10_ChatGPT": "1", "no_labels_PC2_10_Gemini": "1", "no_labels_PC2_10_Claude": "1", "no_labels_PC3_1_ChatGPT": "4", "no_labels_PC3_1_Gemini": "2", "no_labels_PC3_1_Claude": "2", "no_labels_PC3_2_ChatGPT": "2", "no_labels_PC3_2_Gemini": "2", "no_labels_PC3_2_Claude": "2", "no_labels_PC3_3_ChatGPT": "3", "no_labels_PC3_3_Gemini": "3", "no_labels_PC3_3_Claude": "2", "no_labels_PC3_4_ChatGPT": "1", "no_labels_PC3_4_Gemini": "1", "no_labels_PC3_4_Claude": "1", "no_labels_PC3_5_ChatGPT": "3", "no_labels_PC3_5_Gemini": "3", "no_labels_PC3_5_Claude": "3", "no_labels_PC3_6_ChatGPT": "1", "no_labels_PC3_6_Gemini": "1", "no_labels_PC3_6_Claude": "1", "no_labels_PC3_7_ChatGPT": "2", "no_labels_PC3_7_Gemini": "2", "no_labels_PC3_7_Claude": "2", "no_labels_PC3_8_ChatGPT": "1", "no_labels_PC3_8_Gemini": "2", "no_labels_PC3_8_Claude": "4", "no_labels_PC3_9_ChatGPT": "4", "no_labels_PC3_9_Gemini": "4", "no_labels_PC3_9_Claude": "4", "no_labels_PC3_10_ChatGPT": "2", "no_labels_PC3_10_Gemini": "1", "no_labels_PC3_10_Claude": "1", "no_labels_PC4_1_Claude": "3", "no_labels_PC4_2_Claude": "3", "no_labels_PC4_3_Claude": "3", "no_labels_PC4_4_Claude": "3", "no_labels_PC4_5_Claude": "4", "no_labels_PC4_6_Claude": "4", "no_labels_PC4_7_Claude": "1", "no_labels_PC4_8_Claude": "2", "no_labels_PC4_9_Claude": "1", "no_labels_PC4_10_Claude": "2", "no_labels_PC5_1_Claude": "3", "no_labels_PC5_2_Claude": "3", "no_labels_PC5_3_Claude": "2", "no_labels_PC5_4_Claude": "1", "no_labels_PC5_5_Claude": "3", "no_labels_PC5_6_Claude": "1", "no_labels_PC5_7_Claude": "2", "no_labels_PC5_8_Claude": "1", "no_labels_PC5_9_Claude": "1", "no_labels_PC5_10_Claude": "2", "with_labels_PC1_1_ChatGPT": "1", "with_labels_PC1_1_Gemini": "1", "with_labels_PC1_1_Claude": "1", "with_labels_PC1_2_ChatGPT": "3", "with_labels_PC1_2_Gemini": "3", "with_labels_PC1_2_Claude": "3", "with_labels_PC1_3_ChatGPT": "2", "with_labels_PC1_3_Gemini": "2", "with_labels_PC1_3_Claude": "2", "with_labels_PC1_4_Claude": "2", "with_labels_PC1_5_Claude": "4", "with_labels_PC1_6_Claude": "3", "with_labels_PC1_7_Claude": "2", "with_labels_PC1_8_Claude": "3", "with_labels_PC1_9_Claude": "4", "with_labels_PC1_10_Claude": "2", "with_labels_PC2_1_Claude": "3", "with_labels_PC2_2_Claude": "2", "with_labels_PC2_3_Claude": "4", "with_labels_PC2_4_Claude": "3", "with_labels_PC2_5_Claude": "2", "with_labels_PC2_6_Claude": "2", "with_labels_PC2_7_Claude": "1", "with_labels_PC2_8_Claude": "1", "with_labels_PC2_9_Claude": "2", "with_labels_PC2_10_Claude": "1", "with_labels_PC3_1_Claude": "2", "with_labels_PC3_2_Claude": "1", "with_labels_PC3_3_Claude": "2", "with_labels_PC3_4_Claude": "4", "with_labels_PC3_5_Claude": "3", "with_labels_PC3_6_Claude": "1", "with_labels_PC3_7_Claude": "1", "with_labels_PC3_8_Gemini": "4", "with_labels_PC3_8_Claude": "4", "with_labels_PC3_9_Claude": "2", "with_labels_PC3_10_Claude": "2", "with_labels_PC4_1_Claude": "1", "with_labels_PC4_2_Claude": "1", "with_labels_PC4_3_Claude": "1", "with_labels_PC4_4_Claude": "3", "with_labels_PC4_5_Claude": "1", "with_labels_PC4_6_Claude": "1", "with_labels_PC4_7_Claude": "4", "with_labels_PC4_8_Claude": "1", "with_labels_PC4_9_Claude": "1", "with_labels_PC4_10_Claude": "1", "with_labels_PC5_1_Claude": "2", "with_labels_PC5_2_Claude": "2", "with_labels_PC5_3_Claude": "4", "with_labels_PC5_4_Claude": "1", "with_labels_PC5_5_Claude": "3", "with_labels_PC5_6_Claude": "4", "with_labels_PC5_7_Claude": "3", "with_labels_PC5_8_Claude": "1", "with_labels_PC5_9_Claude": "2", "with_labels_PC5_10_Claude": "4", "no_labels_PC4_1_ChatGPT": "3", "no_labels_PC4_1_Gemini": "3", "no_labels_PC4_2_ChatGPT": "4", "no_labels_PC4_2_Gemini": "4", "no_labels_PC4_3_ChatGPT": "3", "no_labels_PC4_3_Gemini": "3", "no_labels_PC4_4_ChatGPT": "3", "no_labels_PC4_4_Gemini": "3", "no_labels_PC4_5_ChatGPT": "4", "no_labels_PC4_5_Gemini": "4", "no_labels_PC4_6_ChatGPT": "1", "no_labels_PC4_6_Gemini": "1", "no_labels_PC4_7_ChatGPT": "1", "no_labels_PC4_7_Gemini": "1", "no_labels_PC4_8_ChatGPT": "2", "no_labels_PC4_8_Gemini": "2", "no_labels_PC4_9_ChatGPT": "1", "no_labels_PC4_9_Gemini": "1", "no_labels_PC4_10_ChatGPT": "1", "no_labels_PC4_10_Gemini": "1", "no_labels_PC5_1_ChatGPT": "4", "no_labels_PC5_1_Gemini": "4", "no_labels_PC5_2_ChatGPT": "3", "no_labels_PC5_2_Gemini": "3", "no_labels_PC5_3_ChatGPT": "2", "no_labels_PC5_3_Gemini": "2", "no_labels_PC5_4_ChatGPT": "1", "no_labels_PC5_4_Gemini": "1", "no_labels_PC5_5_ChatGPT": "3", "no_labels_PC5_5_Gemini": "3", "no_labels_PC5_6_ChatGPT": "1", "no_labels_PC5_6_Gemini": "1", "no_labels_PC5_7_ChatGPT": "4", "no_labels_PC5_7_Gemini": "4", "no_labels_PC5_8_ChatGPT": "1", "no_labels_PC5_8_Gemini": "1", "no_labels_PC5_9_ChatGPT": "1", "no_labels_PC5_9_Gemini": "1", "no_labels_PC5_10_ChatGPT": "1", "no_labels_PC5_10_Gemini": "1", "with_labels_PC1_4_ChatGPT": "2", "with_labels_PC1_4_Gemini": "2", "with_labels_PC1_5_ChatGPT": "3", "with_labels_PC1_5_Gemini": "1", "with_labels_PC1_6_ChatGPT": "3", "with_labels_PC1_6_Gemini": "2", "with_labels_PC1_7_ChatGPT": "2", "with_labels_PC1_7_Gemini": "2", "with_labels_PC1_8_ChatGPT": "3", "with_labels_PC1_8_Gemini": "3", "with_labels_PC1_9_ChatGPT": "4", "with_labels_PC1_9_Gemini": "4", "with_labels_PC1_10_ChatGPT": "2", "with_labels_PC1_10_Gemini": "2", "with_labels_PC2_1_ChatGPT": "3", "with_labels_PC2_1_Gemini": "3", "with_labels_PC2_2_ChatGPT": "2", "with_labels_PC2_2_Gemini": "2", "with_labels_PC2_3_ChatGPT": "4", "with_labels_PC2_3_Gemini": "4", "with_labels_PC2_4_ChatGPT": "3", "with_labels_PC2_4_Gemini": "3", "with_labels_PC2_5_ChatGPT": "2", "with_labels_PC2_5_Gemini": "2", "with_labels_PC2_6_ChatGPT": "2", "with_labels_PC2_6_Gemini": "2", "with_labels_PC2_7_ChatGPT": "1", "with_labels_PC2_7_Gemini": "1", "with_labels_PC2_8_ChatGPT": "1", "with_labels_PC2_8_Gemini": "1", "with_labels_PC2_9_ChatGPT": "2", "with_labels_PC2_9_Gemini": "2", "with_labels_PC2_10_ChatGPT": "1", "with_labels_PC2_10_Gemini": "1", "with_labels_PC3_1_ChatGPT": "2", "with_labels_PC3_1_Gemini": "2", "with_labels_PC3_2_ChatGPT": "1", "with_labels_PC3_2_Gemini": "1", "with_labels_PC3_3_ChatGPT": "2", "with_labels_PC3_3_Gemini": "2", "with_labels_PC3_4_ChatGPT": "4", "with_labels_PC3_4_Gemini": "4", "with_labels_PC3_5_ChatGPT": "3", "with_labels_PC3_5_Gemini": "3", "with_labels_PC3_6_ChatGPT": "1", "with_labels_PC3_6_Gemini": "1", "with_labels_PC3_7_ChatGPT": "1", "with_labels_PC3_7_Gemini": "1", "with_labels_PC3_8_ChatGPT": "4", "with_labels_PC3_9_ChatGPT": "2", "with_labels_PC3_9_Gemini": "2", "with_labels_PC3_10_ChatGPT": "2", "with_labels_PC3_10_Gemini": "2", "with_labels_PC4_1_ChatGPT": "1", "with_labels_PC4_1_Gemini": "1", "with_labels_PC4_2_ChatGPT": "1", "with_labels_PC4_2_Gemini": "1", "with_labels_PC4_3_ChatGPT": "1", "with_labels_PC4_3_Gemini": "1", "with_labels_PC4_4_ChatGPT": "3", "with_labels_PC4_4_Gemini": "3", "with_labels_PC4_5_ChatGPT": "1", "with_labels_PC4_5_Gemini": "1", "with_labels_PC4_6_ChatGPT": "1", "with_labels_PC4_6_Gemini": "1", "with_labels_PC4_7_ChatGPT": "4", "with_labels_PC4_7_Gemini": "4", "with_labels_PC4_8_ChatGPT": "1", "with_labels_PC4_8_Gemini": "1", "with_labels_PC4_9_ChatGPT": "1", "with_labels_PC4_9_Gemini": "1", "with_labels_PC4_10_ChatGPT": "1", "with_labels_PC4_10_Gemini": "1", "with_labels_PC5_1_ChatGPT": "2", "with_labels_PC5_1_Gemini": "2", "with_labels_PC5_2_ChatGPT": "2", "with_labels_PC5_2_Gemini": "2", "with_labels_PC5_3_ChatGPT": "4", "with_labels_PC5_3_Gemini": "4", "with_labels_PC5_4_ChatGPT": "1", "with_labels_PC5_4_Gemini": "1", "with_labels_PC5_5_ChatGPT": "3", "with_labels_PC5_5_Gemini": "3", "with_labels_PC5_6_ChatGPT": "4", "with_labels_PC5_6_Gemini": "4", "with_labels_PC5_7_ChatGPT": "3", "with_labels_PC5_7_Gemini": "3", "with_labels_PC5_8_ChatGPT": "1", "with_labels_PC5_8_Gemini": "1", "with_labels_PC5_9_ChatGPT": "2", "with_labels_PC5_9_Gemini": "2", "with_labels_PC5_10_ChatGPT": "4", "with_labels_PC5_10_Gemini": "4"};
 
-function setFilter(val, btn) {
+  function loadFromSheets() {
+    Object.entries(OUR_ANSWERS).forEach(([key, val]) => {
+      const lsKey = 'dream_' + key;
+      if (!localStorage.getItem(lsKey + '_user_override')) {
+        localStorage.setItem(lsKey, val);
+      }
+    });
+    console.log('Loaded 300 answers from hardcoded data');
+    renderAllPrompts();
+  }
+
+  function sheetsCallback(data) { /* no-op */ }
+
+  function resetToOurAnswers() {
+    if (!confirm('Reset all answers to our original results? Your local changes will be lost.')) return;
+    Object.keys(localStorage).filter(k => k.startsWith('dream_')).forEach(k => localStorage.removeItem(k));
+    loadFromSheets();
+  }
+
+  function setFilter(val, btn) {
   currentFilter = val;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -233,5 +240,16 @@ function exportCSV() {
 }
 
 render();
+
+  function resetToOurAnswers() {
+    if (!confirm('This will reset all answers to our original results. Your local changes will be lost. Continue?')) return;
+    // Clear all user overrides
+    Object.keys(localStorage).forEach(k => {
+      if (k.startsWith('dream_')) localStorage.removeItem(k);
+    });
+    // Reload our answers
+    loadFromSheets();
+  }
+
 </script>
 </body></html>
