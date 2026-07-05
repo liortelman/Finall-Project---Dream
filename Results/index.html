@@ -357,7 +357,7 @@ const DATA = {
     {id:'Claude', label:'Claude Sonnet 4.6',color:'#7c6af7',type:'commercial',no_labels:78,with_labels:96,by_axis_nl:{PC1:80,PC2:100,PC3:70,PC4:70,PC5:70},by_axis_wl:{PC1:80,PC2:100,PC3:100,PC4:100,PC5:100}},
     {id:'QWEN72B', label:'Qwen 2.5 72B',   color:'#9b59b6',type:'open',      no_labels:71,with_labels:87,by_axis_nl:{PC1:65,PC2:69,PC3:63,PC4:94,PC5:63},by_axis_wl:{PC1:81,PC2:94,PC3:77,PC4:100,PC5:83}},
     {id:'LLAMA70B',label:'LLAMA 3.3 70B',  color:'#e05c5c',type:'open',      no_labels:45,with_labels:85,by_axis_nl:{PC1:35,PC2:55,PC3:30,PC4:50,PC5:55},by_axis_wl:{PC1:45,PC2:95,PC3:85,PC4:100,PC5:100}},
-    {id:'LLAMA4', label:'LLAMA 4 Scout 17B',color:'#f0b429',type:'open',      no_labels:32,with_labels:83,by_axis_nl:{PC1:25,PC2:35,PC3:30,PC4:45,PC5:25},by_axis_wl:{PC1:75,PC2:90,PC3:65,PC4:95,PC5:90}},
+    {id:'LLAMA4', label:'LLAMA 4 Scout 17B',color:'#f97316',type:'open',      no_labels:32,with_labels:83,by_axis_nl:{PC1:25,PC2:35,PC3:30,PC4:45,PC5:25},by_axis_wl:{PC1:75,PC2:90,PC3:65,PC4:95,PC5:90}},
     {id:'LLAMA8B',label:'LLAMA 3.1 8B',    color:'#00bcd4',   type:'open',      no_labels:17,with_labels:17,by_axis_nl:{PC1:10,PC2:30,PC3:25,PC4:10,PC5:10},by_axis_wl:{PC1:20,PC2:20,PC3:30,PC4:10,PC5:5}},
   ],
   human: {overall:66,he:67,en:66,by_axis:{PC1:71,PC2:71,PC3:46,PC4:76,PC5:67}},
@@ -548,29 +548,36 @@ new Chart(document.getElementById('chart-boost'), {
 // HUMAN COMPARISON
 const axes = DATA.axes.map(a=>a.id);
 const humanByAxis = axes.map(ax=>DATA.human.by_axis[ax]);
-const modelDatasets = DATA.models.map(m=>({
+
+const humanBarDataset = {
+  label:'Humans',
+  data:humanByAxis,
+  backgroundColor:'rgba(240,180,41,0.8)',
+  borderColor:'#f0b429',
+  borderWidth:1,
+  borderRadius:3,
+};
+const modelBarDatasets = DATA.models.map(m=>({
   label:m.label,
   data:axes.map(ax=>m.by_axis_wl[ax]),
+  backgroundColor:m.color+'cc',
   borderColor:m.color,
-  backgroundColor:m.color+'25',
-  borderWidth:2,
-  pointRadius:4,
-  tension:.3,
-  fill:false
+  borderWidth:1,
+  borderRadius:3,
 }));
 
 new Chart(document.getElementById('chart-human'), {
-  type:'line',
+  type:'bar',
   data:{
     labels:axes,
-    datasets:[
-      {label:'Humans',data:humanByAxis,borderColor:'#f0b429',backgroundColor:'rgba(240,180,41,.1)',borderWidth:2.5,borderDash:[6,4],pointRadius:5,tension:.3,fill:false},
-      ...modelDatasets
-    ]
+    datasets:[humanBarDataset, ...modelBarDatasets]
   },
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{labels:{color:tc,font:{size:11}}}},
-    scales:{x:baseX,y:baseY}
+    scales:{
+      x:{...baseX, stacked:false},
+      y:{...baseY, min:0, max:100}
+    }
   }
 });
 
