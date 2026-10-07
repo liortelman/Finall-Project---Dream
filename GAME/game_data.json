@@ -1,0 +1,1091 @@
+{
+  "metadata": {
+    "n_dreams_sampled": 5000,
+    "n_components": 5,
+    "explained_variance": [
+      0.0478,
+      0.0417,
+      0.0386,
+      0.0288,
+      0.0236
+    ],
+    "model": "all-MiniLM-L6-v2"
+  },
+  "axes": [
+    {
+      "axis_id": 1,
+      "label": "PC1",
+      "explained_var": 0.0478,
+      "positive_pole": {
+        "description": "",
+        "dreams": [
+          {
+            "id": 1838,
+            "text": "(2008-05-05 (17)) Ezra and I were doing something, but I don't remember now.",
+            "score": 0.5864
+          },
+          {
+            "id": 3239,
+            "text": "(2004-09-04 (13)) I was in The Young Ones and we were doing the episodes and I was watching the goofs they had made and stuff.",
+            "score": 0.5587
+          },
+          {
+            "id": 829,
+            "text": "(2007-03-09 (16)) I remember Eugene, but I don't remember anything else.",
+            "score": 0.5499
+          },
+          {
+            "id": 2543,
+            "text": "(2007-05-29 (16)) I had a dream with Eugene and Calvin, but that's all I remember.",
+            "score": 0.5463
+          },
+          {
+            "id": 621,
+            "text": "(2007-05-23 (16)) There was something about Gregory Peck, but I don't remember anything else.",
+            "score": 0.5325
+          },
+          {
+            "id": 4657,
+            "text": "(2008-03-10 (17)) I was watching Skins. I remember Sid and Cassie but nothing else.",
+            "score": 0.5214
+          },
+          {
+            "id": 69,
+            "text": "(2008-03-10 (17)) I was watching Skins. I remember Sid and Cassie but nothing else.",
+            "score": 0.5214
+          },
+          {
+            "id": 1779,
+            "text": "(2008-05-28 (17)) I don't remember but there was something about someone called Sadie.",
+            "score": 0.5192
+          },
+          {
+            "id": 94,
+            "text": "(2008-05-11 (17)) There was a list of birthdays. Michael Palin was on there. I was on there and Nana was too. I went to January 8 but Eugene wasn't there.",
+            "score": 0.5122
+          },
+          {
+            "id": 4684,
+            "text": "(2006-10-13 (15)) Dad and Vivian were on the lounge making out. That's all I remember.",
+            "score": 0.5021
+          },
+          {
+            "id": 4478,
+            "text": "#2-079 (1971-03-02) Daddy was alive and was seeing my daughter Christina for the first time.  I was surprised that he didn't make much of a fuss over her.  I remember telling him how Christina would do \"forehead bumper\" by point to one thing on my face and then clawing when tickling under the chin for the \"gitchee-gitchee.\"   Daddy and I were also trying to get a football game on the radio.",
+            "score": 0.5016
+          },
+          {
+            "id": 1490,
+            "text": "(2006-04-28 (15)) There were 15 lamingtons. Ezra and some friends were around. There was some guy and there was something about Spaced.",
+            "score": 0.5015
+          },
+          {
+            "id": 296,
+            "text": "(2009-04-14 (18)) I can't remember much, but Spike and Buffy (both from Buffy the Vampire Slayer) were hanging out. She was teasing him because he had gotten scared of a scary movie and he was saying it wasn't a big deal.",
+            "score": 0.4996
+          },
+          {
+            "id": 3781,
+            "text": "(2007-08-21 (16)) There was something about Jeff Goldblum and I was like \"Brundle Seth!\".",
+            "score": 0.4888
+          },
+          {
+            "id": 602,
+            "text": "(2007-12-13 (16)) I was watching something with Adrian Edmondson and Rik Mayall. I don't remember anything but Adrian was laughing.",
+            "score": 0.4882
+          },
+          {
+            "id": 2256,
+            "text": "(2007-12-13 (16)) I was watching something with Adrian Edmondson and Rik Mayall. I don't remember anything but Adrian was laughing.",
+            "score": 0.4882
+          },
+          {
+            "id": 1612,
+            "text": "(2007-11-23 (16)) Mom and Ezra were somewhere and there was a table.",
+            "score": 0.4772
+          },
+          {
+            "id": 771,
+            "text": "(2004-??-?? (13)) I was at some place which I think was the Gold Coast. Ezra and I were locked out of the room so we were walking around and it got dark. I lost Ezra and I got on a train. I remember Ramona was somewhere too.",
+            "score": 0.4714
+          },
+          {
+            "id": 593,
+            "text": "(2005-10-22 (14)) I was at a shop and Evelyn and Fang worked there. Simon Pegg was there and some woman got his autograph for me.",
+            "score": 0.4703
+          },
+          {
+            "id": 2571,
+            "text": "(2007-12-19 (16)) I was watching something with Ezra. Erica Durance was in it and I said that I didn't like her and that she was in Smallville.",
+            "score": 0.4691
+          }
+        ]
+      },
+      "negative_pole": {
+        "description": "",
+        "dreams": [
+          {
+            "id": 1946,
+            "text": "I'm applying for a teaching job. I push a button outside the music room and a taped lecture comes on. I am embarrassed because I don't know how to turn it off and it's loud. I see a digital clock counting the minutes and seconds it will continue. I walk out of the building because there isn't anything else to do. I walk to a mental hospital for war-injured men. I go in and I'm dressed in a suit and heels and look pretty. The men whistle and tease. I look for the head nurse. She's nowhere around. The kitchen is unstaffed. I go talk to the men in their beds. One shares with me a box of papers, t…",
+            "score": -0.4928
+          },
+          {
+            "id": 4887,
+            "text": "I am sleeping on an uncomfortable hide-a-bed in a room where the floor is dirt and a rectangular shallow hole with straw in it is the area for the bed/couch. I wake up and see Howard standing near the bed on the right. He is very sad and I realize he has had enough and will ask for a divorce from me. I feel sad and a bit bad about my treatment of him. I look down on the floor and see about 6 inches of water there, and floating in it is my hand-held tape recorder and a couple of other small electronic items. I am very upset as I pick it up and see it is warped and broken. I blame Ellie or her c…",
+            "score": -0.463
+          },
+          {
+            "id": 4148,
+            "text": "I'm in some strange place, like a carnival or a party. There are lots of people. Tricks are played on me. Some of them have dangerous overtones. Some are just in bad taste. I'm in a crowd. Some man and his son are giving me an award. It's a trick cup. The milk spills out of a hole in the bottom onto the table. The son gives me one of his favorite toys, out of 4. I am with my daughter Dovre. We are on a patio. A maroon cloth thing comes out of a hole in a wall. It's a stuffed woman. Her face is set in fake interest. There is a feeling of danger. I sneak away from her. I'm in the bathroom. A wom…",
+            "score": -0.4559
+          },
+          {
+            "id": 3569,
+            "text": "The Crafty Bum I'm working with three lower-middle or lower class Hispanic men. We're working at a fruit and vegetable stand. The day ends. I may ask the three bosses if I can take some of the produce to eat. They say okay, but I find that the boxes are all taped up so I can't get any fruit. A homeless man comes around, begging for change. I say to him, \"Tell you what: Why don't you come home for dinner with me?\" He agrees. I change clothes quickly as he waits. An attractive woman comes into the house where I am. I know her to be my roommate, though we've never met. As I'm leaving we meet and …",
+            "score": -0.445
+          },
+          {
+            "id": 3126,
+            "text": "I'm at a place that's some kind of institution, and I either work here or am studying here, either way it's where I spend my time. There's a lot of Life Training people here, and yoga people. First I go to a kind of arena, and take my place in the stands near the front. Sue is nearby and we say something to each other, I don't know what's going on out in the arena itself. Shortly it seems to be lunch hour, and everybody breaks up and goes places. All very casual, people just drift away. I stand talking to somebody for a few minutes. Then I'm at a kind of concrete ramp-affair, like you might fi…",
+            "score": -0.4444
+          },
+          {
+            "id": 120,
+            "text": "I am in a house with Pat Brown. We are making love, on a wooden bench (like a pew). He's kissing me and lying on top. I'm getting excited. I think maybe someone will walk in so I say, \"I think we ought to lock the doors,\" a glass side door and a front door. He's enjoying the sexual feelings and is reluctant to stop. Just then a woman, my \"roommate,\" comes walking in the front door. She's dressed to go to church, wearing a hat and pulling on her gloves. Pat had slid down off me and my skirt is down enough that I am covered, and I hope we look innocent enough. But no, Pat is naked and his bare b…",
+            "score": -0.4368
+          },
+          {
+            "id": 1998,
+            "text": "I am a young woman who lives in a huge family. It is so big there are no places in the house where you can be alone. The couch is overrun with squabbling siblings of all ages. I want to go to the bathroom and must rush in and try to lock the doors before I'm interrupted by other siblings. This is driving me crazy. Finally I can't take it any more and I decide to run away from home. I hit out at some of the fighting kids on the couch as I pass them as I head for the front door. I get on my bike and go. Now I'm on a road, gravely, and following a huge truck. Now we are in a tunnel and it is dark…",
+            "score": -0.4359
+          },
+          {
+            "id": 3943,
+            "text": "I am entering a room where a graduation will take place. I pick up a crying boy to comfort him. He's afraid of this graduation. I hug him and sooth him and explain that soon a bunch of people in blue robes will come in and it will be OK. We enter the room and walk to the opposite side against the wall. There are no chairs and I wonder how I'll manage standing through the whole thing. Lydia is now on my left and my mother on my right. I see young people walking in randomly with blue robes on and point them out to the boy. There is water about mid-calf height on the floor and I am aware of a hol…",
+            "score": -0.4353
+          },
+          {
+            "id": 2566,
+            "text": "Lost In A Casino I'm in hotel/casino. It doesn't seem to be that big, but I'm disoriented. I sit in a spa that is only lukewarm. Many people arrive and I leave shortly thereafter because I don't want to be around them. I wander through rooms. There is a big bathroom, a shower area; maybe several bathrooms. I try to find my way out or in. I'm in the casino portion when I notice my old classmate Bud Slick standing next to me. I say, \"Hi Bud.\" Then I notice all the Slicks are there: the whole family puts on disguises like moustaches and clothing. All the members of their family are professional g…",
+            "score": -0.4292
+          },
+          {
+            "id": 869,
+            "text": "Kidnapped - I'm on my way somewhere else (by car?) and stop to visit with some people I know - seems like a few houses or buildings together, maybe like a small village out in the country somewhere. Some people with guns turn up, rather like political terrorists, and they're going to keep us prisoner until something, but I don't know what. I grouse about it and use the word \"kidnapped\" and they think it rather an affront that I would use the word - hurt their feelings. I'm rather in two minds about trying to escape - I think it's the right thing to do but I'm not sure because I find I don't tr…",
+            "score": -0.4291
+          },
+          {
+            "id": 3932,
+            "text": "I'm in a hospital elevator. A woman nurse puts on a helmet like she's walking into a spaceship.  There are lots of beds in a row. I'm in one of the beds. I have to go to the bathroom. I get up and slowly walk down some stairs to the toilet. A girl friend helps me down the stairs and then rushes in to use the toilet first. I am annoyed and think she's rude. I stand there feeling tired and needing to go to the bathroom. I remark that I walked all that way barefooted. Then I go in. I go and go. It's painful and I think, \"Oh no, I have a bladder infection. It's just starting. I'll have to take my …",
+            "score": -0.4287
+          },
+          {
+            "id": 4032,
+            "text": "I am in a room that is lovely and spacious, an old-fashioned fraternity kind of room, windows, etc., but the entire room is cluttered with glassware, red glasses, dishes, etc. It is very pretty, but there is not much room to just be. I am in a bed with a woman roommate. I am smoking two very long cigarettes. I hold one and smoke the other and then switch. I have trouble keeping them from falling in the bed and starting a fire. The cigarettes are slim, long and silver in color. It's time to get up. I go on out and now I am with two men in a sort of room. They are my roommates, but they are sort…",
+            "score": -0.4265
+          },
+          {
+            "id": 4893,
+            "text": "I am going up in an airplane, high, high up, and coming straight down and then learning to pull out before you crash on the ground. I like this experience. Then I land and my \"husband,\" like Bud of the movie \"The Abyss,\" comes over. We go to his place of work, like the counseling department, only in an auditorium setting. He introduces me to the secretary, a large, fat woman and she offers me some potato chips, left over from a welcoming party given for my husband and me. She says to my husband, \"Welcome,\" but she can't come to the party. She can wait in the lounge. My husband is insulted. We …",
+            "score": -0.4264
+          },
+          {
+            "id": 404,
+            "text": "I am at a high school, maybe T City High. It's sort of reunion time and I'm looking around. I can't find the room I'm looking for. I meet this guy. We are friends. No sex, just very connected friends. It feels wonderful. We walk arm in arm and hug and talk and really care about each other. His buddies (three of them) see us and are annoyed. So I walk up to one and grab him by his tee-shirt collar with my left hand and say, \"Hey, watch this!\" I wind up my right arm to pitch an imaginary baseball. I pretend to throw one. He's very impressed I can do that. So they all accept me. It's past time to…",
+            "score": -0.425
+          },
+          {
+            "id": 542,
+            "text": "A black man is attracted to me and me to him. I like his gentleness and loving attitude. I think he's sexy as well. But I hesitate because he's loud mouthed and uncouth and it is somewhat embarrassing to have him around my friends. He's testing me to see if I am honest and open. There is a parade and I join it, acting silly and joining in the march/dance. He likes that I'm willing to do that. He asks me questions about a man named Scott who stayed overnight. He stands very close to me and I feel like I want to melt into his arms, but resist. He wants to know if he stayed two nights and I tell …",
+            "score": -0.4238
+          },
+          {
+            "id": 4158,
+            "text": "I am on a Dream Bus. A group of us are doing a dream workshop on the bus. It's a bit hectic and crowded. On my right sits a man I like and he likes me. He is sweet-faced and kissy. He's new to all this and asking some questions about the workshop. He asks, \"Where's the Merton Circle?\" I point over across the way to a group of people with their backs to the front of the bus and pointed away from us. I say, \"There they are.\" I am a bit surprised they do not include me. I notice they are watching a TV, monitor of the presentation we are seeing from the front main screen. Now this man and I move u…",
+            "score": -0.421
+          },
+          {
+            "id": 1699,
+            "text": "I'm with a group of people, which includes my brother, but these others are a family of their own and I don't know them very well. We're in a house or an old hotel. We're supposed to be leaving and they're not packing up to go. I've already cleaned out my room and I'm pissed off because they're not ready. I've waited and waited and this isn't the only thing I'm not happy about. I decide to stomp off on my own. I go on out and down the street. There are young punk kids around, not too sleazy, some of whom look me over and that, and I just stick my nose in the air and keep on going. Shortly I re…",
+            "score": -0.4162
+          },
+          {
+            "id": 19,
+            "text": "I am in an attic room and this man is coming to harm me. I must hide. There isn't any place to hide, but I see a pile of clothes and newspapers and burrow under them. I think this is pretty obvious and worry he'll find me quickly. He comes in, tall and big and scary. He looks for me. He stands right next to the clothes. I lay there motionless, hoping. Then as he turns his back, I slide even further down until I'm under the floorboards in a tiny layer between two levels of flooring, again in a tiny, confining space, a box, a coffin. He looks out the window, wondering if I had gone out on the ro…",
+            "score": -0.4154
+          },
+          {
+            "id": 3730,
+            "text": "My good-looking \"husband\" and I are divorced. He's directing a play. I am a designer or script writer. I wear my hair long, with jeans, informal, and I go backstage. He is flabbergasted at me and watches nervously. His second wife is there (as I hopped up on stage, I have to be careful not to step on placemats and napkins. The stage shakes like an earthquake and made walking difficult). I strike up a conversation and lead her into a discussion about her first wife, i.e. me. I don't tell her who I am. He can't stand seeing us together talking, so he comes back to \"work on the set\" near us. He's…",
+            "score": -0.4128
+          },
+          {
+            "id": 4068,
+            "text": "The Armed Party I'm having a party at home. Many people arrive in a short period of time. I shake my friend Tim Zelling's hand there. Three teams show up, with I think are the men's and women's basketball teams and the men's soccer team, from Brimson. I'm very worried, and try to keep the growing party under control, while still having a good time. A small bus arrives with my friend Emerald Reinhold and her friends. I see a woman who I know is a member of the Lawson family, and insist that she leave. I won't allow her to be here because she has a video camera. She reluctantly accepts my author…",
+            "score": -0.4076
+          }
+        ]
+      }
+    },
+    {
+      "axis_id": 2,
+      "label": "PC2",
+      "explained_var": 0.0417,
+      "positive_pole": {
+        "description": "",
+        "dreams": [
+          {
+            "id": 3047,
+            "text": "(2012-11-09 (21)) I was at home, out the front. There was a big van and I was poking around in the back and I took some stuff out. They went to drive off but the back wasn't closed and I ran after it trying to close it. They were heading towards the church and I was sitting on a log at the corner of the street and I was thinking if someone hit them I would die. The car slammed into them and it flipped over. I was shocked and I went and told Mom and Ezra. They went to go sort some stuff out. Then it was night and I was at home but it was different. I went out to the lounge room and it was dark.…",
+            "score": 0.4477
+          },
+          {
+            "id": 658,
+            "text": "(2007-06-26 (16)) I was at Mom's. I died, but I was hanging around. Sometimes I could interact with stuff and I was learning how to fly. I had to go to the balcony and jump off. I didn't like that bit though. There was a trampoline out the back, but it was wet. I had to get the hose and put it in a hook. The hooks were all marked with Spaced characters. Mark Heap was in the yard, and I put the hose between his hook and someone else's. Mom was seeing this black guy. I was scaring some blokes. It turned David Lynch like and I was observing and everything was different. Jack Nance was there and h…",
+            "score": 0.4461
+          },
+          {
+            "id": 1438,
+            "text": "(2007-06-26 (16)) I was at Mom's. I died, but I was hanging around. Sometimes I could interact with stuff and I was learning how to fly. I had to go to the balcony and jump off. I didn't like that bit though. There was a trampoline out the back, but it was wet. I had to get the hose and put it in a hook. The hooks were all marked with Spaced characters. Mark Heap was in the yard, and I put the hose between his hook and someone else's. Mom was seeing this black guy. I was scaring some blokes. It turned David Lynch like and I was observing and everything was different. Jack Nance was there and h…",
+            "score": 0.4461
+          },
+          {
+            "id": 4619,
+            "text": "(2005-10-13 (14)) I woke up with a bit of a headache. My hair went full curly. Dad's room was scary looking and orange and I thought he and Ezra were high. Dad kept saying to Ezra that he wanted my room. They were talking about TV shows including A Bit of Fry and Laurie and others. Dad complained about me going psycho the night before. I didn't remember. I had had a dream about soccer balls. I went to school and I met up with Calvin, Fang and Evelyn. Fang had a chocolate version of Operation. It got stolen. Jake and someone else thought that I was a guy. The teachers were acting weird. There w…",
+            "score": 0.4368
+          },
+          {
+            "id": 2731,
+            "text": "(03/14/2004 (age 15)) I dreamed that I was in this huge dark house with a random scary guy. I had my laptop with me and was trying to shut it down. I remember wanting to go home really badly but I couldn't until my laptop shut down. The big scary random guy kept coming on to me and trying to get me to take my clothes off. He was trying to rape me, and I was really scared. So I tried to call my father, but all the numbers on the phone had been rearranged, so I couldn't figure it out. The guy was chasing after me, telling me that he was just fooling around. I started to cry, and finally I was ab…",
+            "score": 0.4278
+          },
+          {
+            "id": 3180,
+            "text": "(2007-04-17 (16)) I was at Mom's. I went into her room and there was a black guy on her bed. I was talking to Mom and then said \"Who the hell is this?\". She said \"a friend\". I turned around while I was still talking and when I turned back around Mom and the guy were kissing or something. I went back to my room but I came out later and discovered that Mom's bedroom was on fire. Mom wasn't in there and I got Ezra and I said that she wouldn't have run out because she would've got us. We got the fire out and then ran downstairs. The black guy's car was in the middle of the road. We ran out and Ezr…",
+            "score": 0.4252
+          },
+          {
+            "id": 898,
+            "text": "(2010-04-27 (19)) Mom, Ezra and I went for a drive at night. As we were coming back, there was stuff on the road which looked like huge balls of ice. I said \"that can't be hail!\". We were near home and there was a carpark with not that much ice there. Home was fine. Then there was more. I had university and had to leave soon. Mom and Ezra were at a tax place and I said \"Ok, I'm leaving now\". I got into my car and locked the door. This guy was hanging around the passenger door and he had red eyes. I tapped on the window to scare him and he made a Murloc sound. I reversed out too fast and accide…",
+            "score": 0.4246
+          },
+          {
+            "id": 3912,
+            "text": "(2011-01-14 (19)) I was at the old house. I woke up to Ezra getting organized to be taken to dads [also happened when I woke up in real life] . Everything felt weird. Then I was at this weird place with halls. One had this curtain and there was a hand behind it -- it was the 217 lady. I tried to scream but no sound came out and my throat was sore. I ran and she was walking down the other hall. Then I was home again. I found my phone and called Mom, but Ezra answered. I said I was hallucinating and that someone was trying to break in -- there was an Asian girl outside trying to pick the lock. I…",
+            "score": 0.4166
+          },
+          {
+            "id": 2824,
+            "text": "(2009-01-16 (17)) My dreams were now on DreamBank, but the site was different and it had more detail and articles etc. They had put \"new batteries\" in my calculator. I told Mom about it later. Ezra had mentioned being on it but I didn't realize until later that it meant he knew who I liked. I was then at home so I could watch a movie that was in the Top 250. It was oldish and boring and after six minutes I called Mom to get me. She said she'd be there soon and would get me when she came to get Ezra (which was going to be on Thursday). I yelled at her, complaining but then I realized it was Thu…",
+            "score": 0.4139
+          },
+          {
+            "id": 932,
+            "text": "(2009-05-08 (18)) I was invited to a party. I went with Mom, Ezra, Dad and Nana to check out the place. The people there were really friendly and had glasses of a chocolate drink. I had a taste and it was really nice. I liked Coke too. They left and then Ezra and I were left there. Ezra was then a friend of mine. They told us to stay in a room and they took our phones. Eventually, some guys were playing poker in a room next to us, but downstairs. They were smoking and drinking and laughing like they were going to do something bad. My friend was now Zach Braff and we were joking around and he a…",
+            "score": 0.4028
+          },
+          {
+            "id": 3718,
+            "text": "(2011-11-26 (20)) I had witnessed a murder by a gang. Mom got me and Ezra to stay with some friends that were high up in the drug world. We settled in well. One day I went into an office and was talking to them and someone turned on the police scanner and they heard they were coming to this street and going door to door pretending to be a charity. They quickly hid us in a basement. There was a window with blinds and Ezra opened it a little but I told him not to. There was a lady in sunglasses. A guy was naked and standing in front of a window. Then we were actually in a car and under a seat. T…",
+            "score": 0.3966
+          },
+          {
+            "id": 4272,
+            "text": "(2008-10-08 (17)) I think this dream carried on from the last one (there had been zombies). There was a picture, except it was a video of the Red Dwarf cast and I was painting over it with white, leaving only Chris Barrie and Norman Lovett's face. We were outside a house. A car was coming. People would look for people who were under 18 as they didn't like them out after a certain time. I was 18. We all ran back inside, but they saw us and called us out. Three of the people I was with were under 18, but they thought that we were younger and so took us. I had to go in the car with the leader. I …",
+            "score": 0.3945
+          },
+          {
+            "id": 26,
+            "text": "(2006-02-03 (15)) I was friends with Ezra and we were at the library at school. He decided to stay at Brookland High School. We were going through a carpark and I dropped my shoes, so I went back and got them. Then we dropped Ezra's shoes and a lady took one, but I got it back. She kept trying to break my arm. These people were running from the bad guys, and some were getting killed. This guy hid in a strange place. Someone didn't believe something (that I don't remember) was down these holes. There was something to do with bread. Nana was waiting for a helicopter. I was angry at some person a…",
+            "score": 0.3882
+          },
+          {
+            "id": 4142,
+            "text": "(2009-06-08 (18)) Mom, Ezra and I were in the car and had to pull up on the side of the road in the middle of nowhere and it was night. There was a car in front of us. Then there was another car crossing the road. I saw the licence plate was 8ZE-963 and I realized it was Eugene's car. It turned out his father Abraham was in it and his name was like Meluson and he was dead? I'm not sure what happened but we were then walking. I had no shoes, only those socks I have with the little doopy things underneath. It was day and the ground was hot. Then we were using rollerblades and were going really f…",
+            "score": 0.3852
+          },
+          {
+            "id": 1230,
+            "text": "(2006-09-21 (15)) I had S+E and Ms Corbett wanted us to stay in the library during lunch. I had to collect paper and I had to keep going through the library. Calvin came. The library was different. Pieces of paper from my dream book and stuff were falling out. Someone asked me something about going out with Payton. I was like 'What the hell?!'. I went over there. Payton and this girl had found a dream of me going out with Payton. I tried to explain. Ezra, Nicolas and some others took off with my bag. So I went to the Year 8 block. The playground was knocked over. I asked lady about the Year 8 …",
+            "score": 0.3833
+          },
+          {
+            "id": 3961,
+            "text": "(2006-09-21 (15)) I had S+E and Ms Corbett wanted us to stay in the library during lunch. I had to collect paper and I had to keep going through the library. Calvin came. The library was different. Pieces of paper from my dream book and stuff were falling out. Someone asked me something about going out with Payton. I was like 'What the hell?!'. I went over there. Payton and this girl had found a dream of me going out with Payton. I tried to explain. Ezra, Nicolas and some others took off with my bag. So I went to the Year 8 block. The playground was knocked over. I asked lady about the Year 8 …",
+            "score": 0.3833
+          },
+          {
+            "id": 3279,
+            "text": "(2009-08-26 (18)) My room kept getting broken into. One time I had this bottle of pills. I went back to my room and it was messy and they were gone. I had a torch and I flashed it in Mom's room and Ezra's room and it was really dim, but then when I went to my room it was bright. I discovered my window was moved and Dad said he would fix it. One of the times I looked out my window and saw 3-4 Native women were in my car. I called out to Dad. He went out and scared them off with three small naked boys. I ended up with two women and three guys coming through my window into my room. I got this kni…",
+            "score": 0.3833
+          },
+          {
+            "id": 4496,
+            "text": "(2009-08-26 (18)) My room kept getting broken into. One time I had this bottle of pills. I went back to my room and it was messy and they were gone. I had a torch and I flashed it in Mom's room and Ezra's room and it was really dim, but then when I went to my room it was bright. I discovered my window was moved and Dad said he would fix it. One of the times I looked out my window and saw 3-4 Native women were in my car. I called out to Dad. He went out and scared them off with three small naked boys. I ended up with two women and three guys coming through my window into my room. I got this kni…",
+            "score": 0.3833
+          },
+          {
+            "id": 2829,
+            "text": "(2010-04-24 (19)) Mom, Ezra, Emery, someone and I were in a car. We parked in front of this building that looked a bit like a sports centre. Mom went to a shop nearby. We were messing around and they accidentally shot a gun and put a hole in this roof bit hanging over the entrance. We went a while away and it ended up catching on fire. I took photos and then we all ran to hide. Ezra and I went together behind this wall near a fence. It was dark. We heard Mom speaking to one of his friends and we ran back to the car. We got in and then this lady ran up and said we couldn't leave and said a guy …",
+            "score": 0.3813
+          },
+          {
+            "id": 1878,
+            "text": "(2010-04-23 (19)) I could take people into my dreams. Mom, Ezra, Darren and I were there. I chose a past dream that had been vivid and long. There was something in the water and I tried to save them and it was slippery because of soap. There were a bunch of Asians at a log and they gave us some to take. We did some other stuff and there was a bit from \"my favourite episode of Are You Afraid of the Dark?,\" I got in the car to leave and then said \"I forgot my water bottle and my shoes, can I have the keys?\" Mom was like 'whatever' but wouldn't give me the keys. Eventually she gave them to me. Th…",
+            "score": 0.3783
+          }
+        ]
+      },
+      "negative_pole": {
+        "description": "",
+        "dreams": [
+          {
+            "id": 4025,
+            "text": "I am talking to a man and I say, \"It's about time things got more equal. I think women should stop holding two jobs (home and career) until the man kicks in and does his share.\"",
+            "score": -0.4819
+          },
+          {
+            "id": 3317,
+            "text": "[\"Making fancy beaded dresses.\"] I make a fancy dress with ruffles, chiffon materials and bead work on them. I take one to the store to have them sell it. Then I realize it's not ready yet. I withdraw it and go home to make them better. I have made four and am on the fifth one. I am ironing the frail chiffon bodice with interesting tucked patterns. I have an ironing board set up like a professional work station so I can be more efficient.",
+            "score": -0.4757
+          },
+          {
+            "id": 3346,
+            "text": "This is about different hats. In the nineteenth century.",
+            "score": -0.4662
+          },
+          {
+            "id": 3844,
+            "text": "A champion cowboy has a sweet special champion lamb, with roses on. I like the lamb very much, but it is owned by a trust fund and it will take hard work and perseverance to be able to work through all the red tape and paperwork necessary to make her mine. I'm willing to do it.",
+            "score": -0.4538
+          },
+          {
+            "id": 2046,
+            "text": "I wish to learn dates of publication of certain of Montaignes' essays. Chester is trying to find out for me by inquiries at the book binder (or possible at a book store). He has come to ask some questions, and I explain that the essays, which are contained in 3 volumes, were probably written at different times. Chester says he has advised that I had better go to a librarian and get the desired information.",
+            "score": -0.4522
+          },
+          {
+            "id": 2661,
+            "text": "Somehow related to conference. Helping someone to buy a suit  and tie. The suit is navy blue pin-stripe. The tie is also blue with a pattern of some kind in it. I asked someone if a beige or tan shirt with go with it or if they needed to wear a shade of blue instead.",
+            "score": -0.4521
+          },
+          {
+            "id": 1765,
+            "text": "I have so many books that they would fill up two huge library-sized rooms. I and a child like Charla are trying to walk down some stairs that are like piles of books. She had taken a 5 milligram dose of Cortisone and I was worried about this habit. I said, \"That's like taking speed. That's not good for you.\"",
+            "score": -0.4521
+          },
+          {
+            "id": 948,
+            "text": "[\"Beautiful Music.\"] I am playing an instrument that is sort of a cross between a violin and a guitar. I am intuitively flinging my fingers around and manage very quickly to create beautiful music. The frets are broken into three sets of areas that create different octaves of sound. I am very pleased with the music. I smile.",
+            "score": -0.4445
+          },
+          {
+            "id": 320,
+            "text": "New Alcohol Tolerance I'm at a keg party in the United States. It is relatively early in the evening. I am ready to drink beer with a friend of mine, to demonstrate my new New South Wales tolerance for alcohol.",
+            "score": -0.4441
+          },
+          {
+            "id": 792,
+            "text": "Grocery store, man, wholesale club, meat only.",
+            "score": -0.4439
+          },
+          {
+            "id": 4461,
+            "text": "I was looking for a value; something creative.",
+            "score": -0.4403
+          },
+          {
+            "id": 637,
+            "text": "I am rehearsing and planning some presentation with a few people. It's lots of work and I finally give up and say to the others, \"I hope you don't mind; let's scrap what we've started. Other groups are just being spontaneous and do something simple and direct.\" They agree.",
+            "score": -0.4373
+          },
+          {
+            "id": 4399,
+            "text": "A sort of taciturn, sad or grumpy man gives me a gift. I look in the box and see some sort of leather wine pouches, of different sizes. I say oh, that will be nice. I can put them on my wheelchair for water bags. He says nothing. I look more closely and see there are small miniature things in the bag. I see 30 tiny florescent light tubes, in their boxes. and many more things. I begin to realize that this isn't a wine bag but a miniature room with furnishings. I keep opening little things and other little things are in them. This thing keeps getting more ornate and big and full of stuff. I like…",
+            "score": -0.437
+          },
+          {
+            "id": 4143,
+            "text": "Outdoors Store I'm at an outdoors store looking for two items: one for each of two different men. There may be a clothes sale on. I have an old blue backpack, and am looking for a pack cover.",
+            "score": -0.4359
+          },
+          {
+            "id": 1257,
+            "text": "#1985-046 (8/16/85) In a foreign country: we own a ceramic business and I see native woman painting vases; they look like women in Gauguin paintings.",
+            "score": -0.4327
+          },
+          {
+            "id": 25,
+            "text": "#Job-M-27 (05/15/64) I'm going round and round these booths like in a bazaar, church bazaar, walking round and round them. Each one has something to do with female ego identity and none of them are complete as such, and I'm either saying to someone or thinking that it's not necessary for any of them being complete in their own right because this is all determined by theory.",
+            "score": -0.4299
+          },
+          {
+            "id": 4909,
+            "text": "Autofellatio 6 I am giving myself fellatio. It doesn't feel good. I can barely maintain an erection. I am on my shoulders, crouched over with my legs up against a wall. It is not very enjoyable.",
+            "score": -0.4296
+          },
+          {
+            "id": 4147,
+            "text": "In Biological Survey, McAtle is influential enough to have arrangements made for certain examination (probably bird stomach examination) work to be done, even after more than a year has passed since this should have been completed. says that Mc Atle has done real well to accomplish this. My brother is in Biological Survey and he asks whether the pay in the Survey is about same as in Entomology. I say yes, about the same -- possibly a little higher in Division of Taxonomy than in Division of Food Habits Research.",
+            "score": -0.4205
+          },
+          {
+            "id": 4264,
+            "text": "I was trying some kind of cylinders and then I was asked how some of them did and a fellow answered on one of them that Jutland gave it a tussle or beat it. He didn't say.",
+            "score": -0.4201
+          },
+          {
+            "id": 2640,
+            "text": "Cleaning The Sink I'm cleaning the bathroom sink at the Whitman house. I spray the sink with some cleaner and scrub it. I may spray cleaner on the toothbrushes.",
+            "score": -0.4196
+          }
+        ]
+      }
+    },
+    {
+      "axis_id": 3,
+      "label": "PC3",
+      "explained_var": 0.0386,
+      "positive_pole": {
+        "description": "",
+        "dreams": [
+          {
+            "id": 4016,
+            "text": "#M28-6 I only dreamed that I had to take a test and I even dreamed about the questions. Then I was in a port, walking with a friend who forced me to have a beer with him (I don't usually drink it) and then he took me to a house of prostitution (I have the intention and the principles about getting married in a chaste state). We got out of there and I went to my home. I was listening to some music and laughing constantly. Then I awoke. This was a very strange dream.",
+            "score": 0.6472
+          },
+          {
+            "id": 4691,
+            "text": "#M41-5 I could not describe the dream exactly, but it all revolved around a very important piece of work I have to do and for which I don't think I have enough time to complete it. I only know that the dream (which was turning into a nightmare) was surrounded by several people that are close to me, who were putting a lot of pressure on me to finish the work.",
+            "score": 0.6237
+          },
+          {
+            "id": 1605,
+            "text": "#F26-7 The only thing that I remember about the dream is that they were building a bridge for cars, and when the construction of this one was over, they built another one for people. The bridge that was already in existence was terrible. Three men \"tried it out\" and they fell several times, and they ended up being extremely tired. The surroundings and the people were unknown to me, and I don't remember being in the dream.",
+            "score": 0.605
+          },
+          {
+            "id": 3507,
+            "text": "#047-3 I dreamt that I was in a huge maze trying to find my way through with my eyes closed. Every time I went the wrong way I would have water dumped on my head to let me know that it was the wrong way. I never made it through the maze and I am still lost.",
+            "score": 0.5974
+          },
+          {
+            "id": 4087,
+            "text": "#M29-1 I had many dreams, but the one which sticks most in my mind was the last one. I dreamed I was in the school cafeteria having a discussion about Philosophy and Psychology with the professors of those courses. I like Psychology very much.",
+            "score": 0.5931
+          },
+          {
+            "id": 2061,
+            "text": "(2007-04-08 (16)) I had a bunch of little dreams where I realized I was dreaming but I would promptly fall into another dream.",
+            "score": 0.586
+          },
+          {
+            "id": 1581,
+            "text": "(M, age 16) I am on a non-familiar beach with mountains a short distance away. There are a lot of other teenagers around. In my dream I am cross-country skiing down the dunes on the beach, just skiing for awhile. Then I walked into a chalet with snow on the roof and I fell asleep in a chair.",
+            "score": 0.5742
+          },
+          {
+            "id": 3277,
+            "text": "#114-32 (F-C-T-52/52) [1997-06-27] I had another dream about the beach and about the water. We were swimming in the water and some people were walking on the sand and so were we. And some camp stuff.",
+            "score": 0.5671
+          },
+          {
+            "id": 2747,
+            "text": "#Mary(P)-05 (1997-02-12) This was a strange \"dream within a dream.\" I was aware I was dreaming and I was also aware that I was dreaming I was dreaming. I was laying in bed with Ken and I remember trying to pull my pants down in bed so we could make love but I didn't really do it, although I really felt I was doing it. I also remember talking to him about what time it was -- dreaming I was talking in my sleep and certain I was really talking to him. I was surprised to find I hadn't done either thing although it was so real and I believed I had simply followed or went along with what was happeni…",
+            "score": 0.5619
+          },
+          {
+            "id": 2906,
+            "text": "I dreamt that I was a famous ballet dancer and was acclaimed by audiences all over the world. Every night I would dance, and at the end of the performance there would be a tremendous ovation and I would receive large bouquets of flowers. All of them carnations. One night I went out on the stage to do my solo and I saw no one in the audience or the orchestra pit. I began to dance anyhow and danced until I fell exhausted. There was a tremendous ovation--from where I didn't know.",
+            "score": 0.5604
+          },
+          {
+            "id": 4896,
+            "text": "#062-4 The other night I dreamed that I was on summer vacation my friends. We went golfing, to the beach, to restaurants and parties. We spent the days laying on the beach and swimming while we spent the nights drinking and dancing with girls we met there. I woke up right before going to the beach late at night with one of the girls I met.",
+            "score": 0.5603
+          },
+          {
+            "id": 3529,
+            "text": "In my dream I am sleeping next to my girlfriend when she starts talking in her sleep. I lean over to wake her up and I realize that I went to bed alone and that I am dreaming the whole scenario. I get excited because I realize I can control the dream. I look over at the alarm clock and the time is way later than it should be. I wake up to my alarm going off.",
+            "score": 0.5583
+          },
+          {
+            "id": 4860,
+            "text": "#M30-4 I dreamed I had gotten to the moon with the Russians in their spatial platform and that I was building my house there. And I dreamed that there was air and that there were many monsters that were so big that I looked like an ant.",
+            "score": 0.5579
+          },
+          {
+            "id": 2614,
+            "text": "#F44-6 My first dream was that we were in the town where I grew up, and I went over to a girlfriend and she told me that my mother was sick in the hospital. The place where this happened was the same as that place was after an earthquake that took place.",
+            "score": 0.5565
+          },
+          {
+            "id": 3290,
+            "text": "#092-2 My second dream was I was in Canada since I was there about two weeks ago. I had a dream I saw my girlfriend with someone else. I kept trying to talk to her but she couldn't hear me. I finally woke up and I was glad it was a dream.",
+            "score": 0.5561
+          },
+          {
+            "id": 2876,
+            "text": "#072-4 I dreamed I was in a mobile home in Florida. It was my grandmother's, who lives there now, but I don't remember her living there at the time. It was just me. I didn't fit in in the neighborhood at all because it was in a trailer park with all senior citizen residents. My presence was causing a stir among the residents. I remember doing a lot of water skiing and people looking at me coming home to the trailer with my equipment and not being happy with me at all.",
+            "score": 0.5542
+          },
+          {
+            "id": 2309,
+            "text": "Well, I don't remember any dreams, per se, but I do remember a vision of a stack of videos, all with blue covers, like the ones Home Video has, and they were all marked with X's.",
+            "score": 0.5455
+          },
+          {
+            "id": 3518,
+            "text": "(07/24/2005 (age 16)) I dreamed that I was taking some sort of gym class at the athletic center. Mr. Suzi was writing out workout plans. I missed my bus for a soccer game, but my father called them back. Then someone got hurt, so I had to drive them to the hospital.",
+            "score": 0.5429
+          },
+          {
+            "id": 1694,
+            "text": "#F24-6 I have again dreamt that I was in Cuzco. I dream this often. I always see myself in beautiful landscapes, alone, contemplating the river. But after that I see myself surrounded by many people in a dancehall, where I am the most wanted dance partner. But then, I don't know how, I find myself praying in the garden. Afterwards I see myself in Lima, but just as though I were in Cuzco. The places become interchangeable. I always dream of a person whom I loved very much. This person happens to live in Cuzco, and I think that this is why when I dream of that landscape, I always feel a lump in …",
+            "score": 0.5416
+          },
+          {
+            "id": 3323,
+            "text": "#F13-6 I dreamt I lived in something like a boarding house and that a boy from the university with whom I had never spoken also lived there. Being in the same bedroom with him, we talked with the greatest ease, as though we knew each other very well. Next day I waited for him to come soon, to see him and continue to talk to him. That was all.",
+            "score": 0.5403
+          }
+        ]
+      },
+      "negative_pole": {
+        "description": "",
+        "dreams": [
+          {
+            "id": 714,
+            "text": "(2008-10-12 (17)) We were going to a cinema. Ezra had been driving really fast and went through a wire fence and I said \"this isn't GTA\". We parked in this dodgy place in the bush. There was a fence around that and we found holes in the electric fence and got to the cinema. We had brought water with us but it was half empty. It was almost time for the movie to start. I went to buy snacks but Dad went somewhere and I said he has the money so I went to him and asked. He gave me a $20 note (but later it was a $90 note) and wanted a Yorkshire pudding and instructions of heating it. I ordered mysel…",
+            "score": -0.3432
+          },
+          {
+            "id": 2879,
+            "text": "(2008-10-12 (17)) We were going to a cinema. Ezra had been driving really fast and went through a wire fence and I said \"this isn't GTA\". We parked in this dodgy place in the bush. There was a fence around that and we found holes in the electric fence and got to the cinema. We had brought water with us but it was half empty. It was almost time for the movie to start. I went to buy snacks but Dad went somewhere and I said he has the money so I went to him and asked. He gave me a $20 note (but later it was a $90 note) and wanted a Yorkshire pudding and instructions of heating it. I ordered mysel…",
+            "score": -0.3432
+          },
+          {
+            "id": 4307,
+            "text": "(2004-08-01 (13)) The police took Mom's pickup and Hyundai. She and Darren came to Dad's in this old Toyota car. We drove off and then I got out chasing a ball. Mom came back to where I was. A while later, Ezra and I were in the lounge room. These bad guys that had held up Captain Spaulding (House of 1000 Corpses) walked in and asked where Mom's pickup was. We said \"Out the back\" and he walked back out the front and said \"I'll be back in a sec\". So I closed and locked the doors. A few minutes later they left and we went into the office. They had taken my monitor, which was worth $2000. We ende…",
+            "score": -0.343
+          },
+          {
+            "id": 1782,
+            "text": "(2008-06-10 (17)) This lady did some charity thing. She told the group one day that they got a heap of money, but then the next day, her, this guy and another guy called Alec, left and went to Australia and took the money. This cop person (who was me sometimes) was there and there was a thing saying the \"girl is med-hot, Alec and is cool\" or something. They thought he was going to kill her. They discovered she was allergic to pepper. They put a thermometer in the guy's mouth, who was then Ezra and the temperature went way up and the cop said \"You're under arrest\" and Ezra was confused. He said…",
+            "score": -0.3252
+          },
+          {
+            "id": 3199,
+            "text": "(2007-05-29 (16)) Dad and Ezra were watching some TV show. There was an oldish guy who was a prostitute or something and people thought he was a 'brickle'. This rich guy was selling his duck for a high price. A lady warned him he'd get killed.",
+            "score": -0.3184
+          },
+          {
+            "id": 1170,
+            "text": "(2005-01-08 (13)) I was at a shop and Porky was in the back of the car with a water bottle in a container. I can't remember what happened in the shop, but Ezra and I had to run back to the car to hide. We were also at a pet shop and I had Porky with me and we were also at a ferret place.",
+            "score": -0.3134
+          },
+          {
+            "id": 4237,
+            "text": "(2008-04-21 (17)) I was at home. Dad was working late or staying out. I had gotten some movies out earlier so I went to watch one of them which had Ana Ortiz in it. The cover of it, showed her pregnant, having the baby. Then I heard a car pull up and I looked out the window. It was a blue car with Tooth Pritchard/Tooth Pritchard (one on top of the other) or something as the number plate. I put the chain on the wood door and went to my room. They tried to get in. All I could hear was loud banging. I tried to call Mom but it said the phone was unavailable. I called Darren but he said they weren'…",
+            "score": -0.3127
+          },
+          {
+            "id": 2874,
+            "text": "(2010-01-28 (19)) I got two little green worms as pets. We kept calling them slugs though. They were really tiny. I had had one for a bit longer. The new one was called Alexander. I went to Mom to ask her what I should feed it, but it complained so I asked her to do it. I went back and almost fell on the floor and there were more slugs. They were trying to eat Rover. Mom and Ezra left to go somewhere and I was like 'what about the slugs?' but they were like 'meh'. Then we were parked on the side of the road with the door open. These guys drove past and Ezra said some 4chan thing and they threw…",
+            "score": -0.3112
+          },
+          {
+            "id": 3280,
+            "text": "(2007-11-07 (16)) It was Wednesday and I got to school and I didn't have my school clothes on. I went to the toilet to change. These two ladies were standing outside the toilet. They said someone had been putting students up something that killed them and they suspected me. I was like \"huh?\". After I changed clothes I walked home. Ezra was there. Mom and Poppa came over. Poppa was talking about a choice of a car or $200k and something else.",
+            "score": -0.3092
+          },
+          {
+            "id": 817,
+            "text": "(2007-09-28 (16)) I went home and Mom and Ezra were with me. Mom had cleaned my room and I was angry about it. The vacuum had picked up chicken? I locked up to leave and Mom was saying that I should leave it unlocked because Dad was inside. I went back in and he had cheese and crackers. He said he had to explain about them at something he was going to.",
+            "score": -0.3054
+          },
+          {
+            "id": 3010,
+            "text": "(2008-09-17 (17)) I was in my room on my computer and I had read a magazine earlier that had posters of Martin Sheen from Apocalypse Now, Jensen Ackles and a picture of James Spader. I showed Ezra the pictures of Jensen and Martin. I was typing something personal later on the computer and Ezra came in and I was trying to hide it and get rid of him. I had downloads going too. He wouldn't leave. We both left the room at the same time. There were no water bottles in the fridge and I complained. Ezra left a cup of orange juice on my desk and I ran to his room and poured it on the floor. I realized…",
+            "score": -0.3047
+          },
+          {
+            "id": 460,
+            "text": "(2010-02-01 (19)) I was walking back home (which was different) and I was in a public hall. I had a measuring tape on me. This oldish (30-40 year old) guy stopped me and asked to buy it from me. I said no and he offered a higher price and I said \"I don't care if it's $17 million, it's not for sale\". He got angry and tried to get it off me. I called out to Mom and she yelled back telling me to be quiet and that she was busy. I yelled out again and she was like 'I'm not listening to your stories'. I ran in and closed the door and locked it with a chain. Mom came and still didn't believe me (unti…",
+            "score": -0.3029
+          },
+          {
+            "id": 3897,
+            "text": "(2009-01-10 (17)) I was watching One Tree Hill and Brooke was working in a diner. She was serving food and getting flashbacks of war images due to something that happened to her. One of the foods was some sort of sweet pie. There was an old couple. The old lady asked something and this other worker girl said they would hurry. The old lady said to the old man that his pies were served too rushed and were \"put together with shaky hands\". He looked at her and cried. Someone tried to give a phone to this guy behind the counter and told him to answer it. The phone was actually bomb. Then we were in…",
+            "score": -0.2991
+          },
+          {
+            "id": 105,
+            "text": "(2010-01-11 (18)) Dad, Ezra and I were in some water. I tried to keep my phone above the water. We got a call that Granny was ok, so we gathered. We were still living at the old house. I was outside for a while and then I remembered I'd left some private stuff on the desk and I ran back inside. Ezra followed me and I tried to get rid of him, but he came in anyway. Austin was in my chair and he sounded like he was drunk. Everything in my room was a little messed up. He ended up showing it to Ezra and I had a whole box full of stuff. I tried to get Mom to make Austin leave. There was a fair thin…",
+            "score": -0.2966
+          },
+          {
+            "id": 3200,
+            "text": "(2009-09-17 (18)) Dad had downloaded a bunch of educational stuff. He and Ezra were going to read it all. They started with human biology and I said \"you'll know everything I know\". Later I was at home and Ezra came into my room. I had Tigger. He pulled my door to when he left. I said 'thanks' and he looked shocked and then said something polite in return.",
+            "score": -0.2928
+          },
+          {
+            "id": 3250,
+            "text": "(2007-03-27 (16)) I was at home. People kept breaking in all the time. Mom said that we (Ezra, Valerie and kids and I) should leave the back door open. This guy came and attacked us. Mom came and stopped him. He had stuff of ours in his car. Kevin Heffernan was there, but he hadn't taken anything and we let him go but then stopped him again. He had my toy box in his boot.",
+            "score": -0.2914
+          },
+          {
+            "id": 3308,
+            "text": "(2008-05-04 (17)) I was at home. Dad and Ezra were there. Dad said he was going to go out (it was night), so I asked Mom to bring food over. She came over and this cop car went past slowly. It was being dodgy so we swapped Mom's car for mine and then these guys turned up and pointed a gun at Mom's head and mine until they got something. I don't know what happened but they left and we they got back they said the cops pulled them over. I was telling Dad, who was watching something, that the guy on the show he was watching was in Monty Python and that he was my favourite Python (obviously, Michae…",
+            "score": -0.2892
+          },
+          {
+            "id": 1667,
+            "text": "(2007-10-10 (16)) I was watching a movie with Jason Bateman. Michael Cera was his son. There was a flashback and Michael Cera's character was being played by a fat kid using a phone at this building. Then these people, on woman and the rest men, shot a lady in the face, killed some cops etc. They went to this cop place and there was a lady in there and cops in a car outside. The cops outside managed to survive and tried to tell the lady inside to get out. The people came into her room and she jumped out the window. They killed her. Buster (Arrested Development) came in with stuff for his mothe…",
+            "score": -0.2878
+          },
+          {
+            "id": 1240,
+            "text": "(2007-03-03 (16)) I was at school but was going home because Clayton, Nicolas and Ezra were at Mom's. I got in the car and Ezra and Nicolas were going to come back, so I stayed. Dad was annoyed. Clayton was upset because they left him.",
+            "score": -0.2799
+          },
+          {
+            "id": 2733,
+            "text": "(2009-05-18 (18)) Ezra and Mom were going to be checking out a Technical College thing. Mom had to go look after a shop and juggle lots of different tasks. I was talking to Ezra and asked what he was watching. He was watching The Fugitive and I said, excitedly, \"Transit cop! Neil Flynn- I mean Janitor! Yay!\" and left. I was saying Janitor like JD does as I walked out. I went to Mom to remind her about the Technical College thing and she yelled at me, but then left. I was watching Scrubs and JD and Kim were in bed and she was pregnant and cuddling JD from behind.",
+            "score": -0.2791
+          }
+        ]
+      }
+    },
+    {
+      "axis_id": 4,
+      "label": "PC4",
+      "explained_var": 0.0288,
+      "positive_pole": {
+        "description": "",
+        "dreams": [
+          {
+            "id": 1101,
+            "text": "(2007-08-03 (16)) This girl had a movie/TV show based on her autobiography. When she was little, she and her brother were friends with this guy. When she got older she liked him. As an adult she went over to his house and he was a doctor. She asked him if he ever kissed his patients and he said \"Sometimes\". Then she said \"And sex?\" and he said sometimes. She said something else and they went to kiss each other, but he pulled away and said he couldn't do that because she was married and it wasn't fair to her husband.",
+            "score": 0.4043
+          },
+          {
+            "id": 3435,
+            "text": "(2008-10-27 (17)) I was at an Indian wedding place. Me and a male friend decided to play a joke and so as the couple came out, we went through the shop pretending we were getting married. Later I was at school, which was different, and all these characters from Freaks and Geeks came. Some of them weren't real ones. They were people I'd gone to school with. I said \"now Linda Cardellini will turn up\" and she did. It had been ten years since we all saw each other. Linda had gone out with James Franco's character and was still in love him. She was calling him Brendan though. I was looking for Jaso…",
+            "score": 0.3885
+          },
+          {
+            "id": 4386,
+            "text": "(Code 017, Age 20, 05/23/47) I dreamt I was sitting in my living-room when a married girlfriend of mine came in with a date who was not her husband. She seemed very gay and happy and said she was going to go out with this fellow just as a lark. Interpretation This friend of mine married her husband after about a month. She wasn't in love with him at the time but talked herself into it because she felt there wouldn't be any men and she wanted to be married at the age of 20 in order to get ahead of a cousin of hers whom she didn't like. My feeling is that she is still not sure whether or not she…",
+            "score": 0.3843
+          },
+          {
+            "id": 992,
+            "text": "Strong Administration I'm in the presence of stern administrators, including my grade school principal Candy Bevner, my third grade teacher Liza Minikel, and others. They are having a big meeting. I try not to distract them very much. I'm off to one side. My high school friend Elise Rooks is there. We talk a little bit. She expresses interest in spending time with others and I tonight. I think this is strange because she doesn't express interest in being with me often. I'm very attracted to her. I don't respond too enthusiastically to her. A woman comes in as I leave. She says she has had a dr…",
+            "score": 0.3809
+          },
+          {
+            "id": 2277,
+            "text": "I've come back into this house where someone I know lives and teaches dance [is she a personal friend? - don't know] . She's a little like Amanda, leaning toward the dotty side, older but won't act like an old woman. Her living room is smallish, a little dark with only a couple of table lamps lit (it's night-time) - flowered couch down the side, coffee table piled with books and notebooks. [Seems like this is a college town or neighborhood, and everybody is either attending or teaching or something. She's a regular fixture herself and has a kind of professor-status.] I've come in a bit late. T…",
+            "score": 0.3615
+          },
+          {
+            "id": 55,
+            "text": "#B-160 (2002-08-23 (17)) Today I dreamt that I was running around at Bancroft Middle School with some kids, and it was like after hours and we were kind of like playing hide and seek in a dark room and running around through different doors and stuff. And I remember Mom and I wanted to get out of there soon, but I think she was talking to somebody while we were running around. And then when we finally did get out of there, we went to these people's wedding, and I was so mad because we didn't get there to catch the beginning of the wedding. We got there like after the ceremony was over. And I c…",
+            "score": 0.359
+          },
+          {
+            "id": 2370,
+            "text": "#B-127 (2002-05-22 (17)) We were in Canada for some reason and it was kind of at night time. And it was Mom and Melinda and Chelsea and I, and we were in this boutique in Canada, and it had roundish brick steps on the front. And we were looking for a prom dress for Chelsea, and we didn't really see anything we wanted, we weren't impressed, but we said, \"Let's hang around a little bit because Celine Dion might drop in.\" And sure enough, we were just getting ready to head out the door and we saw her. And she went in and she got something from the boutique, and then she was like so happy to see m…",
+            "score": 0.3565
+          },
+          {
+            "id": 2719,
+            "text": "[\"Angry Archie and the Kiss\"] Lucy and Archie are seated side by side. At a table. We are indoors but no architectural details. Archie is telling Lucy something that I get angry about. Perhaps he is belittling her. I tell him I don't like the way he is treating her. He is instantly furious with me and rails at me for a long time. I have no business interfering, and so on. I start to walk away, but he comes to me and steps in front of me. He then kisses me very lovingly. I respond to the sweet kiss with pleasure but I am confused about what all this means.",
+            "score": 0.3545
+          },
+          {
+            "id": 2698,
+            "text": "Ginny, another woman and myself have on long white dresses. We see a marimba band. \"Oh good,\" says Ginny and starts dancing. I start to dance too. We don't care that it is three women in a circle, no guy. But I am a little self-conscious about it. I look out the window and see a wedding going on. The groom comes over to talk with me. As we talk, he sits on an office chair on wheels and I sit on his lap. He hugs me close and we wheel around as we chat. It feels very companionable. I am telling him how people come up to me and say, \"So what's wrong with you?\" and \"What's your condition?\" and \"Do…",
+            "score": 0.3485
+          },
+          {
+            "id": 2489,
+            "text": "(2009-07-03 (18)) I was watching a movie, which was The Hangover, but not. I think Michael Cera was in it. There were two guys and one of them cheated on his wife or girlfriend with Heather Graham's character? She went to his wife/girlfriend and said she had some STI and the wife was like \"and...?\" and then realized that he had slept with her. Then the two guys and a girl were in a bed and there was a knock on the window. They were all naked. One opened it and it was his wife. She said something, but I can't read what I wrote, and I thought that she thought that he was gay. Then she realized H…",
+            "score": 0.3475
+          },
+          {
+            "id": 4193,
+            "text": "(2016-03-27 (25)) We went to Classmate-M-09's house and his room was this shared room full of bunk beds. Tristan was there too and had said Daniel was actually a girl, and I was trying to see if he was until I realised it was just because there were teddy bears and 'girly' things around but we later found out they weren't his. The house from the outside was made of stone and was very rounded and fancy looking. He said his parents used it for their 'clients' (they worked in film) so they didn't have to book hotels. I was walking down the street later, wearing my sunglasses, when this girl said …",
+            "score": 0.3448
+          },
+          {
+            "id": 4403,
+            "text": "(Code 089, Age 20, 04/14/47) I dreamed I was walking down a corridor in a University bldg. (One of which I had never seen before.) I met \"E_____,\" one of the fellas I date. He ran over to me and tried to kiss me - He was with another girl who was \"dressed up.\" She wore a black dress, pearls etc. I told him to stop bothering me and go back to his date. I told him at least I was the natural type (I was wearing bobby socks, skirt and sweater) and didn't get dressed up so \"fancy\" for class. As I was talking to him my best friend came down the hall with a fella. He looked exactly like \"E_____\" - bu…",
+            "score": 0.3404
+          },
+          {
+            "id": 4969,
+            "text": "This dream was quite confused and uncorrelated. I remember, in one part, doing a dance in a pair of black velvet leotards (shoes). I don't know where I was dancing or why. Then I recall talking to a boy, BF, age 20, with whom I went to high school. I never really knew him--only enough perhaps to say hello, but in the dream, we were having a long serious conversation. He asked me to go out with him and I remember not knowing what to do, whether to go with him or not. Two of my girlfriends from high school, EL and DG, advised me not to go with him. I thought the only reason Ellen had said not to…",
+            "score": 0.3399
+          },
+          {
+            "id": 4543,
+            "text": "(2010-03-10 (19)) I was sometimes Lexie (Grey's Anatomy). She was sleeping with Karev (Grey's Anatomy). He discovered that he loved her and they were in a hospital and he kissed her and she pushed him away. Then later they were talking again and she had her back against the wall and he put his hands on the wall and pressed up against her and kissed her and she pulled away in disgust. She said it was because they worked together. Then I was dating Callie (Grey's Anatomy). I went out with Nana in the middle of the night to check on some small people. They were about ant size. We had to cross thi…",
+            "score": 0.3305
+          },
+          {
+            "id": 617,
+            "text": "(Code 074, Age 20, 03/30/47) I was in Sunday school. While services were going on I stayed in a little room which contained an old iron bed piled with coats. After services were over everyone came in to claim his coat. My cousin came in to get her coat and told me that she was engaged. She introduced me to her fiance. I told her that he looked familiar but that I couldn't place him. Interpretation Just before I had this dream I had seen a movie in one scene of which was a large iron bed. My cousin, who is my own age, did become engaged that day and I had met her fiance twice before. Answers to…",
+            "score": 0.3305
+          },
+          {
+            "id": 3286,
+            "text": "I am now returning to the acting class. I go too far down the hall to a room where ritzy, well-dressed people are. I back track and find the room. The woman teacher is there and I ask her if she would mind if I could be an assistant director. She says, \"How will this help?\" I start counting on my fingers how it would help. \"First, for me,\" I say and I pause and repeat it because it felt selfish to say for me first. But I decide it is proper and I say, \"For me, I would gain skills and experience. For you, after I learn blocking, I could run some of the rehearsals and you could have time off.\" \"…",
+            "score": 0.327
+          },
+          {
+            "id": 4266,
+            "text": "Nate is there and he's aware that I won't have a relationship with him when he is still drunk. Lucy and I are doing a play together and we are talking about the difficult parts. I say to someone, \"Yes, there are some sexy parts, and the action parts we'll just tell. I'll tell the stage directions.\" Rochelle is there in a small car scooter-like wheelchair. Her hair is very pretty, groomed nicely.",
+            "score": 0.326
+          },
+          {
+            "id": 497,
+            "text": "(2010-01-09 (18)) Our house was different and was attached to others. Sammy was renting the one next to us. One night he was going to a party and he came into my room to ask for something. He took some black thing when he left. I told Mom later. Darren had let Rover out and I was out there with him and he chased the cats over the fence. Sammy was going to the party with Vanessa (Gossip Girl). I was playing World of Warcraft. I was with a girl and we went into a level 17 instance and I died before I even entered it, which confused me. I was watching Gossip Girl. Chuck was friends with some guy.…",
+            "score": 0.3255
+          },
+          {
+            "id": 941,
+            "text": "(F, age 16) I was driving in a car with a girl whom I dislike and she feels the same way towards me. She was talking to some people in the front of the car. We were in the back, and explained how she hated me and how I hated her. Then she turned to me and said \"I know that you know I don't like you and I know you don't like me either.\" Then she said \"we're going to Bob's dorm\". Bob is my ex-boyfriend whom I like a lot. She and I hate each other so much because before Bob 'saw' me, he was 'seeing' her and he dumped her for me. He broke up with because I treated on him with some other guy and he…",
+            "score": 0.3252
+          },
+          {
+            "id": 4852,
+            "text": "(2008-07-19 (17)) I went to a class and asked for everyone's notebook. There was a guy with a notebook and it had stuff about a movie called Take That and how it was a gay movie and he looked gay, so I let him keep it. I had met this guy from this event. He came into the class and someone said something about marriage and he got down on one knee and asked if I would marry him. I said \"me or the class?\" and he said \"you\". The class were clapping and then I kissed him.",
+            "score": 0.3248
+          }
+        ]
+      },
+      "negative_pole": {
+        "description": "",
+        "dreams": [
+          {
+            "id": 1973,
+            "text": "I saw a rock about 2 inches in a diameter move. Then I saw a large spider under the rock, about an inch long. Later I saw some animals.",
+            "score": -0.4929
+          },
+          {
+            "id": 618,
+            "text": "At first it seemed I was flying along in the air, although not very far off the ground. I looked down and there was a high cliff with a canyon below. I got scared and couldn't fly anymore and I had that feeling of falling a long distance. Then I walked out of my house and saw my uncle's car in front. I got in and stepped on something soft and furry. When I looked down, I saw a tiger lying on the floor of the car and I was scared again.",
+            "score": -0.4925
+          },
+          {
+            "id": 2576,
+            "text": "I was in a large open space, and huge animals of all sort with huge roars and wide open mouths (big gnashing teeth) were chasing me. I ran from side to side trying to escape. I was out of breath. The huge animal monsters finally hemmed me in (surrounded me). They were going to eat me and claw me. I then awoke.",
+            "score": -0.4715
+          },
+          {
+            "id": 1452,
+            "text": "(2001-25-11 (Off-Campus)) I was a bug, with two other bugs.  We watched as another two fought, and eventually got taken away by a truck.  We walked along the path back to 'camp' crossing a swampy pond with a fisherman's old equipment- including a small wheelbarrow.",
+            "score": -0.4647
+          },
+          {
+            "id": 347,
+            "text": "(2006-10-16 (15)) There was some vehicle that had some trap that involved air to trap these monster things. I think it was in a forest.",
+            "score": -0.4615
+          },
+          {
+            "id": 2675,
+            "text": "I was on part of a large piece of machinery. It began to move, and I could not get off. It moved forward like a train engine.",
+            "score": -0.4602
+          },
+          {
+            "id": 3359,
+            "text": "I was looking up. I saw something flying high up. Then I saw a dog come down. It landed on the ground and it floated up about six feet off the ground. I got hold of it and inside the glass I saw a bug. It was alive, crawling around. Then there was a horse's head with one eye. It had a frightened look. The other crossed. I then saw a bright spot on the left palm of my hand. The bug seemed to have gotten out of the glass and drove itself into my hand. I pressed it and puss came out and I could see one foot of the bug sticking out. I pressed it again and it wouldn't come out. One fellow said the …",
+            "score": -0.4597
+          },
+          {
+            "id": 343,
+            "text": "We seemed to have an atom or hydrogen bomb dropped on us. We were exposed to it, but we laid down for a while, then came to and moved around, the strongest of us. I started to fly around, then there seemed as though a hurricane came. It was blowing down everything. I saw a large spider close and it seemed to be blowing with sparks of fire, but I seemed to be mighty, but it didn't seem to bother me. It didn't seem to move me. I was standing on a small bridge looking into a small brook in the shore. I saw a green snake, then a larger one, and about 10 snakes, each one larger than the other one. …",
+            "score": -0.4546
+          },
+          {
+            "id": 4074,
+            "text": "I was walking down a long road with odd-shaped trees alongside. I kept looking for a house and trying to locate a person to find where I was. All I could see were strange-looking animals running across the road and disappearing behind the trees. Then up ahead of me I saw a large dinosaur coming for me. It looked like it was at least 75 feet tall. I was frightened and started running. I threw sticks and large rocks, but it didn't stop. It kept making funny sounds and knocking down trees as it walked. I ran until I came to a cliff and jumped over. I could feel myself falling and this woke me up.",
+            "score": -0.4544
+          },
+          {
+            "id": 212,
+            "text": "(2006-10-23 (15)) I was in a building and there was a flood. I was running up these stairs. Eventually, I made it to the top of the building, which was on the roof. Daffodils laced the outer rim.",
+            "score": -0.4521
+          },
+          {
+            "id": 784,
+            "text": "I seem to be running away from someone in flight or just running. I was cleaning out something and on the bottom as I scraped it, it still was sweet. Fisher and I were walking along a road. I looked over a deep valley and on the opposite a man was sitting with a pistol in his hand. Then we walked over a bridge. I looked down and it was very high. I was afraid to go near the other end. I was afraid to fall over. When we reached the other end of the bridge the water was high, almost reaching the bridge. I looked down Pearl Rd. and Ridge where there were a lot of trees before and now I noticed th…",
+            "score": -0.45
+          },
+          {
+            "id": 3415,
+            "text": "(2004-03-16 (13)) I was at some strange spooky place with evil traps, but it was actually a game. There was hot water, and I ended up pausing the game. I woke up in some chamber which had spikes. I went through a tunnel. I hit a ball three times and it exploded.",
+            "score": -0.446
+          },
+          {
+            "id": 3170,
+            "text": "I was riding a streetcar. Then I got off and started walking. I passed ruins of some buildings which were among some government buildings. The latter were about 20 stories high.",
+            "score": -0.4449
+          },
+          {
+            "id": 1277,
+            "text": "Skiing on a lake covered in algae; Chuck's (my water ski instructor) lake, but years overgrown and un-maintained. I remember fearing the alligators. There were so many alligators there now. They hadn't been kept under control. I was glad to get back up to the dock and on the little cliff looking down into the lake.",
+            "score": -0.4382
+          },
+          {
+            "id": 217,
+            "text": "There was a big tiger and he said that I must get out of the way but I couldn't walk and I rolled over and over out. I had a bundle which he took and when it was in his mouth, I killed him.",
+            "score": -0.4368
+          },
+          {
+            "id": 4898,
+            "text": "I was swimming. I had to be careful not to touch a certain thing or something would happen.",
+            "score": -0.4324
+          },
+          {
+            "id": 889,
+            "text": "I stumbled over a rock in the road.",
+            "score": -0.4296
+          },
+          {
+            "id": 92,
+            "text": "I was watching three people being covered by sand by being too greedy that one was going to survive the other. All went to eternity. A big bear was after us. He was so big we were afraid the shotgun wouldn't get him, so he was covered by a sand fall and went to eternity. I was waiting by a r.r. crossing to be picked up by a train that went by twice, but didn't stop for me. The train went by away from us.",
+            "score": -0.4243
+          },
+          {
+            "id": 3533,
+            "text": "I was killing snakes. I chopped off their heads. I saw a fat one and it was a rattler. His rattles were held high. I saw Ann Fox and Mr. D. I was working in the dairy and I mixed some concrete. I started up a motor and two of them started up in place of one.",
+            "score": -0.4139
+          },
+          {
+            "id": 3669,
+            "text": "I wanted to get to an underground place. I had to sink through a noxious smelling fluid to get there. The openings were about 2 feet square. Someone else was sinking through a nearby opening.",
+            "score": -0.4134
+          }
+        ]
+      }
+    },
+    {
+      "axis_id": 5,
+      "label": "PC5",
+      "explained_var": 0.0236,
+      "positive_pole": {
+        "description": "",
+        "dreams": [
+          {
+            "id": 1881,
+            "text": "(2010-10-19 (19)) I was at Aunt Sally's. She wanted me to redesign the dining area and the lounge room. They went to bed and I tried to decide what the best thing to do was. She came out at one point and I said I hadn't thought of anything. I was also at work at some point spraying the window on the rotisserie oven.",
+            "score": 0.4272
+          },
+          {
+            "id": 3858,
+            "text": "Laura D from Trading Spaces was at my house. I was showing her each room and talking about the different decorating things that I had done or was in the process of in each room.",
+            "score": 0.4247
+          },
+          {
+            "id": 446,
+            "text": "(2005-07-10 (14)) I didn't get my school clothes washed in time for school. When Dad dropped me off, Mom picked me up. We went to the shops and bought food.",
+            "score": 0.418
+          },
+          {
+            "id": 2816,
+            "text": "(2002-??-11 (Off-Campus)) I went to my maternal Grandma Jane's house. Grandma Jane had died, so it was my parents' place now.  I didn't want them to sell it.",
+            "score": 0.401
+          },
+          {
+            "id": 2777,
+            "text": "I asked her where to find a cloth to wipe up what I had spilled when serving her. She started with me to find one.",
+            "score": 0.3971
+          },
+          {
+            "id": 3914,
+            "text": "(2005-12-24 (14)) I was at a new school which had three 'storeys' of chairs. I sat somewhere but I moved. Charlene was there. It was still year 7. Evelyn was there too. There was a shop at school for lost furniture sets.",
+            "score": 0.3896
+          },
+          {
+            "id": 1487,
+            "text": "(2007-03-16 (16)) I was at Granny's old house. It was all gone, but there were lots of plastic bags and stuff.",
+            "score": 0.3839
+          },
+          {
+            "id": 2411,
+            "text": "I was in a house with my mother. Two containers of milk were delivered. One looked strange, so I showed it to my mother. Inside there was only white ice instead of milk.",
+            "score": 0.3824
+          },
+          {
+            "id": 1443,
+            "text": "(2003-14-11 (Post-Grad)) We were at my maternal Grandma Jane's house and an elderly neighbor lady stopped by.  She wanted to get rid of a bunch of robes she had.  Surprisingly everyone in our family took one, even my father and my brother Stuart.  Then she wanted help disposing of something else- car oil, I think.  It took a while and there was much more involved in it than we'd planned, but we did that as well.  When we got back, though, she was in the corridor past the porch where some cats were hanging around.  She was knocking on the door trying to get in to talk to my mother some more- at…",
+            "score": 0.38
+          },
+          {
+            "id": 955,
+            "text": "I was standing in line in a type of cafeteria. I was with a girl who seemed to be a combination of a girl who I like very much and another who I have seen at school but do not know but I do not like her (sentiment based only on appearance). She bought something and went into the next room which seemed to be the expected procedure. After some difficulty I ordered some pie and doughnuts and paid for a check which I was to use to obtain the food from the food counter. Instead they gave me the pie there and kept the check. When I passed the doughnuts I took two of them. When the waitress asked for…",
+            "score": 0.3784
+          },
+          {
+            "id": 1483,
+            "text": "In the house, I tried to \"move my things in\" unpacked. I said to Lydia, \"This desk...(off in a corner and filled with junk of hers, baby things). Feelings that I am intruding. Millions of Bic pens in the desk. I thought, \"Ah, I won't run out.\" Lots of \"junk\" crowded all over, messy room.",
+            "score": 0.3755
+          },
+          {
+            "id": 3662,
+            "text": "I was back in high school walking down the corridors during passing time. Everyone there was in college; all of my college friends were there, but none of my high school friends. I was trying to get to my math class, but I couldn't find it. I kept walking into all of the wrong rooms.",
+            "score": 0.3726
+          },
+          {
+            "id": 4584,
+            "text": "I was walking through deserted streets. I went into a department store and rode on an elevator with some friendly high school girls. Later I told my mother about the girls, but she did not approve of my talking to them.",
+            "score": 0.3691
+          },
+          {
+            "id": 2305,
+            "text": "I climbed into the attic of a big house through a window. I wanted to get something. My mother and sister were in a room downstairs. My sister was upset because I went into the attic.",
+            "score": 0.3689
+          },
+          {
+            "id": 3330,
+            "text": "(2008-09-29 (17)) I was at a shop waiting for Mom. I bought some muffin cake from the shop and it was pretty and tasted nice. I went to find Mom. I asked someone where she was and then she was behind me.",
+            "score": 0.3669
+          },
+          {
+            "id": 1641,
+            "text": "(2007-07-30 (16)) I went to Mom's [old] house and it was empty and different. It was very white. Someone was saying how there was nothing to steal, but I was still worried about people being there. There was some scanner thing, which said there were more people than us in the house. We were checking the rooms. I checked the bathroom and the mirror cabinet. Mom was there.",
+            "score": 0.3651
+          },
+          {
+            "id": 4325,
+            "text": "(08/29/1991 (#6)) I am in my room as it is in Tucson.  Visitors are there.  We three are sharing the bed.  But they keep rearranging the room, the pillows, the board under my bed is cut in half, half gone.  It is late.  I am getting annoyed.  Then Mom is there, taking clothes out of the closet, she wants just one dowel rod.  I am getting more upset, telling her to stop but she doesn't.  I remember the clock over on the windowsill.",
+            "score": 0.3582
+          },
+          {
+            "id": 3503,
+            "text": "Saturday. Lots and lots of little cute fuzzy kittens are playing under my feet. I have to step very carefully so as not to hurt them. They belong to my mother. I ask her where my toothbrush is. She says, \"I put it with mine.\" I go to her room slowly as the kitties pile under my feet. At first I can't find it. I break a pretty vase. Then I find the brushes in a box at the foot of her bed. My grandma Agnes asks me if I need help finishing my needle work projects. I say, \"No,\" and start listing the projects. She says, \"Don't forget to finish your name on your tummy.\" By the time I finish listing …",
+            "score": 0.3568
+          },
+          {
+            "id": 324,
+            "text": "She told me in their new apartment they had two chambers, kitchen, dining room . They used the big room.",
+            "score": 0.3546
+          },
+          {
+            "id": 1558,
+            "text": "(2002-01-02 (Off-Campus)) I was working in a shoe store, putting shoes away in boxes.",
+            "score": 0.3506
+          }
+        ]
+      },
+      "negative_pole": {
+        "description": "",
+        "dreams": [
+          {
+            "id": 4615,
+            "text": "Lucidly Pursuing Ray Jackson I'm near a soccer field on which two teams are playing. One of the teams is supposed to be a lot better than the other. That team scores a goal very quickly: minutes after the game has started. There is a young player on the team named Jeff. He is very cocky. I go up to him and call him over to the side; He isn't playing at the time. I warn him that though he is a good player he needs to put a little more effort into his sport: to not slack off, but keep honing his skills or he may suffer the consequences. He leaves the area with his girlfriend. He may be wearing a…",
+            "score": -0.4107
+          },
+          {
+            "id": 1015,
+            "text": "Lucid Crushing Beast I'm in prison. Some black men and some when men are arguing. There is tension between them. The black men are the aggressors. They are angry, they say. They want more rights, and want the white men to go back to Europe. One black man punches and kicks some of the white men in the face. He crushes them, smashing their skulls and popping their heads. He turns into a fire-breathing beast with horns! He is about 15 feet tall, a huge monster! Everyone runs. When I run he comes after me and grabs me with one of his arms. He is going to hurt or eat me. I realize I am dreaming. I …",
+            "score": -0.3912
+          },
+          {
+            "id": 3452,
+            "text": "A man is trying to mount a horse. He says he likes thoroughbreds because they fight (or are strong). The horse becomes a black, long hair Persian cat. I am walking and I ask where the sheriff is. He is the actor John Ritter, very cute. He comes over to me and we talk. I am very attracted to him. We stand close together and I am very aware of his warm, caring eyes. I put my arms around him and we hug. We don't want to be separated. It is very caring and good. Sensual. He tells me he has 2 kids. The girl is moving up to the next step in her studies. She's quite smart and is advancing fast.",
+            "score": -0.3795
+          },
+          {
+            "id": 2746,
+            "text": "Black and White Power Struggle There is a black man and a white man. Each man is in control of the other man at a specific time. Each man has power at one time, over the other man. When one of the men is in power he may abuse the other man.",
+            "score": -0.3733
+          },
+          {
+            "id": 89,
+            "text": "Merle and I are in a swim pool. I don't want him to revive his desire to have a relationship. I try to avoid him. It hurts his feelings, but he manages it. He doesn't pursue the relationship stuff.",
+            "score": -0.3727
+          },
+          {
+            "id": 4056,
+            "text": "[\"Man follows me.\"] A man is attracted to me. I like him but I am on my way to",
+            "score": -0.3711
+          },
+          {
+            "id": 274,
+            "text": "(2007-12-12 (16)) This guy was a spy and he got taken by the bad guys, but this was expected and the good guys were watching.",
+            "score": -0.3663
+          },
+          {
+            "id": 843,
+            "text": "(2007-12-12 (16)) This guy was a spy and he got taken by the bad guys, but this was expected and the good guys were watching.",
+            "score": -0.3663
+          },
+          {
+            "id": 469,
+            "text": "I go into a bedroom. I see a man I kind of like through the window. I close the curtains. I feel sexually turned on. I thumb tack the curtains shut, very carefully, and go to the bed and experience a quick orgasm. Then I am some \"wonder\" creature and I am patrolling the outside of the school building. A terrible mean creature threatens me. He's after me. He grows tall in his attempt to catch me as I fly up very rapidly to keep out of his dangerous reach. I go very high very fast. All I can see is the tip of his huge finger as he rushes up to get me. My only hope is to out last him. We hit rari…",
+            "score": -0.3564
+          },
+          {
+            "id": 3065,
+            "text": "#1951-042 (6/24/51) Visiting Lucinda (college friend from B. City). Confusion. I leave to watch B. (college research fellow) at a graduation ceremony. I lose him in the crowd. Run after him, wearing red shoes and black suit. Catch up with him and try to embrace him, but he says, \"No it would be too much like an extramarital affair.\" I return to visit L. We walk by the river. We talk about Frank. She says, \"For me, his adolescent behavior stands out\" and I tell her of his good qualities. And that I miss him. We laugh and have fun; look down and see Frank lying next to a girl trying to make love…",
+            "score": -0.3556
+          },
+          {
+            "id": 3586,
+            "text": "Black Elk's People I'm with Black Elk and his people, when they're in the rocky, cliff-like area with many rounded crevices, ready to surrender to the soldiers. The people are tired and hungry. They have a few guns and spear-like sticks. The approaching soldiers are shot. I'm sitting with some people, and it is pointed out that my arm turns black when I flex the muscles in it. I have a stick that is a spear with a sharp point. Some people walk close to us and go up on the rocks above us, as if they walk up a rocky ledge of stairs. One of three people is like my friend Bill Hanson, but is also …",
+            "score": -0.3551
+          },
+          {
+            "id": 1991,
+            "text": "A man and I seem to like each other. I notice he is bald in the back and I lose interest in him.",
+            "score": -0.3542
+          },
+          {
+            "id": 3707,
+            "text": "I like a man and he likes me, but there is some sense of challenge or competition. We can't seem to get together.",
+            "score": -0.3428
+          },
+          {
+            "id": 1664,
+            "text": "(Code 070, Age 20, 10/25/47) I dreamed I went to New York with 2 girls of my age; and while waiting for an elevator in a hotel lobby, we noticed a blind man getting about by himself without any aid. I made some remark about pitying him; and he became so enraged, he started to chase me. He kept chasing me around the block; but despite the many people on the streets (many were C-- whom I knew) and despite the fact that he was blind, he relentlessly pursued me. He finally caught me and I tearfully told him that I had meant no harm. He started to laugh and said he was just trying to demonstrate th…",
+            "score": -0.3413
+          },
+          {
+            "id": 4891,
+            "text": "(2008-07-31 (17)) I saw a bit of some bad movie and this guy had a male and a female guard standing on a rocky ledge. The whole place was outside, and was rocky. There was a big ditch next to it. There was this other guy with them who was very flamboyant and gay. Something started controlling the guards and they walked off the edge, killing them. One of them got replaced by Steve Sandvoss. This girl on the internet was in love with him and she was 15. I was then at some place with Mom and Ezra. There was a TV show and something was getting killed on it. Giovanni was on it in his leaver's jacke…",
+            "score": -0.341
+          },
+          {
+            "id": 2992,
+            "text": "(2010-09-02 (19)) Ryan Kwanten was in two shows on TV. He was not the main character in either show, though one was True Blood.",
+            "score": -0.3396
+          },
+          {
+            "id": 794,
+            "text": "(2010-09-02 (19)) Ryan Kwanten was in two shows on TV. He was not the main character in either show, though one was True Blood.",
+            "score": -0.3396
+          },
+          {
+            "id": 2973,
+            "text": "I am at a dance. I am perfectly beautiful, perfect proportions, long blonde hair. All the men want me. They keep cutting in. One man rushes up to me and says, \"Tell them you choose me, for now.\" I hesitate. Is this going to be beneficial to me? Which man should I choose for my best interests? I do choose him temporarily. We dance. I decide I like him the best. He's sweet and sensitive. An older man, distinguished gray hair, like in soap operas is very powerful, but I don't like him. He wants me and tries to convince me to choose him. I am stand-offish. He is angry at me. I then choose to sit o…",
+            "score": -0.3359
+          },
+          {
+            "id": 1087,
+            "text": "I am in bed with a young, good-looking man. He is getting sexually excited. I can feel his penis growing hard next to my thigh. I am sleepy and don't want to make love. He tries to embrace me and I say no. He persists and I feel frustrated. I say, \"Don't.\" Finally I realize he won't give up and leave so I throw myself on the ground next to the bed to sleep there. He gets up and leaves. Some woman is in the next room cooking. I get back in bed, wondering if he'll come back and take up where he left off. I am annoyed a little angry and a little smug because I won. Now I'm the director of this sc…",
+            "score": -0.3348
+          },
+          {
+            "id": 1836,
+            "text": "The Dark Side I'm watching a movie in a theatre with two men. This may be the movie: There is a man. He is awful and terrible and destructive. He makes people witness all hell, all their pain in life, all the torture and suffering, and makes them endure it. I'm in what seems to be my back yard with this evil being and one or two other people. Each person seems to have a turn. One by one, if a person doesn't obey, the evil being will focus pain and suffering on them. It's a beating that comes in waves or pulses, as if numbers are counted out loud in a rhythmic fashion as the pain is administere…",
+            "score": -0.3294
+          }
+        ]
+      }
+    }
+  ]
+}
