@@ -1,0 +1,5 @@
+Model,Setup,Accuracy,Macro Precision,Macro Recall,Macro F1
+BERT-base-uncased,Supervised Fine-Tuning,0.9803,0.9806,0.9803,0.9804
+RoBERTa-base,Supervised Fine-Tuning,0.9861,0.9862,0.9861,0.9861
+LLM (gpt-4o),Zero-Shot Prompting,0.1979,0.1993,0.1979,0.1835
+LLM (gpt-4o),Zero-Shot + Chain-of-Thought,0.2072,0.1876,0.2072,0.1641
