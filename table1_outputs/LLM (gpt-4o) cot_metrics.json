@@ -1,0 +1,21 @@
+{
+  "model": "LLM (gpt-4o) cot",
+  "setup": "Zero-Shot + Chain-of-Thought",
+  "metrics": {
+    "Accuracy": 0.195,
+    "Macro Precision": 0.24075488001043388,
+    "Macro Recall": 0.21078539013321623,
+    "Macro F1": 0.15829170582894167
+  },
+  "n_test": 200,
+  "n_invalid": 0,
+  "diagnostics": {
+    "total": 200,
+    "valid": 200,
+    "invalid": 0,
+    "invalid_percentage": 0.0
+  },
+  "served_model_versions": [
+    "gpt-4o-2024-08-06"
+  ]
+}

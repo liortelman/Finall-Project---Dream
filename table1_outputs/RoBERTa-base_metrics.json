@@ -1,0 +1,11 @@
+{
+  "model": "RoBERTa-base",
+  "setup": "Supervised Fine-Tuning",
+  "metrics": {
+    "Accuracy": 0.9907407407407407,
+    "Macro Precision": 0.9907512592433824,
+    "Macro Recall": 0.9907407407407407,
+    "Macro F1": 0.9907406911259599
+  },
+  "n_test": 864
+}

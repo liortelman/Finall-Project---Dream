@@ -1,0 +1,11 @@
+{
+  "model": "BERT-base-uncased",
+  "setup": "Supervised Fine-Tuning",
+  "metrics": {
+    "Accuracy": 0.9849537037037037,
+    "Macro Precision": 0.9849458992707156,
+    "Macro Recall": 0.9849537037037037,
+    "Macro F1": 0.9849045322431473
+  },
+  "n_test": 864
+}
