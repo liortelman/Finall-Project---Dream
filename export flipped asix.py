@@ -92,3 +92,22 @@ print(f"TABLE 2 (n={n_test})")
 print("=" * 70)
 print(table2.to_string(float_format="%.2f"))
 print(f"\nSaved to {OUTPUT_DIR}/: axis_orientation_check.csv, table2_axis_orientation.csv/.md/.tex")
+
+# ===============================
+# Evidence for PCA2 orientation (Results, item 5):
+# Spearman correlation between the PCA coordinates and report length (training set)
+# ===============================
+from scipy.stats import spearmanr
+
+train = pd.read_csv(os.path.join(OUTPUT_DIR, "train.csv"))
+length = train["dream"].astype(str).str.split().str.len()
+rho_pca2 = spearmanr(train["pca2"], length)[0]
+rho_pca1 = spearmanr(train["pca1"], length)[0]
+
+print(f"\nSpearman rho with report length (train, n={len(train)}): "
+      f"PCA2 = {rho_pca2:.2f}, PCA1 = {rho_pca1:.2f}")
+pd.DataFrame([{"split": "train", "n": len(train),
+               "spearman_pca2_vs_length": round(rho_pca2, 4),
+               "spearman_pca1_vs_length": round(rho_pca1, 4)}]).to_csv(
+    os.path.join(OUTPUT_DIR, "pca_length_correlation.csv"), index=False)
+print(f"Saved to {OUTPUT_DIR}/pca_length_correlation.csv")
