@@ -121,8 +121,7 @@ LLM_WORKERS = 8           # parallel API requests
 LLM_MAX_CHARS = 4000      # truncate very long dreams in the prompt
 # Optional cost control, e.g. LLM_LIMIT=100 python experiments.py
 print("LLM_LIMIT from environment:", os.environ.get("LLM_LIMIT"))
-LLM_LIMIT = None   # always run GPT-4o on the full test set
-
+LLM_LIMIT = int(os.environ["LLM_LIMIT"]) if os.environ.get("LLM_LIMIT") else None
 # ============================================================
 # Reproducibility
 # ============================================================
