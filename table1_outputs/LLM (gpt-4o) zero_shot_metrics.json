@@ -2,19 +2,13 @@
   "model": "LLM (gpt-4o) zero_shot",
   "setup": "Zero-Shot Prompting",
   "metrics": {
-    "Accuracy": 0.195,
-    "Macro Precision": 0.21727030617717322,
-    "Macro Recall": 0.2035243741765481,
-    "Macro F1": 0.18443963443963443
+    "Accuracy": 0.19444444444444445,
+    "Macro Precision": 0.19029954805278815,
+    "Macro Recall": 0.19444444444444442,
+    "Macro F1": 0.17863211704104848
   },
-  "n_test": 200,
+  "n_test": 864,
   "n_invalid": 0,
-  "diagnostics": {
-    "total": 200,
-    "valid": 200,
-    "invalid": 0,
-    "invalid_percentage": 0.0
-  },
   "served_model_versions": [
     "gpt-4o-2024-08-06"
   ]

@@ -1,9 +1,9 @@
-file,n,orientation,accuracy,axis1_agreement,axis2_agreement
-table1_outputs/LLM (gpt-4o) cot_predictions.csv,200,original,0.195,0.56,0.34
-table1_outputs/LLM (gpt-4o) cot_predictions.csv,200,PCA2 flipped,0.365,0.56,0.66
-table1_outputs/LLM (gpt-4o) cot_predictions.csv,200,PCA1 flipped,0.145,0.44,0.34
-table1_outputs/LLM (gpt-4o) cot_predictions.csv,200,both flipped,0.295,0.44,0.66
-table1_outputs/LLM (gpt-4o) zero_shot_predictions.csv,200,original,0.195,0.56,0.34
-table1_outputs/LLM (gpt-4o) zero_shot_predictions.csv,200,PCA2 flipped,0.365,0.56,0.66
-table1_outputs/LLM (gpt-4o) zero_shot_predictions.csv,200,PCA1 flipped,0.145,0.44,0.34
-table1_outputs/LLM (gpt-4o) zero_shot_predictions.csv,200,both flipped,0.295,0.44,0.66
+file,setup,n,orientation,accuracy,axis1_agreement,axis2_agreement
+table1_outputs/LLM (gpt-4o) cot_predictions.csv,CoT,864,Original (as in Table 1),0.2037,0.5752,0.36
+table1_outputs/LLM (gpt-4o) cot_predictions.csv,CoT,864,PCA2 flipped,0.3715,0.5752,0.64
+table1_outputs/LLM (gpt-4o) cot_predictions.csv,CoT,864,PCA1 flipped,0.1562,0.4248,0.36
+table1_outputs/LLM (gpt-4o) cot_predictions.csv,CoT,864,Both flipped,0.2685,0.4248,0.64
+table1_outputs/LLM (gpt-4o) zero_shot_predictions.csv,Zero-Shot,864,Original (as in Table 1),0.1944,0.5914,0.3472
+table1_outputs/LLM (gpt-4o) zero_shot_predictions.csv,Zero-Shot,864,PCA2 flipped,0.397,0.5914,0.6528
+table1_outputs/LLM (gpt-4o) zero_shot_predictions.csv,Zero-Shot,864,PCA1 flipped,0.1528,0.4086,0.3472
+table1_outputs/LLM (gpt-4o) zero_shot_predictions.csv,Zero-Shot,864,Both flipped,0.2558,0.4086,0.6528

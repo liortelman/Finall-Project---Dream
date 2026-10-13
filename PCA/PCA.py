@@ -32,7 +32,9 @@ print("PCA plots saved to folder:", OUTPUT_DIR)
 
 # Extract dream texts
 dreams = dreams_df["dream"].astype(str).tolist()
-dreams_subset = random.sample(dreams, MAX_DREAMS)
+random.seed(42)  # reproducible figures
+idx = random.sample(range(len(dreams)), min(MAX_DREAMS, len(dreams)))
+dreams_subset = [dreams[i] for i in idx]
 
 
 # ===============================
@@ -165,7 +167,7 @@ plt.close()
 # 7. Split + Save each quadrant as a separate folder + dataset
 # ===============================
 
-dreams_df_subset = dreams_df.iloc[:len(dreams_subset)].copy()
+dreams_df_subset = dreams_df.iloc[idx].reset_index(drop=True)  # same rows as the embeddings
 dreams_df_subset["pca1"] = x
 dreams_df_subset["pca2"] = y
 
