@@ -104,6 +104,7 @@ length = train["dream"].astype(str).str.split().str.len()
 rho_pca2 = spearmanr(train["pca2"], length)[0]
 rho_pca1 = spearmanr(train["pca1"], length)[0]
 
+
 print(f"\nSpearman rho with report length (train, n={len(train)}): "
       f"PCA2 = {rho_pca2:.2f}, PCA1 = {rho_pca1:.2f}")
 pd.DataFrame([{"split": "train", "n": len(train),
